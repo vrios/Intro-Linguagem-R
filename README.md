@@ -1,2 +1,2 @@
-# Intro-Linguagem-R
-Repositório de apoio ao Curso de Introdução à Linguagem R
+# teste-Intro-Linguagem-R
+Repositorio  dos materiais do Curso de introdução à Linguagem R
