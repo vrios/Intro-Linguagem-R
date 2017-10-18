@@ -62,15 +62,16 @@ Vitor Rios
 <h2 id="bem-vindos">Bem vindos</h2>
 <h2 id="cronograma">Cronograma</h2>
 <p>Dia 1 - 21/11 - Introdução, histórico e como usar o R e Rstudio, boas práticas de programação<br />
-Dia 2 - 22/11 - Leitura, limpeza e manipuação de dados, noções de lógica de programação I<br />
-Dia 3 - 23/11 - Leitura, limpeza e manipuação de dados, noções de lógica de programação II<br />
-Dia 4 - 28/12 - Análise exploratória e funções matemáticas<br />
-Dia 5 - 05/12 - Análise estatística básica no R - RCommander<br />
-Dia 6 - 06/12 - Gráficos<br />
-Dia 7 - 07/12 -<br />
-Dia 8 - 12/12 -<br />
-Dia 9 - 13/12 - Programação para iniciantes: da idéia à análise final Dia 10 - 14/12 - Versionamento de código: noções de git</p>
-<p>Aulas: teoria (1 a 2 h) + prática (até vocês desmaiarem)</p>
+Dia 2 - 22/11 - Criando e e manipulando dados, noções de programação I<br />
+Dia 3 - 23/11 - Leitura de arquivos, limpeza e manipuação de dados, noções de programação II<br />
+Dia 4 - 28/12 - Trabalhando com arquivos: noções de programação III<br />
+Dia 5 - 05/12 - Gráficos<br />
+Dia 6 - 06/12 - Análise exploratória e funções matemáticas<br />
+Dia 7 - 07/12 - Análise exploratória e funções matemáticas<br />
+Dia 8 - 12/12 - Análise estatística básica<br />
+Dia 9 - 13/12 - Programação para iniciantes<br />
+Dia 10 - 14/12 - Programação para iniciantes II -Versionamento de código: noções de git</p>
+<p>Aulas: teoria (1 a 2 h) + prática (wiki do curso)</p>
 </div>
 <div id="o-que-e-o-r" class="slide section level1">
 <h1>O que é o R?</h1>
@@ -165,13 +166,13 @@ Dia 9 - 13/12 - Programação para iniciantes: da idéia à análise final Dia 1
 </div>
 <div id="funcoes" class="slide section level1">
 <h1>Funções</h1>
-<p>Quando temos um nome seguido de parentese com alguma coisa dentro, temos uma <strong>função</strong> Função é um conjunto de comandos que faz uma operação em um objeto<br />
+<p>Quando temos um nome seguido de parêntese com alguma coisa dentro, temos uma <strong>função</strong> Função é um conjunto de comandos que faz uma operação em um objeto<br />
 sqrt(x) calcula a raiz quadrada de x<br />
 Funções podem ter opçoes, chamadas argumentos</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dv">10</span>, <span class="dt">base=</span><span class="dv">2</span>)</code></pre></div>
 <p>calcula o logaritmo de 10 na base 2</p>
 <p>Quase tudo que vocêe vai usar no R são funções</p>
-<p>Muito cuidado com a digitação: para o R, maiúsculas e minúsculas são diferentes, e um espaço no meio da palvra atralha</p>
+<p>Muito cuidado com a digitação: para o R, maiúsculas e minúsculas são diferentes, e um espaço no meio da palvra atrapalha</p>
 <p><strong>O R é burro, qualquer erro de digitação faz com que ele não encontre o que você procura</strong></p>
 </div>
 <div id="ajuda-das-funcoes" class="slide section level1">
@@ -187,6 +188,7 @@ Funções podem ter opçoes, chamadas argumentos</p>
 <h1>Outros lugares para pedir ajuda</h1>
 <p>Quase todos os problemas que você tem com R, alguém já teve e resolveu</p>
 <p>Google &lt;- busque por “R manova” ou “R phylogenetics” ou “R cluster analysis”, etc. <a href="https://stackoverflow.com/">Stack Overflow</a> &lt;- geralmente é o primeiro resultado do Google</p>
+<p>Quando o R der erro, copie a mensagem e cole no Google!</p>
 </div>
 <div id="cran" class="slide section level1">
 <h1>CRAN</h1>
@@ -209,11 +211,9 @@ Funções podem ter opçoes, chamadas argumentos</p>
 </div>
 <div id="dados-e-variaveis" class="slide section level1">
 <h1>Dados e variáveis</h1>
-</div>
-<div id="r-e-uma-linguagem-de-manipulacao-de-objetos" class="slide section level1">
-<h1>R é uma linguagem de manipulação de objetos</h1>
+<h2 id="r-e-uma-linguagem-de-manipulacao-de-objetos">R é uma linguagem de manipulação de objetos</h2>
 <p>No R, podemos criar caixas para guardar coisas que iremos usar depois, que chamamos de <em>variáveis</em> Para isso usamos o sinal <em>=</em> ou <em>&lt;-</em> .<br />
-<em>&lt;-</em> existe por motivos de compatibilidade para teclados que nao possuíam <em>=</em> (lá dos tempos jurássicos da computação). Use <em>=</em></p>
+<em>&lt;-</em> existe por motivos de compatibilidade com teclados que nao possuíam <em>=</em> (lá dos tempos jurássicos da computação). Use <em>=</em></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pote.de.sorvete =<span class="st"> &quot;feijão&quot;</span></code></pre></div>
 <p>Na linha acima o R interpreta o que está dentro das apas como texto, e guarda esse valor dentro de um pedaço da memória que recebe o nome “pote.de.sorvete”.</p>
 <p>O nome das variáveis não deve conter espaços, acentos,ou caracteres especiais como ç, ~, !, ?, /, |</p>
@@ -252,7 +252,9 @@ geladeira</code></pre></div>
 ## [4] &quot;miojo&quot;             &quot;macarrão&quot;          &quot;pacote.de.ketchup&quot;</code></pre>
 <p>Vetores só guardam objetos iguais: ou texto, ou números, nunca os dois juntos<br />
 Veja o que as funções <em>seq()</em> e <em>rep()</em> fazem!</p>
-<h3 id="vetor-e-a-unidade-basica-do-r">Vetor é a unidade básica do R</h3>
+</div>
+<div id="vetor-e-a-unidade-basica-do-r" class="slide section level1">
+<h1>Vetor é a unidade básica do R</h1>
 <p>Quase todas as funções do R são baseadas em manipulação de vetores</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">peso.real =<span class="st"> </span><span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">45</span>, <span class="dv">77</span>, <span class="dv">60</span>)
 peso.no.perfil =<span class="st"> </span><span class="kw">c</span>(<span class="dv">70</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">55</span>)
@@ -285,7 +287,44 @@ peso.real[<span class="dv">3</span>]</code></pre></div>
 <div id="dataframes" class="slide section level1">
 <h1>Dataframes</h1>
 <p>Dataframes são o formato de tabela mais comum do R. No dataframe você pode ter colunas com tipos de dados diferentes, como numérico e texto.<br />
-Para criar o dataframe,, temos 3 jeitos principais</p>
+Para criar o dataframe, podemos unir 2 ou mais vetores usando a função <em>data.frame()</em></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vetor1=LETTERS
+vetor2=<span class="dv">1</span><span class="op">:</span><span class="dv">26</span>
+dados=<span class="kw">data.frame</span>(<span class="dt">x=</span>vetor1,<span class="dt">y=</span>vetor2)
+<span class="kw">class</span>(dados)</code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<p>As colunas do dataframe podem ter nomes:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vetor3=letters
+vetor4=<span class="dv">26</span><span class="op">:</span><span class="dv">1</span>
+nomesColunas=<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Letras&quot;</span>,<span class="st">&quot;Numeros&quot;</span>)
+dadosNomeados=<span class="kw">data.frame</span>(vetor3,<span class="dt">y=</span>vetor4)
+<span class="kw">colnames</span>(dadosNomeados) =<span class="st"> </span>nomesColunas
+<span class="kw">head</span>(dadosNomeados)</code></pre></div>
+<pre><code>##   Letras Numeros
+## 1      a      26
+## 2      b      25
+## 3      c      24
+## 4      d      23
+## 5      e      22
+## 6      f      21</code></pre>
+</div>
+<div id="acessando-dados-no-dataframe" class="slide section level1">
+<h1>Acessando dados no dataframe</h1>
+<p>existem dois jeitos principais de acessar dados em um dataframe: colchetes <em>[]</em> ou cifrão <em>$</em></p>
+<p>dataframe[linha, coluna]</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dadosNomeados[<span class="dv">3</span>,<span class="dv">2</span>]</code></pre></div>
+<pre><code>## [1] 24</code></pre>
+<p>dataframe$nomeDaColuna</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dadosNomeados<span class="op">$</span>Numeros</code></pre></div>
+<pre><code>##  [1] 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10  9  8  7  6  5  4
+## [24]  3  2  1</code></pre>
+<p>você também pode misturar:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dadosNomeados<span class="op">$</span>Numeros[<span class="dv">4</span>]</code></pre></div>
+<pre><code>## [1] 23</code></pre>
+</div>
+<div id="matrix" class="slide section level1">
+<h1>Matrix</h1>
+<p>Matrizes são tabelas cujas colunas possuem apenas um tipo de dado, seja numerico ou texto. Podem ser criadas com as funções <em>matrix</em>, <em>cbind</em>, ou <em>rbind()</em></p>
 </div>
 <div id="salvando-sua-vida-seu-codigo" class="slide section level1">
 <h1>Salvando <del>sua vida</del> seu código</h1>

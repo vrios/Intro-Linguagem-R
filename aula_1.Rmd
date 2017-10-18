@@ -14,18 +14,18 @@ output:
 
 ## Cronograma
 Dia 1  -  21/11 - Introdução, histórico e como usar o R e Rstudio, boas práticas de programação  
-Dia 2  -  22/11 - Leitura, limpeza e manipuação de dados, noções de lógica  de programação I  
-Dia 3  -  23/11 - Leitura, limpeza e manipuação de dados, noções de lógica de programação II  
-Dia 4  -  28/12 - Análise exploratória e funções matemáticas  
-Dia 5  -  05/12 - Análise estatística básica no R - RCommander  
-Dia 6  -  06/12 - Gráficos  
-Dia 7  -  07/12 -  
-Dia 8  -  12/12 -  
-Dia 9  -  13/12 - Programação para iniciantes: da idéia à análise final 
-Dia 10 -  14/12 - Versionamento de código: noções de git  
+Dia 2  -  22/11 - Criando e e manipulando dados, noções de programação I  
+Dia 3  -  23/11 - Leitura de arquivos, limpeza e manipuação de dados, noções de programação II  
+Dia 4  -  28/12 -  Trabalhando com arquivos: noções de programação III  
+Dia 5  -  05/12 - Gráficos  
+Dia 6  -  06/12 - Análise exploratória e funções matemáticas  
+Dia 7  -  07/12 - Análise exploratória e funções matemáticas  
+Dia 8  -  12/12 -  Análise estatística básica  
+Dia 9  -  13/12 - Programação para iniciantes  
+Dia 10 -  14/12 - Programação para iniciantes II -Versionamento de código: noções de git  
 
-Aulas: teoria (1 a 2 h) + prática (até vocês desmaiarem)
-
+Aulas: teoria (1 a 2 h) + prática (wiki do curso)
+Avaliação: exercícios e constução de uma função (entrega 2 semanas após fim da disciplina)
 # O que é o R?
 - R é uma linguagem de programação voltada para análises estatísticas e manipulação de dados
 - RStudio é um ambiente de desenvolvimento integrado (IDE) que extende as capacidades do R e facilita o uso
@@ -98,7 +98,7 @@ sqrt(2)
 
 
 # Funções
-Quando temos um nome seguido de parentese com alguma coisa dentro, temos uma **função**
+Quando temos um nome seguido de parêntese com alguma coisa dentro, temos uma **função**
 Função é um conjunto de comandos que faz uma operação em um objeto  
 sqrt(x) calcula a raiz quadrada de x  
 Funções podem ter opçoes, chamadas argumentos
@@ -109,7 +109,7 @@ calcula o logaritmo de 10 na base 2
 
 Quase tudo que vocêe vai usar no R são funções
 
-Muito cuidado com a digitação: para o R, maiúsculas e minúsculas são diferentes, e um espaço no meio da palvra atralha
+Muito cuidado com a digitação: para o R, maiúsculas e minúsculas são diferentes, e um espaço no meio da palvra atrapalha
 
 **O R é burro, qualquer erro de digitação faz com que ele não encontre o que você procura**
 
@@ -129,6 +129,7 @@ Quase todos os problemas que você tem com R, alguém já teve e resolveu
 Google <- busque por "R manova" ou "R phylogenetics" ou "R cluster analysis", etc.
 [Stack Overflow](https://stackoverflow.com/) <- geralmente é o primeiro resultado do Google
 
+Quando o R der erro, copie a mensagem e cole no Google!
 
 #CRAN
 o _Comprehensive R Archive Network_ é o repositório central oficial de pacotes do R. Para instalar um pacote do CRAN, usamos o comando install.packages("nome",repositório)
@@ -147,11 +148,10 @@ library(igraph)
 agora as funções do _igraph_ estão disponíveis para serem usadas
 
 #Dados e variáveis
-
-#R é uma linguagem de manipulação de objetos
+##R é uma linguagem de manipulação de objetos
 No R, podemos criar caixas para guardar coisas que iremos usar depois, que chamamos de _variáveis_ 
 Para isso usamos o sinal _=_ ou _<-_ .   
-_<-_ existe por motivos de compatibilidade para teclados que nao possuíam _=_ (lá dos tempos jurássicos da computação). Use _=_
+_<-_ existe por motivos de compatibilidade com teclados que nao possuíam _=_ (lá dos tempos jurássicos da computação). Use _=_
 
 ```{r, echo=TRUE}
 pote.de.sorvete = "feijão"
@@ -203,7 +203,8 @@ geladeira
 Vetores só guardam objetos iguais: ou texto, ou números, nunca os dois juntos  
 Veja o que as funções _seq()_ e _rep()_ fazem!
 
-###Vetor é a unidade básica do R
+
+#Vetor é a unidade básica do R
 Quase todas as funções do R são baseadas em manipulação de vetores
 ```{r, echo=TRUE}
 peso.real = c(100, 45, 77, 60)
@@ -223,7 +224,6 @@ peso.real = c(100, 45, 77, 60, 50, 77.5)
 ganho.apos.almoco = c(2, 5.3)
 peso.gordo= peso.real + ganho.apos.almoco
 peso.gordo
-
 ```
 
 Sempre confira o tamanho dos seus vetores!
@@ -233,7 +233,6 @@ Função _length()_ retorna o tamanho do vetor
 ```{r, echo=TRUE}
 peso.real = c(100, 45, 77, 60, 50, 77.5)
 length(peso.real)
-
 ```
 Para acessar o elemento _i_ do vetor, use _nome[i]_
 ```{r, echo=TRUE}
@@ -243,7 +242,43 @@ peso.real[3]
 ***
 #Dataframes
 Dataframes são o formato de tabela mais comum do R. No dataframe você pode ter colunas com tipos de dados diferentes, como numérico e texto.  
-Para criar o dataframe,, temos 3 jeitos principais
+Para criar o dataframe, podemos unir 2 ou mais vetores usando a função _data.frame()_
+
+```{r}
+vetor1=LETTERS
+vetor2=1:26
+dados=data.frame(x=vetor1,y=vetor2)
+class(dados)
+```
+
+As colunas do dataframe podem ter nomes:
+```{r}
+vetor3=letters
+vetor4=26:1
+nomesColunas= c("Letras","Numeros")
+dadosNomeados=data.frame(vetor3,y=vetor4)
+colnames(dadosNomeados) = nomesColunas
+head(dadosNomeados)
+```
+#Acessando dados no dataframe
+existem dois jeitos principais de acessar dados em um dataframe: colchetes _[]_ ou cifrão _$_
+
+dataframe[linha, coluna]
+```{r}
+dadosNomeados[3,2]
+```
+dataframe$nomeDaColuna
+```{r}
+dadosNomeados$Numeros
+```
+você também pode misturar:
+```{r}
+dadosNomeados$Numeros[4]
+```
+
+
+#Matrix
+Matrizes são tabelas cujas colunas possuem apenas um tipo de dado, seja numerico ou texto. Podem ser criadas com as funções _matrix_, _cbind_, ou _rbind()_
 
 #Salvando ~~sua vida~~ seu código
 Se você fechar o R, vai perder tudo que você fez  
