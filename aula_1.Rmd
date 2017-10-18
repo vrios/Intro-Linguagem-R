@@ -3,10 +3,10 @@ title: "Aula 1 - Introdução ao R"
 author: "Vitor Rios"
 date: "10 de outubro de 2017"
 output:
+  beamer_presentation:
+    highlight: pygments
   slidy_presentation:
     font_adjustment: + 1
-    highlight: pygments
-  beamer_presentation:
     highlight: pygments
 ---
 ## Bem vindos
@@ -14,6 +14,7 @@ output:
 
 ## Cronograma
 Dia 1  -  21/11 - Introdução, histórico e como usar o R e Rstudio, boas práticas de programação  
+<<<<<<< HEAD
 Dia 2  -  22/11 - Criando e e manipulando dados, noções de programação I  
 Dia 3  -  23/11 - Leitura de arquivos, limpeza e manipuação de dados, noções de programação II  
 Dia 4  -  28/12 -  Trabalhando com arquivos: noções de programação III  
@@ -26,6 +27,20 @@ Dia 10 -  14/12 - Programação para iniciantes II -Versionamento de código: noçõe
 
 Aulas: teoria (1 a 2 h) + prática (wiki do curso)
 Avaliação: exercícios e constução de uma função (entrega 2 semanas após fim da disciplina)
+=======
+Dia 2  -  22/11 - Criando e e manipulando dados, noções de lógica  de programação I  
+Dia 3  -  23/11 - Leitura de arquivos, limpeza e manipuação de dados, noções de lógica de programação II  
+Dia 4  -  28/12 - Análise exploratória e funções matemáticas  
+Dia 5  -  05/12 - Análise estatística básica no R
+Dia 6  -  06/12 - Gráficos  
+Dia 7  -  07/12 -  
+Dia 8  -  12/12 -  
+Dia 9  -  13/12 - Programação para iniciantes: da idéia à análise final  
+Dia 10 -  14/12 - Versionamento de código: noções de git  
+
+Aulas: teoria (1 a 2 h) + prática (wiki do curso)
+
+>>>>>>> 38d82c10367a88aa9a777f76d3e22b2ca7489376
 # O que é o R?
 - R é uma linguagem de programação voltada para análises estatísticas e manipulação de dados
 - RStudio é um ambiente de desenvolvimento integrado (IDE) que extende as capacidades do R e facilita o uso
