@@ -3,8 +3,6 @@ title: "Aula 1 - Introdução ao R"
 author: "Vitor Rios"
 date: "10 de outubro de 2017"
 output:
-  beamer_presentation:
-    highlight: pygments
   slidy_presentation:
     font_adjustment: + 1
     highlight: pygments
@@ -14,7 +12,6 @@ output:
 
 ## Cronograma
 Dia 1  -  21/11 - Introdução, histórico e como usar o R e Rstudio, boas práticas de programação  
-<<<<<<< HEAD
 Dia 2  -  22/11 - Criando e e manipulando dados, noções de programação I  
 Dia 3  -  23/11 - Leitura de arquivos, limpeza e manipuação de dados, noções de programação II  
 Dia 4  -  28/12 -  Trabalhando com arquivos: noções de programação III  
@@ -27,20 +24,8 @@ Dia 10 -  14/12 - Programação para iniciantes II -Versionamento de código: noçõe
 
 Aulas: teoria (1 a 2 h) + prática (wiki do curso)
 Avaliação: exercícios e constução de uma função (entrega 2 semanas após fim da disciplina)
-=======
-Dia 2  -  22/11 - Criando e e manipulando dados, noções de lógica  de programação I  
-Dia 3  -  23/11 - Leitura de arquivos, limpeza e manipuação de dados, noções de lógica de programação II  
-Dia 4  -  28/12 - Análise exploratória e funções matemáticas  
-Dia 5  -  05/12 - Análise estatística básica no R
-Dia 6  -  06/12 - Gráficos  
-Dia 7  -  07/12 -  
-Dia 8  -  12/12 -  
-Dia 9  -  13/12 - Programação para iniciantes: da idéia à análise final  
-Dia 10 -  14/12 - Versionamento de código: noções de git  
 
-Aulas: teoria (1 a 2 h) + prática (wiki do curso)
 
->>>>>>> 38d82c10367a88aa9a777f76d3e22b2ca7489376
 # O que é o R?
 - R é uma linguagem de programação voltada para análises estatísticas e manipulação de dados
 - RStudio é um ambiente de desenvolvimento integrado (IDE) que extende as capacidades do R e facilita o uso
@@ -49,8 +34,9 @@ Aulas: teoria (1 a 2 h) + prática (wiki do curso)
 - Praticidade  
 - Reprodutibilidade  
 - Simplicidade (sim, você leu direito)  
+- Cooperação
 
-Ao fazer o tratamento e análise dos dados dentro do R, você não altera os dados originais, e pode reproduzir tudo, bastando ter o script e os dados originais. Não é necessário nem salvar os gráficos.
+Ao fazer o tratamento e análise dos dados dentro do R, você não altera os dados originais, e pode reproduzir tudo, bastando ter o script e os dados originais. Não é necessário nem salvar os gráficos!
 
 
 # Porque Usar R? 
@@ -59,7 +45,7 @@ Ao fazer o tratamento e análise dos dados dentro do R, você não altera os dados 
 ![CranTaskView](figuras/cranTaskView2.png)
 
 ***
-* **Interfaces amigáveis que não precisam de programação**  
+* Além disso, o R tem **Interfaces amigáveis que não precisam de programação**  
     + RCommander <- fácil acesso às análises principais
     + Action <- análises integradas ao Excel
     + RStudio <-ambiente completo de programação  
@@ -141,8 +127,8 @@ As funções geralmente vem em conjuntos especializados voltados para aulguma anál
 #Outros lugares para pedir ajuda
 Quase todos os problemas que você tem com R, alguém já teve e resolveu
 
-Google <- busque por "R manova" ou "R phylogenetics" ou "R cluster analysis", etc.
-[Stack Overflow](https://stackoverflow.com/) <- geralmente é o primeiro resultado do Google
+Google <- busque por "R manova" ou "R phylogenetics" ou "R cluster analysis", etc.  
+[Stack Overflow](https://stackoverflow.com/) <- geralmente é o primeiro resultado do Google  
 
 Quando o R der erro, copie a mensagem e cole no Google!
 
@@ -276,8 +262,8 @@ colnames(dadosNomeados) = nomesColunas
 head(dadosNomeados)
 ```
 #Acessando dados no dataframe
-existem dois jeitos principais de acessar dados em um dataframe: colchetes _[]_ ou cifrão _$_
-
+Existem dois jeitos principais de acessar dados em um dataframe: colchetes _[]_ ou cifrão _$_  
+Isto se chama _indexação_  
 dataframe[linha, coluna]
 ```{r}
 dadosNomeados[3,2]
@@ -291,10 +277,27 @@ você também pode usar ambas:
 dadosNomeados$Numeros[4]
 ```
 
+#Indexação
+O colchete aceita também vetores como índice, incluindo vetores lógicos (sequencias de TRUE / FALSE)
+
+```{r}
+Idade = c(3.0, 4.0, 5.0, 6.0, 8.0, 9.0, 10.0, 11.0, 12.0, 14.0, 15.0, 16.0, 17.0)
+
+Idade[c(5, 4, 1, 10, 12)]
+
+Idade > 6 # retorna um vetor lógico dizendo se cada elemento de Idade é maior que 6
+
+Idade[ Idade> 6 ] #retorna um vetor com todos os elementos de Idade maiores que 6
+```
+
+#
 
 #Matrix
 Matrizes são tabelas cujas colunas possuem apenas um tipo de dado, seja numerico ou texto. Podem ser criadas com as funções _matrix_, _cbind_, ou _rbind()_
 
+
+##Array
+Array são estruturas de dados com mais de duas dimensões. pensando no vetor como uma linha, uma dataframe seria uma folha de papel, e o array com 3 dimensões seria o equivalente a um caderno, várias folhas empilhadas. Podemos também ter arrays com 4 ou cinco dimensões, que podemos fazer analogia com uma prateleira de cadernos, uma estante com várias prateleiras, e assim por diante.
 #Salvando ~~sua vida~~ seu código
 Se você fechar o R, vai perder tudo que você fez  
 
