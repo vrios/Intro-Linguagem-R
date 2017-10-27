@@ -1,0 +1,96 @@
+---
+title: "Aula 2 - Criando e e manipulando dados, noções de programação I  "
+author: "Vitor Rios"
+date: "16 de outubro de 2017"
+output: 
+  slidy_presentation: 
+    highlight: tango
+---
+#Tipos de dados
+Já vimos 3 tipos de valores de dados, mas existem outros 4 especiais
+```{r}
+class(1)
+class("1")
+class(1 == "1")
+```
+
+***
+```{r}
+10 / 0
+sqrt(-3)
+c(10,NA,30)
+fator = factor(1:3, levels=c("chuchu","goiaba","iogurte"))
+fator
+class(fator)
+```
+***
+`Inf` representa valores infinitos, pode ser `+Inf` ou `-Inf`  
+
+`NaN` Not a Number, resultado de operações matemáticas impossíveis  
+
+`NA` Not Available, representa dados ausentes, útil para preencher tabelas e matrizes. A maioria das funções estatísticas do R possui um argumento `na.rm` que lida com valores ausentes  
+
+`factor` especifica que um conjunto de valores representa os níveis de um fator, usado para análises de dados categóricos  
+
+Ao ler dados de arquivos .csv, colunas representadas por caracteres são automaticamente convertidas em fatores  
+    
+
+#Criando um conjunto de dados simulado
+Iremos investigar o crescimento dos dragões usando  quatro rações diferentes. Após mandar nossos estagiários fazerem os experimentos, temos os seguintes dados, em dezenas de quilos
+```{r , tidy=TRUE}
+vacas = c(121.72355, 103.79754, 130.15442, 98.29305, 103.43365, 102.44998,
+          125.49993, 111.07215, 113.74047, 103.16081, 80.87149, 98.66692,
+          65.09549, 155.74965, 88.30168, 147.43610, 114.60806, 109.87433,
+          149.54772, 83.54137)
+
+fazendeiros = c(77.91352, 78.07251, 81.95604, 75.64862, 78.45213, 79.11058,
+                79.98952, 79.18127, 840.1635, 74.86860, 82.01886, 78.26936,
+                77.94691, 78.75372, 77.64901, 77.64097, 77.19803, 72.48175,
+                83.45336, 78.99681
+)
+virgens = c(127.9366, 201.7158, 136.1366, 136.5880, 131.7213, 118.1486, 
+            125.7534, 139.6544, 163.5890, 139.7455, NA, 141.4450, 110.7311,
+            157.5921, 176.8437, 102.8659, 121.8286, 134.7097, 157.1392, 166.7133
+)
+aventureiros = c(191.3721, 216.1671, 165.4380, 196.2730, 172.6565, 178.2955,
+                 193.6687, 189.7674, 160.2968, 208.4400, 204.0934, 208.1798,
+                 186.6380, 193.9446, 197.3650, 198.6853, 213.8838, 210.1881,
+                 209.9109, 210.9228
+)
+```
+***
+```{r}
+
+boxplot(dragoes)
+lm(dragoes)
+
+```
+
+***
+Podemos juntar tudo num dataframe para facilitar
+```{r}
+dragoes = data.frame(vacas,fazendeiros,virgens,aventureiros)
+head(dragoes)
+summary(dragoes)
+```
+#Temos problemas
+Erros de digitação em fazendeiros e em virgens
+```{r}
+max(dragoes$fazendeiros)
+```
+Erro na posição do decimal
+```{r}
+dragoes$fazendeiros[dragoes$fazendeiros == 840.1635] = 84.01635
+max(dragoes$fazendeiros)
+```
+#Para NA, não há remédio
+Só verificando o dado original ou removendo
+```{r}
+mean(dragoes$virgens) ##qualquer cálculo com NA é igual a NA
+mean(dragoes$virgens,na.rm = TRUE)## na.rm = TRUE remove o NA para o calculo da média
+
+```
+
+# Para verificar erros de digitação ao trabalharmos com texto, podeos usar a função `unique()`
+
+
