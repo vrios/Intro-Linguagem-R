@@ -73,7 +73,6 @@ summary(dragoes)
 ```{r}
 plot(dragoes)
 ```
-
 #Para facilitar suas análises
 Formate seus dados sempre que possível da seguinte forma:
 - Cada linha uma observação ou indivíduo
@@ -141,3 +140,51 @@ retorna apenas os elementos que cumpre a condição dentro do colchete
 nomesComErro$especie[nomesComErro$especie=="Tabebuia casinoides"]="Tabebuia cassinoides"
 ```
 ***
+#Dica de estruturar seu script: pseudocódigo
+Liste cada passo necessário
+
+  verbo - objeto
+
+- Ler dados do arquivo
+- Verificar dados ausentes / errados
+      - verificar NAs
+      - verificar erros de digitação
+      - verificar cabeçalhos
+- Selecionar colunas para analisar
+- Rodar análise
+      - Passo 1
+      - Passo 2
+  _ ....
+
+***
+# pseudocódigo
+Substitua pela função adequada do R  
+Se necessário, quebre em sub itens
+
+- Ler dados do arquivo
+    - `file = read.table("preçosComida.csv")`
+- Verificar dados ausentes / errados
+      - verificar NAs
+        - `is.na(file)`
+      - verificar erros de digitação
+        - `unique(file$species)`
+      - verificar cabeçalhos
+        - `head(file)`
+- Selecionar colunas para analisar
+      - `file$species[file$species!="Chuchu"]`
+- Rodar análise
+      - Passo 1
+      - Passo 2
+  _ ....
+
+***
+
+#Condicionais
+Fazer algo _se_ uma condição ocorrer
+
+```{r}
+if (pi==3){
+  message("Algo de errado não está certo")
+  } else message("Algo de certo não está errado")
+```
+
