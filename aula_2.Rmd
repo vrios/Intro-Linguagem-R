@@ -4,7 +4,7 @@ author: "Vitor Rios"
 date: "16 de outubro de 2017"
 output: 
   slidy_presentation: 
-    highlight: tango
+    highlight: kate
 ---
 #Tipos de dados
 Já vimos 3 tipos de valores de dados, mas existem outros 4 especiais
@@ -19,6 +19,9 @@ class(1 == "1")
 10 / 0
 sqrt(-3)
 c(10,NA,30)
+```
+***
+```{r}
 fator = factor(1:3, levels=c("chuchu","goiaba","iogurte"))
 fator
 class(fator)
@@ -32,7 +35,7 @@ class(fator)
 
 `factor` especifica que um conjunto de valores representa os níveis de um fator, usado para análises de dados categóricos  
 
-Ao ler dados de arquivos .csv, colunas representadas por caracteres são automaticamente convertidas em fatores  
+Ao ler dados de arquivos .csv, colunas representadas por caracteres são automaticamente convertidas em fatores. para eivtar isto, use o argumento `as.is = TRUE`  
     
 
 #Criando um conjunto de dados simulado
@@ -41,8 +44,8 @@ Iremos investigar o crescimento dos dragões usando  quatro rações diferentes. Ap
 vacas = c(121.72355, 103.79754, 130.15442, 98.29305, 103.43365, 102.44998,
           125.49993, 111.07215, 113.74047, 103.16081, 80.87149, 98.66692,
           65.09549, 155.74965, 88.30168, 147.43610, 114.60806, 109.87433,
-          149.54772, 83.54137)
-
+          149.54772, 83.54137
+          )
 fazendeiros = c(77.91352, 78.07251, 81.95604, 75.64862, 78.45213, 79.11058,
                 79.98952, 79.18127, 840.1635, 74.86860, 82.01886, 78.26936,
                 77.94691, 78.75372, 77.64901, 77.64097, 77.19803, 72.48175,
@@ -59,38 +62,82 @@ aventureiros = c(191.3721, 216.1671, 165.4380, 196.2730, 172.6565, 178.2955,
 )
 ```
 ***
-```{r}
-
-boxplot(dragoes)
-lm(dragoes)
-
-```
-
-***
 Podemos juntar tudo num dataframe para facilitar
 ```{r}
-dragoes = data.frame(vacas,fazendeiros,virgens,aventureiros)
+alimento=c(rep("vacas",20),rep("fazendeiros",20),rep("virgens",20),rep("aventureiros",20))
+dragoes = data.frame(x=alimento, y=c(vacas,fazendeiros,virgens,aventureiros))
 head(dragoes)
 summary(dragoes)
 ```
+***
+```{r}
+plot(dragoes)
+```
+
+#Para facilitar suas análises
+Formate seus dados sempre que possível da seguinte forma:
+- Cada linha uma observação ou indivíduo
+- Cada coluna uma variável
+```{r}
+summary(lm(dragoes$y~dragoes$x))
+```
+
 #Temos problemas
 Erros de digitação em fazendeiros e em virgens
 ```{r}
-max(dragoes$fazendeiros)
+max(dragoes[,2])
+max(dragoes[,2], na.rm = T)
 ```
+***
 Erro na posição do decimal
 ```{r}
-dragoes$fazendeiros[dragoes$fazendeiros == 840.1635] = 84.01635
-max(dragoes$fazendeiros)
+dragoes[dragoes== 840.1635] = 84.01635
+max(dragoes[,2],na.rm = TRUE)
+plot (dragoes)
 ```
+
+
 #Para NA, não há remédio
 Só verificando o dado original ou removendo
 ```{r}
-mean(dragoes$virgens) ##qualquer cálculo com NA é igual a NA
-mean(dragoes$virgens,na.rm = TRUE)## na.rm = TRUE remove o NA para o calculo da média
+mean(dragoes[,2]) ##qualquer cálculo com NA é igual a NA
+mean(dragoes[,2], na.rm = TRUE)## na.rm = TRUE remove o NA para o calculo da média
+
+aggregate(dragoes$y ~ dragoes$x,FUN = "mean")
 
 ```
 
 # Para verificar erros de digitação ao trabalharmos com texto, podeos usar a função `unique()`
-
-
+```{r}
+### dados dispníveis em http://ecologia.ib.usp.br/bie5782/doku.php?id=dados:dados-caixeta
+nomesComErro = read.table("arquivos/caixetaComErro.csv", header=T, sep=",")
+head(nomesComErro)
+unique(nomesComErro$especie)
+#podemos também colocar os nomes em ordem alfabética
+sort(unique(nomesComErro$especie))
+```
+***
+```{r}
+nomesComErro$especie[nomesComErro$especie=="Tabebuia casinoides"]="Tabebuia cassinoides"
+nomesComErro$especie[nomesComErro$especie=="Tabebuia casssinoides"] = "Tabebuia cassinoides"
+sort(unique(nomesComErro$especie))
+```
+#Entendendo o comando passo a passo:
+````{r, echo=T, eval=F}
+nomesComErro$especie[nomesComErro$especie=="Tabebuia casinoides"]="Tabebuia cassinoides"
+````
+1- Definir o que vamos substituir:   
+```{r,eval=FALSE}
+ nomesComErro$especie=="Tabebuia casinoides"
+```
+Este comando nos retorna um vetor lógico com as posições de todos elementos "Tabebuia casinoides" dentro do objeto nomesComErro, na coluna$especie    
+1- Selecionar o que será substituído:
+```{r,eval=F}
+ nomesComErro$especie[nomesComErro$especie=="Tabebuia casinoides"]
+```
+retorna apenas os elementos que cumpre a condição dentro do colchete     
+1- Substituir 
+```{r, eval=F, tidy = TRUE}
+nomesComErro$especie[nomesComErro$especie=="Tabebuia casinoides"]="Tabebuia cassinoides"
+```
+***
