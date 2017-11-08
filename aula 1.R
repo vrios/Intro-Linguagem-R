@@ -1,5 +1,5 @@
 ######################################################
-# Introduï¿½ï¿½o ï¿½ Linguagem R
+# Introdução Linguagem R
 # Vitor Passos Rios
 # Universidade Federal da Bahia
 # https://github.com/vrios/Intro-Linguagem-R/wiki
@@ -7,14 +7,14 @@
 
 #####Usando o R como calculadora
 
-#Digite no R os cï¿½digos abaixo.
+#Digite no R os códigos abaixo.
 #Dica: escreva neste arquivo, ao lado do comando, o que ele faz,
 #como no exemplo abaixo
 
 1 + 1 #soma os valores
 
-# O sï¿½mbolo # representa um comentï¿½rio, isto ï¿½, tudo que vier ï¿½ esquerda
-# dele serï¿½ ignorado quando o R ler o arquivo
+# O símbolo # representa um comentário, isto é, tudo que vier à direita
+# dele será ignorado quando o R ler o arquivo
 
 34 - 72.3
 
@@ -26,9 +26,9 @@ sqrt(2)
 pi
 log(x = 3,base = 10)
 exp(x = 1)
-#o que querem dizer estes valores dentro do parentï¿½se? porque usamos o = aqui?
+#o que querem dizer estes valores dentro do parêntese? porque usamos o = aqui?
 
-#####Atribuiï¿½ï¿½o de valores e criaï¿½ï¿½o de objeto
+#####Atribuição de valores e criação de objetos
 #O que os comandos abaixo fazem?
 objeto1=3
 objeto1
@@ -36,7 +36,7 @@ objeto = 42
 objeto
 objeto.2 <- 42
 objeto.2
-# Os sï¿½mbolos = e <- fazem basicamente a mesma coisa. Que coisa?
+# Os símbolos = e <- fazem basicamente a mesma coisa. Que coisa?
 objeto.cubico <- objeto^3
 resultado.1 <- (objeto.cubico / 3) + 7
 objeto.texto <- "texto sempre vem entre aspas"
@@ -51,7 +51,7 @@ objeto.vetor2
 ?seq
 objeto.vetor3 = seq(from = 20, to = 32, by = 0.5)
 
-# R tambï¿½m faz comparaï¿½ï¿½es entre objetos
+# R também faz comparações entre objetos
 42 > 7
 objeto == objeto.2
 objeto == objeto.texto.2
@@ -66,25 +66,25 @@ objeto == objeto.texto.2
 help(log)
 help.search("anova")
 
-#####Arquivos e diretï¿½rios
-# Como vocï¿½ descobre o diretï¿½rio de trabalho?
+#####Arquivos e diretórios
+# Como você descobre o diretório de trabalho?
 
-# Como vocï¿½ lista o conteï¿½do do diretï¿½rio de trabalho?
+# Como você lista o conteído do diretório de trabalho?
 
-# Como vocï¿½ define o diretï¿½rio de trabalho?
+# Como você define o diretório de trabalho?
 
-# Como vocï¿½ carrega um arquivo de script?
+# Como você carrega um arquivo de script?
 
-# Como vocï¿½ salva os objetos que criou?
+# Como você salva os objetos que criou?
 
-# Como vocï¿½ carrega os objetos que criou?
+# Como você carrega os objetos que criou?
 
-# como ver quis objetos estï¿½o na sua ï¿½rea de trabalho?
+# como ver quis objetos estão na sua área de trabalho?
 
-# como remover objetos da ï¿½rea de trabalho?
+# como remover objetos da área de trabalho?
 
 ##### Lidando com erros
-# O que acontece quando vocï¿½ digita os comandos abaixo? Como consertar cada erro?
+# O que acontece quando você digita os comandos abaixo? Como consertar cada erro?
 objetol
 objeto .texto
 Objeto

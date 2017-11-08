@@ -67,7 +67,7 @@ Ao fazer o tratamento e análise dos dados dentro do R, você não altera os dados 
 ![](figuras/interfaceRStudio2.png) 
 
 # No RStudio
-Digite o comando abaixo na aba console, onde está o caractere  **">"** , e depois tecle **enter**
+Digite o comando abaixo na aba console, onde está o caractere  `>` , e depois tecle **enter**
 ```{r, echo = TRUE}
 4 + 12
 ```
@@ -101,7 +101,7 @@ sqrt(2)
 # Funções
 Quando temos um nome seguido de parêntese com alguma coisa dentro, temos uma **função**
 Função é um conjunto de comandos que faz uma operação em um objeto  
-sqrt(x) calcula a raiz quadrada de x  
+`sqrt(x)` calcula a raiz quadrada de x  
 Funções podem ter opçoes, chamadas argumentos
 ```{r, echo=TRUE, eval = FALSE}
 log(10, base=2)
@@ -110,7 +110,7 @@ calcula o logaritmo de 10 na base 2
 
 Quase tudo que vocêe vai usar no R são funções
 
-Muito cuidado com a digitação: para o R, maiúsculas e minúsculas são diferentes, e um espaço no meio da palvra atrapalha
+Muito cuidado com a digitação: para o R, maiúsculas e minúsculas são diferentes, e um espaço no meio da palavra atrapalha tudo
 
 **O R é burro, qualquer erro de digitação faz com que ele não encontre o que você procura**
 
@@ -137,7 +137,7 @@ o _Comprehensive R Archive Network_ é o repositório central oficial de pacotes d
 ```{r, echo = TRUE,eval=FALSE}
 install.packages("igraph", repos=http://nbcgib.uesc.br/mirrors/cran/)
 ```
-ou no RStudio, clicamos em _Install_ na aba _Packages_
+ou no RStudio, clicamos em `Install` na aba `Packages`
 ![](figuras/abaPackages.png) 
 
 #Para usar um pacote
@@ -146,30 +146,31 @@ ou no RStudio, clicamos em _Install_ na aba _Packages_
 library(igraph)
 
 ```
-agora as funções do _igraph_ estão disponíveis para serem usadas
+agora as funções do `igraph` estão disponíveis para serem usadas
 
 #Dados e variáveis
 ##R é uma linguagem de manipulação de objetos
-No R, podemos criar caixas para guardar coisas que iremos usar depois, que chamamos de _variáveis_ 
-Para isso usamos o sinal _=_ ou _<-_ .   
-_<-_ existe por motivos de compatibilidade com teclados que nao possuíam _=_ (lá dos tempos jurássicos da computação). Use _=_
+No R, podemos criar caixas para guardar coisas que iremos usar depois, que chamamos de `variáveis`, ou `objetos`
+Para isso usamos o sinal `=` ou`<-`.   
+
+`<-` existe por motivos de compatibilidade com teclados que nao possuíam `=` (lá dos tempos jurássicos da computação). Use `=`  
 
 ```{r, echo=TRUE}
 pote.de.sorvete = "feijão"
 ```
 
-Na linha acima o R interpreta o que está dentro das apas como texto, e guarda esse valor dentro de um pedaço da memória que recebe o nome "pote.de.sorvete". 
+Na linha acima o R interpreta o que está dentro das apas como texto, e guarda esse valor dentro de um pedaço da memória que recebe o nome `pote.de.sorvete`. 
 
 O nome das variáveis não deve conter espaços, acentos,ou caracteres especiais como ç, ~, !, ?, /, |     
 
-Ao digitarmos _pote.de.sorvete_ no console, o R nos mostra o que está guardado nesse pedaço de memória
+Ao digitarmos `pote.de.sorvete` no console, o R nos mostra o que está guardado nesse pedaço de memória
 
 ```{r, echo=TRUE}
 pote.de.sorvete
 ```
 
 #Escolha nomes que façam sentido para suas variáveis
-Lembre que você vai ter de ler seus códigos depois, e advinhar o que você quis dizer com _a_, _aa_, _x_, _X_, _a7589_, _MyVar_ e outras bizarrices que pareciam fazer sentido.
+Lembre que você vai ter de ler seus códigos depois, e advinhar o que você quis dizer com `a`, `aa`, `x`, `X`, `a7589`, `MyVar` e outras bizarrices que pareciam fazer sentido.
 
 Aproveite que o RStudio tem autocompletar!
 
@@ -179,13 +180,13 @@ pote.de.sorvete = "sorvete"
 pote.de.sorvete
 
 ```
-porque o código baixo nao funciona?
+Porque o código baixo nao funciona?
 ```{r, echo=TRUE,eval=FALSE}
 pote .de.sorvete = "chuchu"
 ```
 
 ***
-Para ver o que tem na memória do R, use o comando _ls()_
+Para ver o que tem na memória do R, use o comando `ls()`
 ```{r}
 ls()
 ```
@@ -195,14 +196,14 @@ No RStudio, podemos ver o conteúdo dos objetos que criamos na aba "Environment"
 ![](figuras/abaEnvironment.png) 
 
 #Variáveis também podem guardar conjuntos de dados
-Chamamos estas variáveis de _vector_ ou _vetor_. Criamos elas com a função _concatenate_, _c()_
+Chamamos estas variáveis de `vector` ou `vetor`. Criamos elas com a função `concatenate`, `c()`
 ```{r, echo=TRUE}
 geladeira = c("sorvete","cebola","agua", "miojo","macarrão","pacote.de.ketchup")
 geladeira
 ```
 
 Vetores só guardam objetos iguais: ou texto, ou números, nunca os dois juntos  
-Veja o que as funções _seq()_ e _rep()_ fazem!
+Veja o que as funções `seq()` e `rep()` fazem!
 
 
 #Vetor é a unidade básica do R
@@ -230,12 +231,12 @@ peso.gordo
 Sempre confira o tamanho dos seus vetores!
 
 #Tamanho e conteúdo dos vetores
-Função _length()_ retorna o tamanho do vetor
+Função `length()` retorna o tamanho do vetor
 ```{r, echo=TRUE}
 peso.real = c(100, 45, 77, 60, 50, 77.5)
 length(peso.real)
 ```
-Para acessar o elemento _i_ do vetor, use _nome[i]_
+Para acessar o elemento `i` do vetor, use `nome[i]`
 ```{r, echo=TRUE}
 peso.real = c(100, 45, 77, 60, 50, 77.5)
 peso.real[3]
@@ -243,7 +244,7 @@ peso.real[3]
 ***
 #Dataframes
 Dataframes são o formato de tabela mais comum do R. No dataframe você pode ter colunas com tipos de dados diferentes, como numérico e texto.  
-Para criar o dataframe, podemos unir 2 ou mais vetores usando a função _data.frame()_
+Para criar o dataframe, podemos unir 2 ou mais vetores usando a função `data.frame()`
 
 ```{r}
 vetor1=LETTERS
@@ -262,8 +263,8 @@ colnames(dadosNomeados) = nomesColunas
 head(dadosNomeados)
 ```
 #Acessando dados no dataframe
-Existem dois jeitos principais de acessar dados em um dataframe: colchetes _[]_ ou cifrão _$_  
-Isto se chama _indexação_  
+Existem dois jeitos principais de acessar dados em um dataframe: colchetes `[]` ou cifrão `$`  
+Isto se chama `indexação`  
 dataframe[linha, coluna]
 ```{r}
 dadosNomeados[3,2]
@@ -293,17 +294,18 @@ Idade[ Idade> 6 ] #retorna um vetor com todos os elementos de Idade maiores que 
 #
 
 #Matrix
-Matrizes são tabelas cujas colunas possuem apenas um tipo de dado, seja numerico ou texto. Podem ser criadas com as funções _matrix_, _cbind_, ou _rbind()_
+Matrizes são tabelas cujas colunas possuem apenas um tipo de dado, seja numerico ou texto. Podem ser criadas com as funções `matrix`, `cbind`, ou `rbind()`
 
 
 ##Array
 Array são estruturas de dados com mais de duas dimensões. pensando no vetor como uma linha, uma dataframe seria uma folha de papel, e o array com 3 dimensões seria o equivalente a um caderno, várias folhas empilhadas. Podemos também ter arrays com 4 ou cinco dimensões, que podemos fazer analogia com uma prateleira de cadernos, uma estante com várias prateleiras, e assim por diante.
+
 #Salvando ~~sua vida~~ seu código
 Se você fechar o R, vai perder tudo que você fez  
 
 Solução: salve seu código em um script!  
 
-Script é um arquivo de texto sem formatação, com a extensão _.R_ ou _.r_, ao invés de .txt. Pense no script como a receita, o R como a cozinha, e a análise o jantar.
+Script é um arquivo de texto sem formatação, com a extensão `.R` ou `.r`, ao invés de `.txt`. Pense no script como a receita, o R como a cozinha, e a análise o jantar.
 
 Você pode editar no bloco de notas, Notepad++, Gedit,Vim, EMACS, etc, mas evite usar Word, ele insere formatações que atrapalham tudo
 
@@ -319,7 +321,7 @@ O R usa uma coisa chamada diretório de trabalho. Ele encontra automaticamente tu
 getwd() ##exibe o diretório de trabalhoda sessão atual
 ```
 
-Para mudar o diretório de trabalho, use a função _setwd()_
+Para mudar o diretório de trabalho, use a função `setwd()`
 ```{r echo=TRUE, eval=FALSE}
 setwd("C:/Curso_R/aula1") ##muda o diretório de trabalho da sessão atual
 
@@ -330,7 +332,7 @@ setwd("C:/Curso_R/aula1") ##muda o diretório de trabalho da sessão atual
 #Cada coisa, um script!
 Separe suas funções e análises em scripts diferentes, vai facilitar _muito_ sua vida.
 
-Use nomes curtos e descritivos. _Funcao1.R, funcao2.R, regressao.R, regressaoLogisticaMultivaridaAmostra1BTSversão1.r_ é pedir pra sofrer. 
+Use nomes curtos e descritivos. `Funcao1.R, funcao2.R, regressao.R, regressaoLogisticaMultivaridaAmostra1BTSversão1.r`é pedir pra sofrer. 
 
 *Uma pasta para cada coisa:*  
 ~/doutorado/   
@@ -339,18 +341,18 @@ Use nomes curtos e descritivos. _Funcao1.R, funcao2.R, regressao.R, regressaoLog
             - /figuras   
             - /manuscrito  
 
-Você pode chamar um script de dentro do outro, usando o comando   _source(endereço/script.R)_. O endereço pode inclusive ser um site
+Você pode chamar um script de dentro do outro, usando o comando   `source(endereço/script.R)`. O endereço pode inclusive ser um site
 
 #Criando seu script
-Note que o RStudio muda automaticamente as cores do código. Isto é chamado _syntax highlighting_, e serve pra facilitar a leitura. o que cada cor quer dizer?
+Note que o RStudio muda automaticamente as cores do código. Isto é chamado `syntax highlighting`, e serve pra facilitar a leitura. o que cada cor quer dizer?
 
 
-O Rstudio também insere automaticamente um ), } ou ] quando você digita (, {, ou [, o que diminui a maior parte dos erros de digitação
+O Rstudio também insere automaticamente um `)`, `}` ou `]` quando você digita `(`, `{`, ou `[`, o que diminui a maior parte dos erros de digitação
 
-Crie um script com os codigos que usamos até aqui, comentando cada linha com um _#_ após o comando, dizendo o que ele faz
+Crie um script com os codigos que usamos até aqui, comentando cada linha com um `#` após o comando, dizendo o que ele faz
 
 #Salvando tudo junto
-Se você quiser salvar tudo que está na memória do R, use a função _save.image()_, com a extensão _.RData_
+Se você quiser salvar tudo que está na memória do R, use a função `save.image()` com a extensão `.RData`
 ```{r eval=FALSE}
  save.image(file="tudoJunto.RData")
 ```
@@ -361,11 +363,11 @@ Se você quiser salvar tudo que está na memória do R, use a função _save.image()_
 ```{r eval=FALSE}
 help("read.table")
 ```
-Existem algumas funções com opções padrão que facilitam o uso da _read.table()_
+Existem algumas funções com opções padrão que facilitam o uso da `read.table()`
 
-_read.csv()_ lê arquivos usando como padrão o ponto (.) como sepador de decimais e a vírgula (,) como separador de colunas. 
+`read.csv()` lê arquivos usando como padrão o ponto `(.)` como sepador de decimais e a vírgula `(,)` como separador de colunas. 
 
-_read.csv2()_ usa a vírgula como separador de decimais e o ponto-e-vírgula (;) como separador de colunas
+`read.csv2()` usa a vírgula como separador de decimais e o ponto-e-vírgula `(;)` como separador de colunas
 
 Existem pacotes específicos para ler e escrever .docx, .xlsx, .pptx, SPSS, SAS, shapefiles, e praticamente qualquer tipo de arquivo
 
@@ -384,11 +386,11 @@ arquivoLido =read.csv(file = "arquivo.csv",
 )
 ```
 
-O comando acima cria uma variável chamada _arquivoLido_, com o conteúdo de _"arquivo.csv"_  
+O comando acima cria uma variável chamada `arquivoLido`, com o conteúdo de `"arquivo.csv"`  
 
 *O arquivo original não é alterado, não importa o que você fizer dentro do R*
 
-Se você quiser salvar suas alterações em um arquivo, use write.table(), write.csv() ou write.csv2()
+Se você quiser salvar suas alterações em um arquivo, use `write.table()`, `write.csv()` ou `write.csv2()`  
 
 ```{r, eval=FALSE}
 
