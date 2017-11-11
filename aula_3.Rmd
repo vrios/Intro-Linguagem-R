@@ -1,0 +1,110 @@
+---
+title: "Leitura de arquivos, limpeza e manipulação de dados, noções de programação II"
+author: "Vitor Rios"
+date: "11 de novembro de 2017"
+output:
+  slidy_presentation:
+    font_adjustment: + 1
+    highlight: kate
+---
+#Salvando ~~sua vida~~ seu código
+Se você fechar o R, vai perder tudo que você fez  
+
+Solução: salve seu código em um script!  
+
+Script é um arquivo de texto sem formatação, com a extensão `.R` ou `.r`, ao invés de `.txt`. Pense no script como a receita, o R como a cozinha, e a análise o jantar.
+
+Você pode editar no bloco de notas, Notepad++, Gedit,Vim, EMACS, etc, mas evite usar Word, ele insere formatações que atrapalham tudo
+
+Use o RStudio!
+
+***
+![](figuras/criarScript.png)
+
+#Mas salvar onde?
+O R usa uma coisa chamada diretório de trabalho. Ele encontra automaticamente tudo que esteja nesse diretório e salva as coisas nesse diretório.
+
+```{r echo=TRUE}
+getwd() ##exibe o diretório de trabalhoda sessão atual
+```
+
+Para mudar o diretório de trabalho, use a função `setwd()`
+```{r echo=TRUE, eval=FALSE}
+setwd("C:/Curso_R/aula1") ##muda o diretório de trabalho da sessão atual
+
+```
+*ATENÇÃO* O endereço deve vir sempre em aspas, e use <span style="color:blue">/</span> ao invés de <span style="color:blue"> \\ </span> no Windows
+
+
+#Cada coisa, um script!
+Separe suas funções e análises em scripts diferentes, vai facilitar _muito_ sua vida.
+
+Use nomes curtos e descritivos. `Funcao1.R, funcao2.R, regressao.R, regressaoLogisticaMultivaridaAmostra1BTSversão1.r`é pedir pra sofrer. 
+
+*Uma pasta para cada coisa:*  
+~/doutorado/   
+            - /dados   
+            - /analises  
+            - /figuras   
+            - /manuscrito  
+
+Você pode chamar um script de dentro do outro, usando o comando   `source(endereço/script.R)`. O endereço pode inclusive ser um site
+
+#Criando seu script
+Note que o RStudio muda automaticamente as cores do código. Isto é chamado `syntax highlighting`, e serve pra facilitar a leitura. o que cada cor quer dizer?
+
+
+O Rstudio também insere automaticamente um `)`, `}` ou `]` quando você digita `(`, `{`, ou `[`, o que diminui a maior parte dos erros de digitação
+
+Crie um script com os codigos que usamos até aqui, comentando cada linha com um `#` após o comando, dizendo o que ele faz
+
+#Salvando tudo junto
+Se você quiser salvar tudo que está na memória do R, use a função `save.image()` com a extensão `.RData`
+```{r eval=FALSE}
+ save.image(file="tudoJunto.RData")
+```
+
+
+#Lendo arquivos
+##O R consegue ler arquivos externos, se você disser a ele o que esperar
+```{r eval=FALSE}
+help("read.table")
+```
+Existem algumas funções com opções padrão que facilitam o uso da `read.table()`
+
+`read.csv()` lê arquivos usando como padrão o ponto `(.)` como sepador de decimais e a vírgula `(,)` como separador de colunas. 
+
+`read.csv2()` usa a vírgula como separador de decimais e o ponto-e-vírgula `(;)` como separador de colunas
+
+Existem pacotes específicos para ler e escrever .docx, .xlsx, .pptx, SPSS, SAS, shapefiles, e praticamente qualquer tipo de arquivo
+
+**Uma das principais habilidades para se usar o R é encontrar o pacote certo pra fazer o que você quer**
+
+#Argumentos importantes
+```{r, eval=FALSE}
+#argumento são sempre separados por vírgulas na chamada da função
+#no começo, é bom colocar cada argumento em uma linha para facilitar o entendimento
+#TRUE habilita a opção, FALSE desabilita
+arquivoLido =read.csv(file = "arquivo.csv", 
+                  header = TRUE, #interpreta a primeira linha como sendo o nome das colunas
+                  as.is = TRUE , # não altera interpreta o tipo de dado em cada coluna, ou seja, não altera seus dados. Se for FALSE, texto é interpretado como factor
+                  sep = ",", # define o caractere que deve ser o separador de colunas
+                  dec = ".", #define o caractere que deve ser o spearador de decimal
+)
+```
+
+O comando acima cria uma variável chamada `arquivoLido`, com o conteúdo de `"arquivo.csv"`  
+
+*O arquivo original não é alterado, não importa o que você fizer dentro do R*
+
+Se você quiser salvar suas alterações em um arquivo, use `write.table()`, `write.csv()` ou `write.csv2()`  
+
+```{r, eval=FALSE}
+
+write.csv(x= arquivoLido, #objeto a ser gravado
+         file = "arquivoNovo.csv", #nome do arquivo que vai ser gerado
+         sep = ",", # define o caractere que deve ser o separador de colunas
+         dec = ".", #define o caractere que deve ser o spearador de decimal
+)
+```
+***

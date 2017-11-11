@@ -1,9 +1,10 @@
 ---
-title: "Aula 2 - Criando e e manipulando dados, noções de programação I  "
+title: "Aula 2 - Criando e e manipulando dados, noções de programação I"
 author: "Vitor Rios"
 date: "16 de outubro de 2017"
-output: 
-  slidy_presentation: 
+output:
+  slidy_presentation:
+    font_adjustment: + 1
     highlight: kate
 ---
 #Tipos de dados
@@ -73,16 +74,17 @@ summary(dragoes)
 ```{r}
 plot(dragoes)
 ```
+
 #Para facilitar suas análises
-Formate seus dados sempre que possível da seguinte forma:
-- Cada linha uma observação ou indivíduo
-- Cada coluna uma variável
+Formate seus dados sempre que possível da seguinte forma:  
+- Cada linha uma observação ou indivíduo  
+- Cada coluna uma variável  
 ```{r}
 summary(lm(dragoes$y~dragoes$x))
 ```
 
 #Temos problemas
-Erros de digitação em fazendeiros e em virgens
+Erros de digitação de dados nos objetos fazendeiros e virgens
 ```{r}
 max(dragoes[,2])
 max(dragoes[,2], na.rm = T)
@@ -106,12 +108,18 @@ aggregate(dragoes$y ~ dragoes$x,FUN = "mean")
 
 ```
 
-# Para verificar erros de digitação ao trabalharmos com texto, podeos usar a função `unique()`
+# Para verificar erros de digitação ao trabalharmos com texto, podemos usar a função `unique()`
 ```{r}
 ### dados dispníveis em http://ecologia.ib.usp.br/bie5782/doku.php?id=dados:dados-caixeta
 nomesComErro = read.table("arquivos/caixetaComErro.csv", header=T, sep=",")
 head(nomesComErro)
+```
+***
+```{r}
 unique(nomesComErro$especie)
+```
+***
+```{r}
 #podemos também colocar os nomes em ordem alfabética
 sort(unique(nomesComErro$especie))
 ```
@@ -122,23 +130,106 @@ nomesComErro$especie[nomesComErro$especie=="Tabebuia casssinoides"] = "Tabebuia 
 sort(unique(nomesComErro$especie))
 ```
 #Entendendo o comando passo a passo:
-````{r, echo=T, eval=F}
-nomesComErro$especie[nomesComErro$especie=="Tabebuia casinoides"]="Tabebuia cassinoides"
-````
-1- Definir o que vamos substituir:   
-```{r,eval=FALSE}
+Precisamos saber a posição dos elementos com erro:
+
+nomesComErro\$especie[nomesComErro\$especie=="Tabebuia casinoides"] = "Tabebuia cassinoides"
+
+Este comando nos retorna um vetor lógico com as posições de todos elementos "Tabebuia casinoides" dentro do objeto `nomesComErro`, na coluna `especie`
+```{r,eval=T}
  nomesComErro$especie=="Tabebuia casinoides"
 ```
-Este comando nos retorna um vetor lógico com as posições de todos elementos "Tabebuia casinoides" dentro do objeto nomesComErro, na coluna$especie    
-1- Selecionar o que será substituído:
-```{r,eval=F}
+
+
+***
+#Selecionar o que será substituído:
+
+Usaremos o vetor lógico do comando anterior para acessar os elementos dentro do objeto, usando colchetes `[]`
+```{r,eval=T}
  nomesComErro$especie[nomesComErro$especie=="Tabebuia casinoides"]
 ```
-retorna apenas os elementos que cumpre a condição dentro do colchete     
-1- Substituir 
-```{r, eval=F, tidy = TRUE}
+este comando retorna apenas os elementos que cumprem a condição _(==)_ dentro do colchete     
+
+***
+#Substituir 
+Utilizamos o operador de atribuição `=` para trocar os valores indexados nos passos acima
+
+```{r, eval=T, tidy = TRUE}
 nomesComErro$especie[nomesComErro$especie=="Tabebuia casinoides"]="Tabebuia cassinoides"
 ```
+***
+#Operações lógicas e comparações
+O R permite fazer todo tipo de comparação e teste lógico, abrindo possibilidade de selecionar itens para indexação baseados em diversas condições. os objetos testados podem ser de qualquer tipo
+
+Testes lógicos retornam valores `TRUE` ou `FALSE`
+`==` é a comparação de igualdade. Leia como `É igual a?`  
+`!=` é a comparação de desigualdade. Leia como `É diferente de?`
+```{r, eval=T, tidy = TRUE}
+"sorvete" == "feijão" #sorvete é igual a feijão?
+(1 + 1) != 2 # um mais um é diferente de dois?
+42 != "A pergunta da vida, do universo e tudo mais"
+```
+***
+```{r}
+pi
+3.141593
+pi == 3.141593 ### Algo de errado não está certo
+i = 0.1
+i = i + 0.05
+i == 0.15
+```
+***
+#Comparações de igualdade com ponto flutuante
+Números decimais são representados internamente como `floating point`, e a precisão varia de máquina para máquina. Veja mais detalhes em http://floating-point-gui.de/
+```{r}
+i = 0.1
+i = i + 0.05
+i==0.15
+```
+Resumidamente, se você quiser comparar com precisão a igualdade de operações com decimais, use a função `all.equal()`
+```{r}
+i = 0.1
+i = i + 0.05
+all.equal (i,0.15)
+```
+***
+#Outras comparações
+`a <= b` a é menor ou igual a b?
+`a >= b` a é maior que ou igual a b?
+`!x` não x
+
+*** 
+#Operadores lógicos e if()
+O R também pode testar duas condições ao mesmo tempo, com os operadores _E_ e _OU_
+`a & b` retorna TRUE se tanto `a` quanto `b` forem verdade
+`a | b` retorna TRUE se pelo menos um,  `a` ou `b`, for verdade
+```{r}
+ teste = c(1, 2, 2, 3, 4, 5, 6,7)
+(teste[1] == 1) & (teste[2] / 2 == 1)
+(teste[1] == 1) & (teste[2] / 3 == 1)
+(teste[2] == 1) | (teste[2] / 2 == 1)
+```
+***
+Por exemplo, se quisermos todos os dragões que pesam entre 100 e 150 dezenas de kilos
+```{r}
+dragoes[dragoes$y >= 100 & dragoes$y <= 150,]
+```
+
+***
+#if()
+`if()` é uma função que permite executar um recho de código se, e somente se, uma dada condição for verdadeira
+`if(condição) {código a ser executado}`
+```{r}
+teste.de.normalidade = shapiro.test(dragoes$y)
+if (teste.de.normalidade$p.value >= 0.05) {
+  fit = aov (dragoes$y ~ dragoes$x)
+  summary(fit)
+  }
+
+
+```
+
+
+
 ***
 #Dica de estruturar seu script: pseudocódigo
 Liste cada passo necessário
@@ -157,8 +248,8 @@ Liste cada passo necessário
   _ ....
 
 ***
-# pseudocódigo
-Substitua pela função adequada do R  
+# Pseudocódigo
+Substitua a ação pela função adequada do R  
 Se necessário, quebre em sub itens
 
 - Ler dados do arquivo
@@ -177,14 +268,5 @@ Se necessário, quebre em sub itens
       - Passo 2
   _ ....
 
-***
 
-#Condicionais
-Fazer algo _se_ uma condição ocorrer
-
-```{r}
-if (pi==3){
-  message("Algo de errado não está certo")
-  } else message("Algo de certo não está errado")
-```
 
