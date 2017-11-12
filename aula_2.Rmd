@@ -1,5 +1,5 @@
 ---
-title: "Aula 2 - Criando e e manipulando dados, noÁıes de programaÁ„o I"
+title: "Aula 2 - Criando e e manipulando dados"
 author: "Vitor Rios"
 date: "16 de outubro de 2017"
 output:
@@ -8,7 +8,7 @@ output:
     highlight: kate
 ---
 #Tipos de dados
-J· vimos 3 tipos de valores de dados, mas existem outros 4 especiais
+J? vimos 3 tipos de valores de dados, mas existem outros 4 especiais
 ```{r}
 class(1)
 class("1")
@@ -30,17 +30,17 @@ class(fator)
 ***
 `Inf` representa valores infinitos, pode ser `+Inf` ou `-Inf`  
 
-`NaN` Not a Number, resultado de operaÁıes matem·ticas impossÌveis  
+`NaN` Not a Number, resultado de opera√ß√µes matem√°ticas imposs√≠veis  
 
-`NA` Not Available, representa dados ausentes, ˙til para preencher tabelas e matrizes. A maioria das funÁıes estatÌsticas do R possui um argumento `na.rm` que lida com valores ausentes  
+`NA` Not Available, representa dados ausentes, √∫til para preencher tabelas e matrizes. A maioria das fun√ß√µes estat√≠sticas do R possui um argumento `na.rm` que lida com valores ausentes  
 
-`factor` especifica que um conjunto de valores representa os nÌveis de um fator, usado para an·lises de dados categÛricos  
+`factor` especifica que um conjunto de valores representa os n√≠veis de um fator, usado para an√°lises de dados categ√≥ricos  
 
-Ao ler dados de arquivos .csv, colunas representadas por caracteres s„o automaticamente convertidas em fatores. para eivtar isto, use o argumento `as.is = TRUE`  
+Ao ler dados de arquivos .csv, colunas representadas por caracteres s√£o automaticamente convertidas em fatores. para eivtar isto, use o argumento `as.is = TRUE`  
     
 
 #Criando um conjunto de dados simulado
-Iremos investigar o crescimento dos dragıes usando  quatro raÁıes diferentes. ApÛs mandar nossos estagi·rios fazerem os experimentos, temos os seguintes dados, em dezenas de quilos
+Iremos investigar o crescimento dos drag√µes usando  quatro ra√ß√µes diferentes. Ap√≥s mandar nossos estagi√°rios fazerem os experimentos, temos os seguintes dados, em centenas de quilos
 ```{r , tidy=TRUE}
 vacas = c(121.72355, 103.79754, 130.15442, 98.29305, 103.43365, 102.44998,
           125.49993, 111.07215, 113.74047, 103.16081, 80.87149, 98.66692,
@@ -75,22 +75,22 @@ summary(dragoes)
 plot(dragoes)
 ```
 
-#Para facilitar suas an·lises
-Formate seus dados sempre que possÌvel da seguinte forma:  
-- Cada linha uma observaÁ„o ou indivÌduo  
-- Cada coluna uma vari·vel  
+#Para facilitar suas an√°lises
+Formate seus dados sempre que poss√≠vel da seguinte forma:  
+- Cada linha uma observa√ß√£o ou indiv√≠duo  
+- Cada coluna uma vari√°vel  
 ```{r}
 summary(lm(dragoes$y~dragoes$x))
 ```
 
 #Temos problemas
-Erros de digitaÁ„o de dados nos objetos fazendeiros e virgens
+Erros de digita√ß√£o de dados nos objetos fazendeiros e virgens
 ```{r}
 max(dragoes[,2])
 max(dragoes[,2], na.rm = T)
 ```
 ***
-Erro na posiÁ„o do decimal
+Erro na posi√ß√£o do decimal
 ```{r}
 dragoes[dragoes== 840.1635] = 84.01635
 max(dragoes[,2],na.rm = TRUE)
@@ -98,19 +98,19 @@ plot (dragoes)
 ```
 
 
-#Para NA, n„o h· remÈdio
-SÛ verificando o dado original ou removendo
+#Para NA, n√£o h√° rem√©dio
+S√≥ verificando o dado original ou removendo
 ```{r}
-mean(dragoes[,2]) ##qualquer c·lculo com NA È igual a NA
-mean(dragoes[,2], na.rm = TRUE)## na.rm = TRUE remove o NA para o calculo da mÈdia
+mean(dragoes[,2]) ##qualquer c√°lculo com NA √© igual a NA
+mean(dragoes[,2], na.rm = TRUE)## na.rm = TRUE remove o NA para o calculo da m√©dia
 
 aggregate(dragoes$y ~ dragoes$x,FUN = "mean")
 
 ```
 
-# Para verificar erros de digitaÁ„o ao trabalharmos com texto, podemos usar a funÁ„o `unique()`
+# Para verificar erros de digita√ß√£o ao trabalharmos com texto, podemos usar a fun√ß√£o `unique()`
 ```{r}
-### dados dispnÌveis em http://ecologia.ib.usp.br/bie5782/doku.php?id=dados:dados-caixeta
+### dados dispn√≠veis em http://ecologia.ib.usp.br/bie5782/doku.php?id=dados:dados-caixeta
 nomesComErro = read.table("arquivos/caixetaComErro.csv", header=T, sep=",")
 head(nomesComErro)
 ```
@@ -120,7 +120,7 @@ unique(nomesComErro$especie)
 ```
 ***
 ```{r}
-#podemos tambÈm colocar os nomes em ordem alfabÈtica
+#podemos tamb√©m colocar os nomes em ordem alfab√©tica
 sort(unique(nomesComErro$especie))
 ```
 ***
@@ -130,78 +130,75 @@ nomesComErro$especie[nomesComErro$especie=="Tabebuia casssinoides"] = "Tabebuia 
 sort(unique(nomesComErro$especie))
 ```
 #Entendendo o comando passo a passo:
-Precisamos saber a posiÁ„o dos elementos com erro:
-
-nomesComErro\$especie[nomesComErro\$especie=="Tabebuia casinoides"] = "Tabebuia cassinoides"
-
-Este comando nos retorna um vetor lÛgico com as posiÁıes de todos elementos "Tabebuia casinoides" dentro do objeto `nomesComErro`, na coluna `especie`
+`nomesComErro\$especie[nomesComErro\$especie=="Tabebuia casinoides"] = "Tabebuia cassinoides"`  
+Precisamos saber a posi√ß√£o dos elementos com erro: O comando abixo nos retorna um vetor l√≥gico com as posi√ß√µes de todos elementos "Tabebuia casinoides" dentro do objeto `nomesComErro`, na coluna `especie`
 ```{r,eval=T}
  nomesComErro$especie=="Tabebuia casinoides"
 ```
 
 
 ***
-#Selecionar o que ser· substituÌdo:
+#Selecionar o que ser√° substitu√≠do:
 
-Usaremos o vetor lÛgico do comando anterior para acessar os elementos dentro do objeto, usando colchetes `[]`
+Usaremos o vetor l√≥gico do comando anterior para acessar os elementos dentro do objeto, usando colchetes `[]`
 ```{r,eval=T}
  nomesComErro$especie[nomesComErro$especie=="Tabebuia casinoides"]
 ```
-este comando retorna apenas os elementos que cumprem a condiÁ„o _(==)_ dentro do colchete     
+Este comando retorna apenas os elementos que cumprem a condi√ß√£o _(==)_ dentro do colchete     
 
 ***
 #Substituir 
-Utilizamos o operador de atribuiÁ„o `=` para trocar os valores indexados nos passos acima
+Utilizamos o operador de atribui√ß√£oo `=` para trocar os valores indexados nos passos acima
 
 ```{r, eval=T, tidy = TRUE}
 nomesComErro$especie[nomesComErro$especie=="Tabebuia casinoides"]="Tabebuia cassinoides"
 ```
 ***
-#OperaÁıes lÛgicas e comparaÁıes
-O R permite fazer todo tipo de comparaÁ„o e teste lÛgico, abrindo possibilidade de selecionar itens para indexaÁ„o baseados em diversas condiÁıes. os objetos testados podem ser de qualquer tipo
+#Opera√ß√µes l√≥gicas e compara√ß√µes
+O R permite fazer todo tipo de compara√ß√£o e teste l√≥gico, abrindo possibilidade de selecionar itens para indexa√ß√£o baseados em diversas condi√ß√µes. os objetos testados podem ser de qualquer tipo
 
-Testes lÛgicos retornam valores `TRUE` ou `FALSE`
-`==` È a comparaÁ„o de igualdade. Leia como `… igual a?`  
-`!=` È a comparaÁ„o de desigualdade. Leia como `… diferente de?`
+Testes l√≥gicos retornam valores `TRUE` ou `FALSE`  
+`==` √© a compara√ß√£o de igualdade. Leia como `√© igual a?`    
+`!=` √© a compara√ß√£o de desigualdade. Leia como `√© diferente de?`  
 ```{r, eval=T, tidy = TRUE}
-"sorvete" == "feij„o" #sorvete È igual a feij„o?
-(1 + 1) != 2 # um mais um È diferente de dois?
+"sorvete" == "feij√£o" #sorvete √© igual a feij√£o?
+(1 + 1) != 2 # um mais um √© diferente de dois?
 42 != "A pergunta da vida, do universo e tudo mais"
 ```
 ***
 ```{r}
 pi
 3.141593
-pi == 3.141593 ### Algo de errado n„o est· certo
+pi == 3.141593 ### Algo de errado n√£o est√° certo
 i = 0.1
 i = i + 0.05
 i == 0.15
 ```
 ***
-#ComparaÁıes de igualdade com ponto flutuante
-N˙meros decimais s„o representados internamente como `floating point`, e a precis„o varia de m·quina para m·quina. Veja mais detalhes em http://floating-point-gui.de/
+#Compara√ß√µes de igualdade com ponto flutuante
+N√∫meros decimais s√£o representados internamente como `floating point`, e a precis√£o varia de m√°quina para m√°quina. Veja mais detalhes em http://floating-point-gui.de/
 ```{r}
 i = 0.1
 i = i + 0.05
 i==0.15
 ```
-Resumidamente, se vocÍ quiser comparar com precis„o a igualdade de operaÁıes com decimais, use a funÁ„o `all.equal()`
+Resumidamente, se voc√™ quiser comparar com precis√£o a igualdade de opera√ß√µes com decimais, use a fun√ß√£oo `all.equal()`. Para compara√ß√µes do tipo maior/menor, n√£o √© preciso se preocupar  
 ```{r}
 i = 0.1
 i = i + 0.05
 all.equal (i,0.15)
 ```
 ***
-#Outras comparaÁıes
-`a <= b` a È menor ou igual a b?
-`a >= b` a È maior que ou igual a b?
-`!x` n„o x
+#Outras compara√ß√µes
+`a <= b` a √© menor ou igual a b?
+`a >= b` a √© maior que ou igual a b?
+`!x` n√£o x
 
 *** 
-#Operadores lÛgicos e if()
-O R tambÈm pode testar duas condiÁıes ao mesmo tempo, com os operadores _E_ e _OU_
+#Operadores l√≥gicos e if()
+O R tamb√©m pode testar duas condi√ß√µes ao mesmo tempo, com os operadores _E_ e _OU_
 `a & b` retorna TRUE se tanto `a` quanto `b` forem verdade
-`a | b` retorna TRUE se pelo menos um,  `a` ou `b`, for verdade
+`a | b` retorna TRUE se _pelo menos um_,  `a` ou `b`, for verdade
 ```{r}
  teste = c(1, 2, 2, 3, 4, 5, 6,7)
 (teste[1] == 1) & (teste[2] / 2 == 1)
@@ -209,15 +206,17 @@ O R tambÈm pode testar duas condiÁıes ao mesmo tempo, com os operadores _E_ e _O
 (teste[2] == 1) | (teste[2] / 2 == 1)
 ```
 ***
-Por exemplo, se quisermos todos os dragıes que pesam entre 100 e 150 dezenas de kilos
+Por exemplo, se quisermos todos os drag√µes que pesam entre 100 e 150 centenas de kilos
 ```{r}
 dragoes[dragoes$y >= 100 & dragoes$y <= 150,]
 ```
 
 ***
 #if()
-`if()` È uma funÁ„o que permite executar um recho de cÛdigo se, e somente se, uma dada condiÁ„o for verdadeira
-`if(condiÁ„o) {cÛdigo a ser executado}`
+`if()` √© uma fun√ß√£o que permite executar um trecho de c√≥digo se, e somente se, uma dada condi√ß√£oo for verdadeira  
+`if(condi√ß√£o) {c√≥digo a ser executado}`
+
+Sempre coloque o c√≥digo a ser executado dentro de chaves
 ```{r}
 teste.de.normalidade = shapiro.test(dragoes$y)
 if (teste.de.normalidade$p.value >= 0.05) {
@@ -231,40 +230,41 @@ if (teste.de.normalidade$p.value >= 0.05) {
 
 
 ***
-#Dica de estruturar seu script: pseudocÛdigo
-Liste cada passo necess·rio
+#Dica de estruturar seu script: pseudoc√≥digo
+Liste cada passo necess√°rio
 
   verbo - objeto
 
 - Ler dados do arquivo
 - Verificar dados ausentes / errados
       - verificar NAs
-      - verificar erros de digitaÁ„o
-      - verificar cabeÁalhos
+      - verificar erros de digita√ß√£oo
+      - verificar cabe√ßalhos
 - Selecionar colunas para analisar
-- Rodar an·lise
+- Rodar an√°lise
       - Passo 1
       - Passo 2
   _ ....
 
 ***
-# PseudocÛdigo
-Substitua a aÁ„o pela funÁ„o adequada do R  
-Se necess·rio, quebre em sub itens
+# Pseudoc√≥digo
+Substitua a a√ß√£o pela fun√ß√£o adequada do R  
+Se necess√°rio, quebre em sub itens
 
 - Ler dados do arquivo
-    - `file = read.table("preÁosComida.csv")`
+    - `file = read.table("pre√ßosComida.csv")`
 - Verificar dados ausentes / errados
       - verificar NAs
         - `is.na(file)`
-      - verificar erros de digitaÁ„o
+      - verificar erros de digita√ß√£o
         - `unique(file$species)`
-      - verificar cabeÁalhos
+      - verificar cabe√ßalhos
         - `head(file)`
 - Selecionar colunas para analisar
       - `file$species[file$species!="Chuchu"]`
-- Rodar an·lise
+- Rodar an√°lise
       - Passo 1
+        - `lm(file$price ~ file$species)`
       - Passo 2
   _ ....
 
