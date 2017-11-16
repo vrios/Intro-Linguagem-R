@@ -1,5 +1,5 @@
 ---
-title: "Aula 4"
+title: "Visualização de dados"
 author: "Vitor Rios"
 date: "11 de novembro de 2017"
 output:
@@ -8,31 +8,128 @@ output:
     highlight: kate
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+#Visualizar seus dados pode ser a parte mais importante da  sua análise
+Fazer gráficos no R pode dar (muito) trabalho, mas os resultados valem a pena   
+Função básica e poderosa (e feia): `plot()`
+```{r}
+plot(x= iris$Sepal.Length, y=iris$Petal.Length,col=iris$Species)
+library(ggplot2)
+qplot(x= iris$Sepal.Length, y=iris$Petal.Length, color=iris$Species)
 ```
 
-## R Markdown
+***
+#A função `plot()` tem dezenas de opções para controlar cada detalhe mínimo do gráfico
+Principais:
+- x
+- y
+- type
+- main
+- xlab
+- ylab
+- xlim
+- ylim
+xaxt
+bty
+pch
+cex
 
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+```{r table1, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+tabl <- "  
+| Parâmetro        | Controla           | valores      |
+|---------------|-------------|-----------:|
+| x      | valores a serem plotados em x  |       |
+| y      | valores a serem plotados em x  |       |
+| type   | tipo de gráfico (ponto, linhas, etc)| \"p\",\"l\",\"b\"... |
+| lty   | tipo de linha (pontilhada, tracejada, etc)| \"blank\", \"solid\", \"dashed\", \"dotted\", \"dotdash\", \"longdash\", or \"twodash\" |
+| pch   | tipo de ponto (bola, triangulo, quadrado, etc)| \"p\",\"l\",\"b\"... |
+| col   | cor dos símbolos| \"red\", \"black\", \"1\", RGB|
+| col.axis, col.lab, col.main| cor dos textos| \"red\", \"black\", \"1\", RGB|
+"
+cat(tabl)
+```
+Exercício: alterem esses parâmetros no gráfico que fizemos acima
 
-## Slide with Bullets
+***
+```{r table2, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+tabl <- "  
+| Parâmetro        | Controla           | valores      |
+|---------------|-------------|-----------:|
+| main   | título do gráfico                |    \"texto entre aspas\" |
+| xlab   | rótulos do eixo x                |  \"texto entre aspas\"  |
+| ylab   | rótulos do eixo y              |   \"texto entre aspas\"  |
+| cex   | tamanho das letras, em proporção|   cex = 1 -> 100%, cex = 0.5 ->50%, etc  |
+| cex.axis, cex.lab, cex.main   | eixos, rotulos dos eixos, título|   cex.axis = 1 -> 100%, cex.axis = 0.5 ->50%, etc  |
+| bty   | linhas de contorno do gráfico   |   \"o\", \"l\", \"7\", \"c\", \"u\",  \"]\", \"n\"  |
+| ylab   | rótulos do eixo y              |   \"texto entre aspas\"  |
+| ylab   | rótulos do eixo y              |   \"texto entre aspas\"  |
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
+"
+cat(tabl)
+```
+***
+#A função `par()`
+`par()` estabelece os parâmetros para todos os gráficos que se seguem a ela
 
-## Slide with R Output
+***
+abline
+segments
+arrow
+curve
 
-```{r cars, echo = TRUE}
-summary(cars)
+***
+```{r}
+Idade = c(3.0, 4.0, 5.0, 6.0, 8.0, 9.0, 10.0, 11.0, 12.0, 14.0, 15.0, 16.0, 17.0)
+TamanhoDaAsa = c(1.4, 1.5, 2.2, 2.4, 3.1, 3.2, 3.2, 3.9, 4.1, 4.7, 4.5, 5.2, 5.0)
 ```
 
-## Slide with Plot
-
-```{r pressure}
-plot(pressure)
+```{r,echo=F}
+modelo=lm(TamanhoDaAsa ~ Idade)
+plot(TamanhoDaAsa ~ Idade, xlab = "Idade (décadas)",  
+     ylab = "Comprimento (metros)",  
+     main = "Tamanho da asa"  
+     , bty = "n"  
+     , xlim = c(0, 23)  
+     , ylim = c(0, max(TamanhoDaAsa))  
+     , lwd = 2  
+     , yaxt = "n"  
+     , xaxt = "n"  
+)  
+axis(1, pos = 0)  
+axis(2, pos = 0)  
+abline(modelo, col = "red", lwd = 2) 
 ```
-
+***
+#Boxplot
+para vizualizar dados categóricos, boxplots são a melhor opção
+```{r , tidy=TRUE}
+vacas = c(121.72355, 103.79754, 130.15442, 98.29305, 103.43365, 102.44998,
+          125.49993, 111.07215, 113.74047, 103.16081, 80.87149, 98.66692,
+          65.09549, 155.74965, 88.30168, 147.43610, 114.60806, 109.87433,
+          149.54772, 83.54137
+          )
+fazendeiros = c(77.91352, 78.07251, 81.95604, 75.64862, 78.45213, 79.11058,
+                79.98952, 79.18127, 84.01635, 74.86860, 82.01886, 78.26936,
+                77.94691, 78.75372, 77.64901, 77.64097, 77.19803, 72.48175,
+                83.45336, 78.99681
+)
+virgens = c(127.9366, 201.7158, 136.1366, 136.5880, 131.7213, 118.1486, 
+            125.7534, 139.6544, 163.5890, 139.7455, NA, 141.4450, 110.7311,
+            157.5921, 176.8437, 102.8659, 121.8286, 134.7097, 157.1392, 166.7133
+)
+aventureiros = c(191.3721, 216.1671, 165.4380, 196.2730, 172.6565, 178.2955,
+                 193.6687, 189.7674, 160.2968, 208.4400, 204.0934, 208.1798,
+                 186.6380, 193.9446, 197.3650, 198.6853, 213.8838, 210.1881,
+                 209.9109, 210.9228
+)
+alimento=c(rep("vacas",20),rep("fazendeiros",20),rep("virgens",20),rep("aventureiros",20))
+dragoes = data.frame(x=as.factor(alimento), y=c(vacas,fazendeiros,virgens,aventureiros))
+```
+***
+```{r}
+boxplot(dragoes$y ~ dragoes$x)
+```
+***
+```{r}
+boxplot(dragoes$y ~ dragoes$x, notch=T)
+```

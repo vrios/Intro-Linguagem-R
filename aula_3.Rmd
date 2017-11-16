@@ -206,13 +206,14 @@ write.csv(x= arquivoLido, #objeto a ser gravado
 ***
 #Importantíssimo
 Nunca jamais use o Word ou Docs para editar arquivos de texto puro   
-Nunca use acentos, símbolos ou caracteres especiais no nome dos arquivos   
+Nunca use acentos, espaços, parênteses, colchetes, símbolos ou caracteres especiais no nome dos arquivos ou nomes de colunas/objetos, pois eles tem significados especiais no R   
 
-Para salvar em tabelas do Excel, use os pacotes `writexl` e `readxl`
+Para escrever e salvar em tabelas do Excel, use os pacotes `writexl` e `readxl`
+
 ```{r, eval=F}
 library(writexl)
 library(readxl)
-write_xlsx(mtcars , "mtcars .xlsx")
-out <- read_xlsx("mtcars .xlsx")
+write_xlsx(mtcars , "mtcars.xlsx")
+out <- read_xlsx("mtcars.xlsx")
 ```
 

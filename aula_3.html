@@ -268,12 +268,22 @@ arquivoLido =<span class="kw">read.csv</span>(<span class="dt">file =</span> <sp
 )</code></pre></div>
 <p>O comando acima cria um objeto chamado <code>arquivoLido</code>, com o conteúdo de <code>&quot;arquivo.csv&quot;</code></p>
 <p><em>O arquivo original não é alterado, não importa o que você fizer dentro do R</em></p>
-<p>Se você quiser salvar suas alterações em um arquivo, use <code>write.table()</code>, <code>write.csv()</code> ou <code>write.csv2()</code></p>
+<p>Se você quiser salvar suas alterações em um arquivo de texto, use <code>write.table()</code>, <code>write.csv()</code> ou <code>write.csv2()</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.csv</span>(<span class="dt">x=</span> arquivoLido, <span class="co">#objeto a ser gravado</span>
          <span class="dt">file =</span> <span class="st">&quot;arquivoNovo.csv&quot;</span>, <span class="co">#nome do arquivo que vai ser gerado</span>
          <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="co"># define o caractere que deve ser o separador de colunas</span>
          <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>, <span class="co">#define o caractere que deve ser o spearador de decimal</span>
 )</code></pre></div>
+</div>
+<div id="importantissimo" class="slide section level1">
+<h1>Importantíssimo</h1>
+<p>Nunca jamais use o Word ou Docs para editar arquivos de texto puro<br />
+Nunca use acentos, espaços, parênteses, colchetes, símbolos ou caracteres especiais no nome dos arquivos ou nomes de colunas/objetos, pois eles tem significados especiais no R</p>
+<p>Para escrever e salvar em tabelas do Excel, use os pacotes <code>writexl</code> e <code>readxl</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(writexl)
+<span class="kw">library</span>(readxl)
+<span class="kw">write_xlsx</span>(mtcars , <span class="st">&quot;mtcars.xlsx&quot;</span>)
+out &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(<span class="st">&quot;mtcars.xlsx&quot;</span>)</code></pre></div>
 </div>
 
   <!-- dynamically load mathjax for compatibility with self-contained -->
