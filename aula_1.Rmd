@@ -3,10 +3,10 @@ title: "Aula 1 - Introdução ao R"
 author: "Vitor Rios"
 date: "10 de outubro de 2017"
 output:
-  beamer_presentation:
-    highlight: kate
   slidy_presentation:
     font_adjustment: + 1
+    highlight: kate
+  beamer_presentation:
     highlight: kate
 ---
 # Bem vindos
@@ -157,7 +157,7 @@ agora as funções do `igraph` estão disponíveis para serem usadas
 
 #Dados e variáveis
 ##R é uma linguagem de manipulação de objetos
-No R, podemos criar caixas para guardar coisas que iremos usar depois, que chamamos de `variáveis`, ou `objetos`
+No R, podemos criar caixas para guardar coisas que iremos usar depois, que chamamos de `variáveis`, ou `objetos`  
 Para isso usamos o sinal `=` ou `<-`.   Pense na expressão `a = 10` como `o objeto a recebe o valor 10`
 
 `<-` existe por motivos de compatibilidade com teclados que nao possuíam `=` (lá dos tempos jurássicos da computação). Use `=`  
@@ -169,7 +169,7 @@ pote.de.sorvete = "feijão"
 Na linha acima o R interpreta o que está dentro das apas como texto, e guarda esse valor dentro de um pedaço da memória que recebe o nome `pote.de.sorvete`. 
 
 O nome das variáveis não deve conter espaços, acentos,ou caracteres especiais como ç, ~, !, ?, /, |, +, *, ^,`,`,'     
-
+***
 Ao digitarmos `pote.de.sorvete` no console, o R nos mostra o que está guardado nesse pedaço de memória
 
 ```{r, echo=TRUE}
@@ -204,7 +204,7 @@ No RStudio, podemos ver o conteúdo dos objetos que criamos na aba "Environment"
 
 #Variáveis também podem guardar conjuntos de dados
 Chamamos estas variáveis de `vector` ou `vetor`. Criamos elas com a função `combine`, `c()`
-```{r, echo=TRUE}
+```{r, echo=TRUE, tidy=TRUE}
 geladeira = c("sorvete","cebola","agua", "miojo","macarrão","pacote.de.ketchup")
 geladeira
 ```

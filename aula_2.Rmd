@@ -1,8 +1,10 @@
 ---
-title: "Aula 2 - Criando e e manipulando dados"
+title: "Aula 2 - Criando e manipulando dados"
 author: "Vitor Rios"
 date: "16 de outubro de 2017"
 output:
+  beamer_presentation:
+    highlight: kate
   slidy_presentation:
     font_adjustment: + 1
     highlight: kate
@@ -182,7 +184,7 @@ i = 0.1
 i = i + 0.05
 i==0.15
 ```
-Resumidamente, se você quiser comparar com precisão a igualdade de operações com decimais, use a funçãoo `all.equal()`. Para comparações do tipo maior/menor, não é preciso se preocupar  
+Resumidamente, se você quiser comparar com precisão a igualdade de operações com decimais, use a funçãoo `all.equal()`. Para comparações do tipo maior/menor, não é preciso se preocupar (muito)  
 ```{r}
 i = 0.1
 i = i + 0.05
@@ -213,7 +215,7 @@ dragoes[dragoes$y >= 100 & dragoes$y <= 150,]
 
 ***
 #if()
-`if()` é uma função que permite executar um trecho de código se, e somente se, uma dada condiçãoo for verdadeira  
+`if()` é uma função que permite executar um trecho de código se, e somente se, uma dada condição for verdadeira  
 `if(condição) {código a ser executado}`
 
 Sempre coloque o código a ser executado dentro de chaves
@@ -237,48 +239,29 @@ for (i in 1:10){
 }
 ```
 ***
-`i` é chamado de`índice `. Pode ser qualquer letra ou expressão, é utilizado para contar quantas vezes o laço foi executado
-`1:10` 1 é o valor inicial de `i`, 10 é o valor final. `(i in 1:10)`significa `comece com valor de i = 1, e vá aumentando de um em um até  1 = 10`
-O bloco entre `{}` será executado sempre que 
+`i` é chamado de`índice`. Pode ser qualquer letra ou expressão, é utilizado para contar quantas vezes o laço foi executado
+`1:10` 1 é o valor inicial de `i`, 10 é o valor final. `(i in 1:10)` significa `comece com i = 1, e vá aumentando de um em um até  1 = 10`  
+O bloco entre `{}` será executado enquanto a condição for verdadeira
 
 ***
-#Dica de estruturar seu script: pseudocódigo
-Liste cada passo necessário
-
-  verbo - objeto
-
-- Ler dados do arquivo
-- Verificar dados ausentes / errados
-      - verificar NAs
-      - verificar erros de digitaçãoo
-      - verificar cabeçalhos
-- Selecionar colunas para analisar
-- Rodar análise
-      - Passo 1
-      - Passo 2
-  _ ....
-
+Para ler vários arquivos:
+```{r, eval=FALSE}
+arquivos =  list.files() #lê os nomes dos arquivos no diretório de trabalho)
+for (i in 1:length(arquivos)){
+#resultados[i] = read.csv(arquivos[i])
+  message(arquivos[i])
+}
+```
 ***
-# Pseudocódigo
-Substitua a ação pela função adequada do R  
-Se necessário, quebre em sub itens
-
-- Ler dados do arquivo
-    - `file = read.table("preçosComida.csv")`
-- Verificar dados ausentes / errados
-      - verificar NAs
-        - `is.na(file)`
-      - verificar erros de digitação
-        - `unique(file$species)`
-      - verificar cabeçalhos
-        - `head(file)`
-- Selecionar colunas para analisar
-      - `file$species[file$species!="Chuchu"]`
-- Rodar análise
-      - Passo 1
-        - `lm(file$price ~ file$species)`
-      - Passo 2
-  _ ....
-
-
+Para plotar vários objetos separadamente
+```{r}
+niveis =levels(dragoes$x)
+i=1
+for (i in 1:length(niveis)){
+  nome=paste("figuras/",niveis[i],".png")#prepara o nome do arquivo
+  png(filename = nome)#prepara para gravar arquivo tipo png
+  plot(dragoes[dragoes$x==niveis[i],]$y)#escreve o arquivo
+  dev.off()#salva o arquivo
+}
+```
 

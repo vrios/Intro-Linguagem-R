@@ -1,24 +1,24 @@
 ######################################################
-# Introdução Linguagem R
+# IntroduÃ§Ã£o Linguagem R
 # Vitor Passos Rios
 # Universidade Federal da Bahia
 # https://github.com/vrios/Intro-Linguagem-R/wiki
 #####################################################
 
-#####Usando o R como calculadora
+#####Usando o R como calculadora#####
 
-#Digite no R os códigos abaixo.
+#Digite no R os cÃ³digos abaixo.
 #Dica: escreva neste arquivo, ao lado do comando, o que ele faz,
 #como no exemplo abaixo
 
 1 + 1 #soma os valores
 
-# O símbolo # representa um comentário, isto é, tudo que vier à direita
-# dele será ignorado quando o R ler o arquivo
+# O sÃ­mbolo # representa um comentÃ¡rio, isto Ã©, tudo que vier Ã  direita
+# dele serÃ¡ ignorado quando o R ler o arquivo
 
 34 - 72.3
 
-# use pontos como separador de decimal. O que acontece se você usar virgula?
+# use pontos como separador de decimal. O que acontece se vocÃª usar virgula?
 78 / 3
 2 ^ 3
 3 * 2
@@ -26,9 +26,9 @@ sqrt(2)
 pi
 log(x = 3,base = 10)
 exp(x = 1)
-#o que querem dizer estes valores dentro do parêntese? porque usamos o = aqui?
+#o que querem dizer estes valores dentro do parÃªntese? porque usamos o = aqui?
 
-#####Atribuição de valores e criação de objetos
+#####AtribuiÃ§Ã£o de valores e criaÃ§Ã£o de objetos#####
 #O que os comandos abaixo fazem?
 objeto1=3
 objeto1
@@ -36,7 +36,7 @@ objeto = 42
 objeto
 objeto.2 <- 42
 objeto.2
-# Os símbolos = e <- fazem basicamente a mesma coisa. Que coisa?
+# Os sÃ­mbolos = e <- fazem basicamente a mesma coisa. Que coisa?
 objeto.cubico <- objeto^3
 resultado.1 <- (objeto.cubico / 3) + 7
 objeto.texto <- "texto sempre vem entre aspas"
@@ -51,7 +51,7 @@ objeto.vetor2
 ?seq
 objeto.vetor3 = seq(from = 20, to = 32, by = 0.5)
 
-# R também faz comparações entre objetos
+# R tambÃ©m faz comparaÃ§Ãµes entre objetos
 42 > 7
 objeto == objeto.2
 objeto == objeto.texto.2
@@ -66,31 +66,31 @@ objeto == objeto.texto.2
 help(log)
 help.search("anova")
 
-#####Arquivos e diretórios
-# Como você descobre o diretório de trabalho?
+#####Arquivos e diretÃ³rios#####
+# Como vocÃª descobre o diretÃ³rio de trabalho?
 
-# Como você lista o conteído do diretório de trabalho?
+# Como vocÃª lista o conteÃ­do do diretÃ³rio de trabalho?
 
-# Como você define o diretório de trabalho?
+# Como vocÃª define o diretÃ³rio de trabalho?
 
-# Como você carrega um arquivo de script?
+# Como vocÃª carrega um arquivo de script?
 
-# Como você salva os objetos que criou?
+# Como vocÃª salva os objetos que criou?
 
-# Como você carrega os objetos que criou?
+# Como vocÃª carrega os objetos que criou?
 
-# como ver quis objetos estão na sua área de trabalho?
+# como ver quis objetos estÃ£o na sua Ã¡rea de trabalho?
 
-# como remover objetos da área de trabalho?
+# como remover objetos da Ã¡rea de trabalho?
 
-##### Lidando com erros
-# O que acontece quando você digita os comandos abaixo? Como consertar cada erro?
+##### Lidando com erros#####
+# O que acontece quando vocÃª digita os comandos abaixo? Como consertar cada erro?
 objetol
 objeto .texto
 Objeto
 source("chuchu.R")
 source(chuchu.R)
-setwd("C:/CavernaDoDragï¿½o")
+setwd("C:/CavernaDoDragÃ¯Â¿Â½o")
 getwd
 Getwd()
 #dica: quando o R der erro, copie e cole a mensagem de erro no google

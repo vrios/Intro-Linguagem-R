@@ -221,12 +221,13 @@ Funções podem ter opçoes, chamadas argumentos</p>
 <div id="dados-e-variaveis" class="slide section level1">
 <h1>Dados e variáveis</h1>
 <h2 id="r-e-uma-linguagem-de-manipulacao-de-objetos">R é uma linguagem de manipulação de objetos</h2>
-<p>No R, podemos criar caixas para guardar coisas que iremos usar depois, que chamamos de <code>variáveis</code>, ou <code>objetos</code> Para isso usamos o sinal <code>=</code> ou <code>&lt;-</code>. Pense na expressão <code>a = 10</code> como <code>o objeto a recebe o valor 10</code></p>
+<p>No R, podemos criar caixas para guardar coisas que iremos usar depois, que chamamos de <code>variáveis</code>, ou <code>objetos</code><br />
+Para isso usamos o sinal <code>=</code> ou <code>&lt;-</code>. Pense na expressão <code>a = 10</code> como <code>o objeto a recebe o valor 10</code></p>
 <p><code>&lt;-</code> existe por motivos de compatibilidade com teclados que nao possuíam <code>=</code> (lá dos tempos jurássicos da computação). Use <code>=</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pote.de.sorvete =<span class="st"> &quot;feijão&quot;</span></code></pre></div>
 <p>Na linha acima o R interpreta o que está dentro das apas como texto, e guarda esse valor dentro de um pedaço da memória que recebe o nome <code>pote.de.sorvete</code>.</p>
-<p>O nome das variáveis não deve conter espaços, acentos,ou caracteres especiais como ç, ~, !, ?, /, |, +, *, ^,<code>,</code>,’</p>
-<p>Ao digitarmos <code>pote.de.sorvete</code> no console, o R nos mostra o que está guardado nesse pedaço de memória</p>
+<p>O nome das variáveis não deve conter espaços, acentos,ou caracteres especiais como ç, ~, !, ?, /, |, +, <em>, ^,<code>,</code>,’<br />
+</em>** Ao digitarmos <code>pote.de.sorvete</code> no console, o R nos mostra o que está guardado nesse pedaço de memória</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pote.de.sorvete</code></pre></div>
 <pre><code>## [1] &quot;feijão&quot;</code></pre>
 </div>
@@ -254,8 +255,8 @@ pote.de.sorvete</code></pre></div>
 </div>
 <div id="variaveis-tambem-podem-guardar-conjuntos-de-dados" class="slide section level1">
 <h1>Variáveis também podem guardar conjuntos de dados</h1>
-<p>Chamamos estas variáveis de <code>vector</code> ou <code>vetor</code>. Criamos elas com a função <code>concatenate</code>, <code>c()</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">geladeira =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;sorvete&quot;</span>,<span class="st">&quot;cebola&quot;</span>,<span class="st">&quot;agua&quot;</span>, <span class="st">&quot;miojo&quot;</span>,<span class="st">&quot;macarrão&quot;</span>,<span class="st">&quot;pacote.de.ketchup&quot;</span>)
+<p>Chamamos estas variáveis de <code>vector</code> ou <code>vetor</code>. Criamos elas com a função <code>combine</code>, <code>c()</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">geladeira =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;sorvete&quot;</span>, <span class="st">&quot;cebola&quot;</span>, <span class="st">&quot;agua&quot;</span>, <span class="st">&quot;miojo&quot;</span>, <span class="st">&quot;macarrão&quot;</span>, <span class="st">&quot;pacote.de.ketchup&quot;</span>)
 geladeira</code></pre></div>
 <pre><code>## [1] &quot;sorvete&quot;           &quot;cebola&quot;            &quot;agua&quot;             
 ## [4] &quot;miojo&quot;             &quot;macarrão&quot;          &quot;pacote.de.ketchup&quot;</code></pre>
@@ -320,7 +321,7 @@ dadosNomeados=<span class="kw">data.frame</span>(vetor3,<span class="dt">y=</spa
 <div id="acessando-dados-no-dataframe" class="slide section level1">
 <h1>Acessando dados no dataframe</h1>
 <p>Existem dois jeitos principais de acessar dados em um dataframe: colchetes <code>[]</code> ou cifrão <code>$</code><br />
-Isto se chama <code>indexação</code><br />
+Isto se chama <code>indexação</code>:<br />
 dataframe[linha, coluna]</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dadosNomeados[<span class="dv">3</span>,<span class="dv">2</span>]</code></pre></div>
 <pre><code>## [1] 24</code></pre>
@@ -328,7 +329,7 @@ dataframe[linha, coluna]</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dadosNomeados<span class="op">$</span>Numeros</code></pre></div>
 <pre><code>##  [1] 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10  9  8  7  6  5  4
 ## [24]  3  2  1</code></pre>
-<p>você também pode usar ambas:</p>
+<p>você também pode usar ambas notações: dataframe$nomeDaColuna[linha]</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dadosNomeados<span class="op">$</span>Numeros[<span class="dv">4</span>]</code></pre></div>
 <pre><code>## [1] 23</code></pre>
 </div>
