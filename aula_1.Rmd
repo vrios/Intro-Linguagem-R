@@ -3,10 +3,10 @@ title: "Aula 1 - Introdução ao R"
 author: "Vitor Rios"
 date: "10 de outubro de 2017"
 output:
-  beamer_presentation:
-    highlight: kate
   slidy_presentation:
     font_adjustment: + 1
+    highlight: kate
+  beamer_presentation:
     highlight: kate
 ---
 # Bem vindos
@@ -142,12 +142,14 @@ Google <- busque por "R manova" ou "R phylogenetics" ou "R cluster analysis", et
 Quando o R der erro, copie a mensagem e cole no Google!
 
 #CRAN
-o _Comprehensive R Archive Network_ é o repositório central oficial de pacotes do R. Para instalar um pacote do CRAN, usamos o comando install.packages("nome",repositório)
+o _Comprehensive R Archive Network_ é o repositório central oficial de pacotes do R. Para instalar um pacote do CRAN, usamos o comando install.packages("nome",repositório), ou no RStudio, clicamos em `Install` na aba `Packages`
+
 ```{r, echo = TRUE,eval=FALSE}
 install.packages("igraph", repos=http://nbcgib.uesc.br/mirrors/cran/)
 ```
-ou no RStudio, clicamos em `Install` na aba `Packages`
-![](figuras/abaPackages.png) 
+
+  ![](figuras/abaPackages.png) 
+
 
 #Para usar um pacote
 
