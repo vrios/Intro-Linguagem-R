@@ -51,6 +51,14 @@ objeto.vetor2
 ?seq
 objeto.vetor3 = seq(from = 20, to = 32, by = 0.5)
 
+#podemos calcular estatísticas com o r
+mean(objeto.vetor3) #media
+var(objeto.vetor3) #variancia
+median(objeto.vetor3) #mediana
+min(objeto.vetor3)
+max(objeto.vetor3)
+diff(objeto.vetor3) #calcula a diferença entre os elementos sucessivos do vetor
+
 # R também faz comparações entre objetos
 42 > 7
 objeto == objeto.2
@@ -69,7 +77,7 @@ help.search("anova")
 #####Arquivos e diretórios#####
 # Como você descobre o diretório de trabalho?
 
-# Como você lista o conteído do diretório de trabalho?
+# Como você lista o conteúdo do diretório de trabalho?
 
 # Como você define o diretório de trabalho?
 
@@ -79,9 +87,9 @@ help.search("anova")
 
 # Como você carrega os objetos que criou?
 
-# como ver quis objetos estão na sua área de trabalho?
+# Como ver quis objetos estão na sua área de trabalho?
 
-# como remover objetos da área de trabalho?
+# Como remover objetos da área de trabalho?
 
 ##### Lidando com erros#####
 # O que acontece quando você digita os comandos abaixo? Como consertar cada erro?
@@ -90,7 +98,7 @@ objeto .texto
 Objeto
 source("chuchu.R")
 source(chuchu.R)
-setwd("C:/CavernaDoDragï¿½o")
+setwd("C:/CavernaDoDragão")
 getwd
 Getwd()
 #dica: quando o R der erro, copie e cole a mensagem de erro no google
