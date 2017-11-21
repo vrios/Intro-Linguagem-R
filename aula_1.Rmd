@@ -3,6 +3,8 @@ title: "Aula 1 - Introdução ao R"
 author: "Vitor Rios"
 date: "10 de outubro de 2017"
 output:
+  beamer_presentation:
+    highlight: kate
   slidy_presentation:
     font_adjustment: + 1
     highlight: kate
@@ -12,8 +14,8 @@ output:
 
 ## Cronograma
 Dia 1  -  21/11 - Introdução e como usar o R e Rstudio, boas práticas de programação  
-Dia 2  -  22/11 - Criando e e manipulando dados 
-Dia 3  -  23/11 - Trabalhando com arquivos externos 
+Dia 2  -  22/11 - Criando e e manipulando dados  
+Dia 3  -  23/11 - Trabalhando com arquivos externos  
 Dia 4  -  28/12 - Noções de programação  
 Dia 5  -  05/12 - Gráficos  
 Dia 6  -  06/12 - Análise exploratória e funções matemáticas  
@@ -104,7 +106,7 @@ sqrt(2)
 
 
 # Funções
-Quando temos um nome seguido de parêntese com alguma coisa dentro, temos uma **função**
+Quando temos um nome seguido de parêntese com alguma coisa dentro, temos uma **função**  
 Função é um conjunto de comandos que faz uma operação em um objeto  
 `sqrt(x)` calcula a raiz quadrada de x  
 Funções podem ter opçoes, chamadas argumentos
@@ -113,7 +115,7 @@ log(10, base=2)
 ```
 calcula o logaritmo de 10 na base 2  
 
-Quase tudo que vocêe vai usar no R são funções
+Quase tudo que você vai usar no R são funções
 
 Muito cuidado com a digitação: para o R, maiúsculas e minúsculas são diferentes, e um espaço no meio da palavra atrapalha tudo
 
@@ -156,7 +158,7 @@ agora as funções do `igraph` estão disponíveis para serem usadas
 #Dados e variáveis
 ##R é uma linguagem de manipulação de objetos
 No R, podemos criar caixas para guardar coisas que iremos usar depois, que chamamos de `variáveis`, ou `objetos`
-Para isso usamos o sinal `=` ou`<-`.   Pense na expressão `a = 10` como `o objeto a recebe o valor 10`
+Para isso usamos o sinal `=` ou `<-`.   Pense na expressão `a = 10` como `o objeto a recebe o valor 10`
 
 `<-` existe por motivos de compatibilidade com teclados que nao possuíam `=` (lá dos tempos jurássicos da computação). Use `=`  
 
@@ -166,7 +168,7 @@ pote.de.sorvete = "feijão"
 
 Na linha acima o R interpreta o que está dentro das apas como texto, e guarda esse valor dentro de um pedaço da memória que recebe o nome `pote.de.sorvete`. 
 
-O nome das variáveis não deve conter espaços, acentos,ou caracteres especiais como ç, ~, !, ?, /, |     
+O nome das variáveis não deve conter espaços, acentos,ou caracteres especiais como ç, ~, !, ?, /, |, +, *, ^,`,`,'     
 
 Ao digitarmos `pote.de.sorvete` no console, o R nos mostra o que está guardado nesse pedaço de memória
 
@@ -201,7 +203,7 @@ No RStudio, podemos ver o conteúdo dos objetos que criamos na aba "Environment"
 ![](figuras/abaEnvironment.png) 
 
 #Variáveis também podem guardar conjuntos de dados
-Chamamos estas variáveis de `vector` ou `vetor`. Criamos elas com a função `concatenate`, `c()`
+Chamamos estas variáveis de `vector` ou `vetor`. Criamos elas com a função `combine`, `c()`
 ```{r, echo=TRUE}
 geladeira = c("sorvete","cebola","agua", "miojo","macarrão","pacote.de.ketchup")
 geladeira
@@ -269,7 +271,7 @@ head(dadosNomeados)
 ```
 #Acessando dados no dataframe
 Existem dois jeitos principais de acessar dados em um dataframe: colchetes `[]` ou cifrão `$`  
-Isto se chama `indexação`  
+Isto se chama `indexação`:   
 dataframe[linha, coluna]
 ```{r}
 dadosNomeados[3,2]
@@ -278,7 +280,8 @@ dataframe$nomeDaColuna
 ```{r}
 dadosNomeados$Numeros
 ```
-você também pode usar ambas:
+você também pode usar ambas notações:
+dataframe$nomeDaColuna[linha]
 ```{r}
 dadosNomeados$Numeros[4]
 ```

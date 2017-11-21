@@ -301,9 +301,8 @@ nomesComErro<span class="op">$</span>especie[nomesComErro<span class="op">$</spa
 </div>
 <div id="entendendo-o-comando-passo-a-passo" class="slide section level1">
 <h1>Entendendo o comando passo a passo:</h1>
-<p>Precisamos saber a posição dos elementos com erro:</p>
-<p>nomesComErro$especie[nomesComErro$especie==“Tabebuia casinoides”] = “Tabebuia cassinoides”</p>
-<p>Este comando nos retorna um vetor lógico com as posições de todos elementos “Tabebuia casinoides” dentro do objeto <code>nomesComErro</code>, na coluna <code>especie</code></p>
+<p><code>nomesComErro\$especie[nomesComErro\$especie==&quot;Tabebuia casinoides&quot;] = &quot;Tabebuia cassinoides&quot;</code><br />
+Precisamos saber a posição dos elementos com erro: O comando abixo nos retorna um vetor lógico com as posições de todos elementos “Tabebuia casinoides” dentro do objeto <code>nomesComErro</code>, na coluna <code>especie</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> nomesComErro<span class="op">$</span>especie<span class="op">==</span><span class="st">&quot;Tabebuia casinoides&quot;</span></code></pre></div>
 <pre><code>##    [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ##   [12] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
@@ -510,6 +509,28 @@ i =<span class="st"> </span>i <span class="op">+</span><span class="st"> </span>
   fit =<span class="st"> </span><span class="kw">aov</span> (dragoes<span class="op">$</span>y <span class="op">~</span><span class="st"> </span>dragoes<span class="op">$</span>x)
   <span class="kw">summary</span>(fit)
   }</code></pre></div>
+</div>
+<div id="fazendo-a-mesma-coisa-varias-vezes" class="slide section level1">
+<h1>Fazendo a mesma coisa várias vezes</h1>
+<p>se precisamos repetir uma tarefa várias vezes, usamos o <em>laço (loop)</em></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>){
+  a =<span class="st"> </span>i<span class="op">^</span><span class="dv">2</span>
+  <span class="kw">message</span>(a)
+}</code></pre></div>
+<pre><code>## 1</code></pre>
+<pre><code>## 4</code></pre>
+<pre><code>## 9</code></pre>
+<pre><code>## 16</code></pre>
+<pre><code>## 25</code></pre>
+<pre><code>## 36</code></pre>
+<pre><code>## 49</code></pre>
+<pre><code>## 64</code></pre>
+<pre><code>## 81</code></pre>
+<pre><code>## 100</code></pre>
+</div>
+<div class="slide section level1">
+
+<p><code>i</code> é chamado de<code>índice</code>. Pode ser qualquer letra ou expressão, é utilizado para contar quantas vezes o laço foi executado <code>1:10</code> 1 é o valor inicial de <code>i</code>, 10 é o valor final. <code>(i in 1:10)</code>significa <code>comece com valor de i = 1, e vá aumentando de um em um até  1 = 10</code> O bloco entre <code>{}</code> será executado sempre que</p>
 </div>
 <div id="dica-de-estruturar-seu-script-pseudocodigo" class="slide section level1">
 <h1>Dica de estruturar seu script: pseudocódigo</h1>

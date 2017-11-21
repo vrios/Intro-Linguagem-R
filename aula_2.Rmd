@@ -8,7 +8,7 @@ output:
     highlight: kate
 ---
 #Tipos de dados
-J? vimos 3 tipos de valores de dados, mas existem outros 4 especiais
+Já vimos 3 tipos de valores de dados, mas existem outros 4 especiais
 ```{r}
 class(1)
 class("1")
@@ -36,7 +36,7 @@ class(fator)
 
 `factor` especifica que um conjunto de valores representa os níveis de um fator, usado para análises de dados categóricos  
 
-Ao ler dados de arquivos .csv, colunas representadas por caracteres são automaticamente convertidas em fatores. para eivtar isto, use o argumento `as.is = TRUE`  
+Ao ler dados de arquivos .csv, colunas representadas por caracteres são automaticamente convertidas em fatores. para eivtar isto, use o argumento `as.is = TRUE`, quando disponível (consulte o help)  
     
 
 #Criando um conjunto de dados simulado
@@ -227,7 +227,19 @@ if (teste.de.normalidade$p.value >= 0.05) {
 
 ```
 
-
+***
+# Fazendo a mesma coisa várias vezes
+se precisamos repetir uma tarefa várias vezes, usamos o _laço (loop)_
+```{r}
+for (i in 1:10){
+  a = i^2
+  message(a)
+}
+```
+***
+`i` é chamado de`índice `. Pode ser qualquer letra ou expressão, é utilizado para contar quantas vezes o laço foi executado
+`1:10` 1 é o valor inicial de `i`, 10 é o valor final. `(i in 1:10)`significa `comece com valor de i = 1, e vá aumentando de um em um até  1 = 10`
+O bloco entre `{}` será executado sempre que 
 
 ***
 #Dica de estruturar seu script: pseudocódigo

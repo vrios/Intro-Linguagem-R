@@ -18,7 +18,7 @@
 
 34 - 72.3
 
-# use pontos como separador de decimal
+# use pontos como separador de decimal. O que acontece se você usar virgula?
 78 / 3
 2 ^ 3
 3 * 2
