@@ -3,10 +3,10 @@ title: "Aula 1 - Introdução ao R"
 author: "Vitor Rios"
 date: "10 de outubro de 2017"
 output:
+  beamer_presentation:
+    highlight: kate
   slidy_presentation:
     font_adjustment: + 1
-    highlight: kate
-  beamer_presentation:
     highlight: kate
 ---
 # Bem vindos
@@ -26,6 +26,8 @@ Dia 10 -  14/12 - Programação para iniciantes, Função final
 
 Aulas: teoria (1 a 2 h) + prática (wiki do curso)
 Avaliação: exercícios e constução de uma função (entrega 2 semanas após fim da disciplina)
+
+Enviar exercícios para `cursolinguagemr@gmail.com`
 
 
 # O que é o R?
