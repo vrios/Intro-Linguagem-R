@@ -45,12 +45,8 @@ is.data.frame()
 #http://ecologia.ib.usp.br/bie5782/doku.php?id=dados:dados-caixeta, calcule
 #quantas espécies estão presentes na coluna especie. Para ler o arquivo, execute
 #o código abaixo
-<<<<<<< HEAD
 caixeta = read.table("caixeta.csv", header=T, sep=",", as.is=T)
 # o arquivo deve estar no seu diretório de trabalho
-=======
-caixeta = read.table("caixeta.csv", header=T, sep=",", as.is=T) # o arquivo deve estar no seu diretório de trabalho
->>>>>>> 1b880723a180b68fc45b333cc3c8968dafd17ed8
 str(caixeta) #o que este comando faz?
 summary(caixeta)
 
