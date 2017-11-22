@@ -28,6 +28,7 @@ Aulas: teoria (1 a 2 h) + prática (wiki do curso)
 Avaliação: exercícios e constução de uma função (entrega 2 semanas após fim da disciplina)
 
 Enviar exercícios para `cursolinguagemr@gmail.com`
+'https://groups.google.com/forum/#!forum/linguagem-r-ufba'
 
 
 # O que é o R?

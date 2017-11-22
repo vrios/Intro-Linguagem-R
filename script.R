@@ -16,7 +16,7 @@
 # O símbolo # representa um comentário, isto é, tudo que vier à direita
 # dele será ignorado quando o R ler o arquivo
 
-34 - 72.3
+34 - 72.3 #subtrai 72.3 de 34
 
 # use pontos como separador de decimal. O que acontece se você usar virgula?
 78 / 3

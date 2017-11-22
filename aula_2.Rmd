@@ -6,9 +6,13 @@ output:
   beamer_presentation:
     highlight: kate
   slidy_presentation:
-    font_adjustment: + 1
+    #font_adjustment: + 1
     highlight: kate
 ---
+```{r global_options, include = FALSE}
+knitr::opts_chunk$set(message=FALSE, 
+tidy.opts=list(width.cutoff=60)) 
+```
 #Tipos de dados
 Já vimos 3 tipos de valores de dados, mas existem outros 4 especiais
 ```{r}
@@ -38,12 +42,12 @@ class(fator)
 
 `factor` especifica que um conjunto de valores representa os níveis de um fator, usado para análises de dados categóricos  
 
-Ao ler dados de arquivos .csv, colunas representadas por caracteres são automaticamente convertidas em fatores. para eivtar isto, use o argumento `as.is = TRUE`, quando disponível (consulte o help)  
+Ao ler dados de arquivos .csv, colunas representadas por caracteres são automaticamente convertidas em fatores. Para evitar isto, use o argumento `as.is = TRUE`, quando disponível (consulte o help)  
     
 
 #Criando um conjunto de dados simulado
-Iremos investigar o crescimento dos dragões usando  quatro rações diferentes. Após mandar nossos estagiários fazerem os experimentos, temos os seguintes dados, em centenas de quilos
-```{r , tidy=TRUE}
+Iremos investigar o crescimento dos dragões usando quatro rações diferentes. Após mandar nossos estagiários fazerem os experimentos, os que sobreviveram trouxeram os seguintes dados, em centenas de quilos
+```{r , tidy=TRUE, tidy.opts=list(width.cutoff=60)}
 vacas = c(121.72355, 103.79754, 130.15442, 98.29305, 103.43365, 102.44998,
           125.49993, 111.07215, 113.74047, 103.16081, 80.87149, 98.66692,
           65.09549, 155.74965, 88.30168, 147.43610, 114.60806, 109.87433,
