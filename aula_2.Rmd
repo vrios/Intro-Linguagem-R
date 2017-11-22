@@ -6,12 +6,12 @@ output:
   beamer_presentation:
     highlight: kate
   slidy_presentation:
-    #font_adjustment: + 1
     highlight: kate
+classoption: aspectratio=169
 ---
 ```{r global_options, include = FALSE}
 knitr::opts_chunk$set(message=FALSE, 
-tidy.opts=list(width.cutoff=60)) 
+tidy.opts=list, tidy=TRUE) 
 ```
 #Tipos de dados
 Já vimos 3 tipos de valores de dados, mas existem outros 4 especiais
@@ -47,7 +47,7 @@ Ao ler dados de arquivos .csv, colunas representadas por caracteres são automat
 
 #Criando um conjunto de dados simulado
 Iremos investigar o crescimento dos dragões usando quatro rações diferentes. Após mandar nossos estagiários fazerem os experimentos, os que sobreviveram trouxeram os seguintes dados, em centenas de quilos
-```{r , tidy=TRUE, tidy.opts=list(width.cutoff=60)}
+```{r }
 vacas = c(121.72355, 103.79754, 130.15442, 98.29305, 103.43365, 102.44998,
           125.49993, 111.07215, 113.74047, 103.16081, 80.87149, 98.66692,
           65.09549, 155.74965, 88.30168, 147.43610, 114.60806, 109.87433,
@@ -70,10 +70,15 @@ aventureiros = c(191.3721, 216.1671, 165.4380, 196.2730, 172.6565, 178.2955,
 ```
 ***
 Podemos juntar tudo num dataframe para facilitar
-```{r}
-alimento=c(rep("vacas",20),rep("fazendeiros",20),rep("virgens",20),rep("aventureiros",20))
-dragoes = data.frame(x=alimento, y=c(vacas,fazendeiros,virgens,aventureiros))
+```{r, tidy=TRUE}
+alimento=c(rep("vacas",20),rep("fazendeiros",20)
+           ,rep("virgens",20),rep("aventureiros",20))
+dragoes = data.frame(x=alimento, y=c(vacas,fazendeiros,
+                                     virgens,aventureiros))
 head(dragoes)
+```
+***
+```{r}
 summary(dragoes)
 ```
 ***
@@ -84,7 +89,12 @@ plot(dragoes)
 #Para facilitar suas análises
 Formate seus dados sempre que possível da seguinte forma:  
 - Cada linha uma observação ou indivíduo  
-- Cada coluna uma variável  
+- Cada coluna uma variável 
+```{r}
+head(dragoes)
+```
+
+***
 ```{r}
 summary(lm(dragoes$y~dragoes$x))
 ```
@@ -100,6 +110,9 @@ Erro na posição do decimal
 ```{r}
 dragoes[dragoes== 840.1635] = 84.01635
 max(dragoes[,2],na.rm = TRUE)
+```
+***
+```{r}
 plot (dragoes)
 ```
 
@@ -108,7 +121,8 @@ plot (dragoes)
 Só verificando o dado original ou removendo
 ```{r}
 mean(dragoes[,2]) ##qualquer cálculo com NA é igual a NA
-mean(dragoes[,2], na.rm = TRUE)## na.rm = TRUE remove o NA para o calculo da média
+mean(dragoes[,2], na.rm = TRUE)
+## na.rm = TRUE remove o NA para o calculo da média
 
 aggregate(dragoes$y ~ dragoes$x,FUN = "mean")
 
@@ -117,25 +131,34 @@ aggregate(dragoes$y ~ dragoes$x,FUN = "mean")
 # Para verificar erros de digitação ao trabalharmos com texto, podemos usar a função `unique()`
 ```{r}
 ### dados dispníveis em http://ecologia.ib.usp.br/bie5782/doku.php?id=dados:dados-caixeta
-nomesComErro = read.table("arquivos/caixetaComErro.csv", header=T, sep=",")
+nomesComErro = read.table("arquivos/caixetaComErro.csv"
+                          , header=T, sep=",")
 head(nomesComErro)
 ```
 ***
 ```{r}
+
 unique(nomesComErro$especie)
 ```
 ***
 ```{r}
 #podemos também colocar os nomes em ordem alfabética
 sort(unique(nomesComErro$especie))
+
+nomesComErro$especie[nomesComErro$especie=="Tabebuia casinoides"]="Tabebuia cassinoides"
 ```
 ***
 ```{r}
-nomesComErro$especie[nomesComErro$especie=="Tabebuia casinoides"]="Tabebuia cassinoides"
 nomesComErro$especie[nomesComErro$especie=="Tabebuia casssinoides"] = "Tabebuia cassinoides"
 sort(unique(nomesComErro$especie))
 ```
 #Entendendo o comando passo a passo:
+```{r, include=FALSE}
+### dados dispníveis em http://ecologia.ib.usp.br/bie5782/doku.php?id=dados:dados-caixeta
+nomesComErro = read.table("arquivos/caixetaComErro.csv"
+                          , header=T, sep=",")
+head(nomesComErro)
+```
 `nomesComErro\$especie[nomesComErro\$especie=="Tabebuia casinoides"] = "Tabebuia cassinoides"`  
 Precisamos saber a posição dos elementos com erro: O comando abaixo nos retorna um vetor lógico com as posições de todos elementos "Tabebuia casinoides" dentro do objeto `nomesComErro`, na coluna `especie`
 ```{r,eval=T}
@@ -158,6 +181,7 @@ Utilizamos o operador de atribuição `=` para trocar os valores indexados nos p
 
 ```{r, eval=T, tidy = TRUE}
 nomesComErro$especie[nomesComErro$especie=="Tabebuia casinoides"]="Tabebuia cassinoides"
+sort(unique(nomesComErro$especie))
 ```
 ***
 #Operações lógicas e comparações
@@ -196,15 +220,15 @@ all.equal (i,0.15)
 ```
 ***
 #Outras comparações
-`a <= b` a é menor ou igual a b?
-`a >= b` a é maior que ou igual a b?
-`!x` não x
+`a <= b` a é menor ou igual a b?  
+`a >= b` a é maior que ou igual a b?  
+`!x` não x  
 
 *** 
 #Operadores lógicos e if()
-O R também pode testar duas condições ao mesmo tempo, com os operadores _E_ e _OU_
-`a & b` retorna TRUE se tanto `a` quanto `b` forem verdade
-`a | b` retorna TRUE se _pelo menos um_,  `a` ou `b`, for verdade
+O R também pode testar duas condições ao mesmo tempo, com os operadores _E_ e _OU_  
+`a & b` retorna TRUE se tanto `a` quanto `b` forem verdade  
+`a | b` retorna TRUE se _pelo menos um_,  `a` ou `b`, for verdade  
 ```{r}
  teste = c(1, 2, 2, 3, 4, 5, 6,7)
 (teste[1] == 1) & (teste[2] / 2 == 1)
@@ -212,14 +236,14 @@ O R também pode testar duas condições ao mesmo tempo, com os operadores _E_ e
 (teste[2] == 1) | (teste[2] / 2 == 1)
 ```
 ***
-Por exemplo, se quisermos todos os dragões que pesam entre 100 e 150 centenas de kilos
+Por exemplo, se quisermos todos os dragões que pesam entre 100 e 150 centenas de kilos  
 ```{r}
 dragoes[dragoes$y >= 100 & dragoes$y <= 150,]
 ```
 
 ***
 #if()
-`if()` é uma função que permite executar um trecho de código se, e somente se, uma dada condição for verdadeira  
+`if()` é uma função que permite executar um trecho de código se, e somente se, uma dada condição for verdadeira    
 `if(condição) {código a ser executado}`
 
 Sempre coloque o código a ser executado dentro de chaves
@@ -243,9 +267,11 @@ for (i in 1:10){
 }
 ```
 ***
-`i` é chamado de`índice`. Pode ser qualquer letra ou expressão, é utilizado para contar quantas vezes o laço foi executado
-`1:10` 1 é o valor inicial de `i`, 10 é o valor final. `(i in 1:10)` significa `comece com i = 1, e vá aumentando de um em um até  1 = 10`  
-O bloco entre `{}` será executado enquanto a condição for verdadeira
+`i` é chamado de `índice`. Pode ser qualquer letra ou expressão, é utilizado para contar quantas vezes o laço foi executado  
+`1:10` 1 é o valor inicial de `i`, 10 é o valor final. 
+
+`(i in 1:10)` significa `comece com i = 1, e vá aumentando de um em um até  1 = 10`  
+O bloco entre `{}` será executado enquanto a condição for verdadeira  
 
 ***
 Para ler vários arquivos:
@@ -257,7 +283,7 @@ for (i in 1:length(arquivos)){
 }
 ```
 ***
-Para plotar vários objetos separadamente
+Para plotar vários objetos separadamente  
 ```{r}
 niveis =levels(dragoes$x)
 i=1

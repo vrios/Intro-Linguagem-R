@@ -6,7 +6,6 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Vitor Rios" />
-  <meta name="font-size-adjustment" content="+ 1" />
   <title>Aula 2 - Criando e manipulando dados</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -72,17 +71,17 @@ Vitor Rios
 </div>
 <div class="slide section level1">
 
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">10</span> <span class="op">/</span><span class="st"> </span><span class="dv">0</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">10</span><span class="op">/</span><span class="dv">0</span></code></pre></div>
 <pre><code>## [1] Inf</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="op">-</span><span class="dv">3</span>)</code></pre></div>
 <pre><code>## Warning in sqrt(-3): NaNs produzidos</code></pre>
 <pre><code>## [1] NaN</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="dv">10</span>,<span class="ot">NA</span>,<span class="dv">30</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="dv">10</span>, <span class="ot">NA</span>, <span class="dv">30</span>)</code></pre></div>
 <pre><code>## [1] 10 NA 30</code></pre>
 </div>
 <div class="slide section level1">
 
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fator =<span class="st"> </span><span class="kw">factor</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;chuchu&quot;</span>,<span class="st">&quot;goiaba&quot;</span>,<span class="st">&quot;iogurte&quot;</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fator =<span class="st"> </span><span class="kw">factor</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;chuchu&quot;</span>, <span class="st">&quot;goiaba&quot;</span>, <span class="st">&quot;iogurte&quot;</span>))
 fator</code></pre></div>
 <pre><code>## [1] &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
 ## Levels: chuchu goiaba iogurte</code></pre>
@@ -95,11 +94,11 @@ fator</code></pre></div>
 <p><code>NaN</code> Not a Number, resultado de operações matemáticas impossíveis</p>
 <p><code>NA</code> Not Available, representa dados ausentes, útil para preencher tabelas e matrizes. A maioria das funções estatísticas do R possui um argumento <code>na.rm</code> que lida com valores ausentes</p>
 <p><code>factor</code> especifica que um conjunto de valores representa os níveis de um fator, usado para análises de dados categóricos</p>
-<p>Ao ler dados de arquivos .csv, colunas representadas por caracteres são automaticamente convertidas em fatores. para eivtar isto, use o argumento <code>as.is = TRUE</code>, quando disponível (consulte o help)</p>
+<p>Ao ler dados de arquivos .csv, colunas representadas por caracteres são automaticamente convertidas em fatores. Para evitar isto, use o argumento <code>as.is = TRUE</code>, quando disponível (consulte o help)</p>
 </div>
 <div id="criando-um-conjunto-de-dados-simulado" class="slide section level1">
 <h1>Criando um conjunto de dados simulado</h1>
-<p>Iremos investigar o crescimento dos dragões usando quatro rações diferentes. Após mandar nossos estagiários fazerem os experimentos, temos os seguintes dados, em centenas de quilos</p>
+<p>Iremos investigar o crescimento dos dragões usando quatro rações diferentes. Após mandar nossos estagiários fazerem os experimentos, os que sobreviveram trouxeram os seguintes dados, em centenas de quilos</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vacas =<span class="st"> </span><span class="kw">c</span>(<span class="fl">121.72355</span>, <span class="fl">103.79754</span>, <span class="fl">130.15442</span>, <span class="fl">98.29305</span>, <span class="fl">103.43365</span>, <span class="fl">102.44998</span>, <span class="fl">125.49993</span>, 
     <span class="fl">111.07215</span>, <span class="fl">113.74047</span>, <span class="fl">103.16081</span>, <span class="fl">80.87149</span>, <span class="fl">98.66692</span>, <span class="fl">65.09549</span>, <span class="fl">155.74965</span>, 
     <span class="fl">88.30168</span>, <span class="fl">147.4361</span>, <span class="fl">114.60806</span>, <span class="fl">109.87433</span>, <span class="fl">149.54772</span>, <span class="fl">83.54137</span>)
@@ -116,8 +115,9 @@ aventureiros =<span class="st"> </span><span class="kw">c</span>(<span class="fl
 <div class="slide section level1">
 
 <p>Podemos juntar tudo num dataframe para facilitar</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">alimento=<span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;vacas&quot;</span>,<span class="dv">20</span>),<span class="kw">rep</span>(<span class="st">&quot;fazendeiros&quot;</span>,<span class="dv">20</span>),<span class="kw">rep</span>(<span class="st">&quot;virgens&quot;</span>,<span class="dv">20</span>),<span class="kw">rep</span>(<span class="st">&quot;aventureiros&quot;</span>,<span class="dv">20</span>))
-dragoes =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span>alimento, <span class="dt">y=</span><span class="kw">c</span>(vacas,fazendeiros,virgens,aventureiros))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">alimento =<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;vacas&quot;</span>, <span class="dv">20</span>), <span class="kw">rep</span>(<span class="st">&quot;fazendeiros&quot;</span>, <span class="dv">20</span>), <span class="kw">rep</span>(<span class="st">&quot;virgens&quot;</span>, <span class="dv">20</span>), <span class="kw">rep</span>(<span class="st">&quot;aventureiros&quot;</span>, 
+    <span class="dv">20</span>))
+dragoes =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> alimento, <span class="dt">y =</span> <span class="kw">c</span>(vacas, fazendeiros, virgens, aventureiros))
 <span class="kw">head</span>(dragoes)</code></pre></div>
 <pre><code>##       x         y
 ## 1 vacas 121.72355
@@ -126,6 +126,9 @@ dragoes =<span class="st"> </span><span class="kw">data.frame</span>(<span class
 ## 4 vacas  98.29305
 ## 5 vacas 103.43365
 ## 6 vacas 102.44998</code></pre>
+</div>
+<div class="slide section level1">
+
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(dragoes)</code></pre></div>
 <pre><code>##             x            y         
 ##  aventureiros:20   Min.   : 65.10  
@@ -146,7 +149,18 @@ dragoes =<span class="st"> </span><span class="kw">data.frame</span>(<span class
 <p>Formate seus dados sempre que possível da seguinte forma:<br />
 - Cada linha uma observação ou indivíduo<br />
 - Cada coluna uma variável</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">lm</span>(dragoes<span class="op">$</span>y<span class="op">~</span>dragoes<span class="op">$</span>x))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(dragoes)</code></pre></div>
+<pre><code>##       x         y
+## 1 vacas 121.72355
+## 2 vacas 103.79754
+## 3 vacas 130.15442
+## 4 vacas  98.29305
+## 5 vacas 103.43365
+## 6 vacas 102.44998</code></pre>
+</div>
+<div class="slide section level1">
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">lm</span>(dragoes<span class="op">$</span>y <span class="op">~</span><span class="st"> </span>dragoes<span class="op">$</span>x))</code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = dragoes$y ~ dragoes$x)
@@ -172,28 +186,33 @@ dragoes =<span class="st"> </span><span class="kw">data.frame</span>(<span class
 <div id="temos-problemas" class="slide section level1">
 <h1>Temos problemas</h1>
 <p>Erros de digitação de dados nos objetos fazendeiros e virgens</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(dragoes[,<span class="dv">2</span>])</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(dragoes[, <span class="dv">2</span>])</code></pre></div>
 <pre><code>## [1] NA</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(dragoes[,<span class="dv">2</span>], <span class="dt">na.rm =</span> T)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(dragoes[, <span class="dv">2</span>], <span class="dt">na.rm =</span> T)</code></pre></div>
 <pre><code>## [1] 840.1635</code></pre>
 </div>
 <div class="slide section level1">
 
 <p>Erro na posição do decimal</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dragoes[dragoes<span class="op">==</span><span class="st"> </span><span class="fl">840.1635</span>] =<span class="st"> </span><span class="fl">84.01635</span>
-<span class="kw">max</span>(dragoes[,<span class="dv">2</span>],<span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dragoes[dragoes <span class="op">==</span><span class="st"> </span><span class="fl">840.1635</span>] =<span class="st"> </span><span class="fl">84.01635</span>
+<span class="kw">max</span>(dragoes[, <span class="dv">2</span>], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>## [1] 216.1671</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span> (dragoes)</code></pre></div>
+</div>
+<div class="slide section level1">
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(dragoes)</code></pre></div>
 <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABgAAAASACAMAAAAOH3aoAAAAxlBMVEUAAAAAADoAAGYAOjoAOmYAOpAAZmYAZrY6AAA6OgA6Ojo6OmY6ZmY6ZpA6ZrY6kJA6kNtmAABmOgBmOjpmZmZmZpBmkJBmkLZmtrZmtttmtv+QOgCQZgCQZjqQZmaQkLaQtraQttuQtv+Q2/+2ZgC2Zjq2kGa2kLa2tma2tpC2tra2ttu225C227a229u22/+2///bkDrbkGbbtmbbtpDbtrbb27bb29vb2//b/7bb////tmb/25D/27b/29v//7b//9v////+mvuqAAAACXBIWXMAAB2HAAAdhwGP5fFlAAAgAElEQVR4nO3df2Mb15UeYMg/aiXZpLajrRur7sZrWW2U1rbWjp21LJv8/l9qCQIkAQxIznAgzj33fZ4/EokGR/dcnnNfEgCB1TkAkVZLLwCAZQgAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAIJQAAQgkAgFACACCUAAAI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" width="768" /></p>
 </div>
 <div id="para-na-nao-ha-remedio" class="slide section level1">
 <h1>Para NA, não há remédio</h1>
 <p>Só verificando o dado original ou removendo</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(dragoes[,<span class="dv">2</span>]) ##qualquer cálculo com NA é igual a NA</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(dragoes[, <span class="dv">2</span>])  ##qualquer cálculo com NA é igual a NA</code></pre></div>
 <pre><code>## [1] NA</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(dragoes[,<span class="dv">2</span>], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)## na.rm = TRUE remove o NA para o calculo da média</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(dragoes[, <span class="dv">2</span>], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>## [1] 131.363</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">aggregate</span>(dragoes<span class="op">$</span>y <span class="op">~</span><span class="st"> </span>dragoes<span class="op">$</span>x,<span class="dt">FUN =</span> <span class="st">&quot;mean&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## na.rm = TRUE remove o NA para o calculo da média
+
+<span class="kw">aggregate</span>(dragoes<span class="op">$</span>y <span class="op">~</span><span class="st"> </span>dragoes<span class="op">$</span>x, <span class="dt">FUN =</span> <span class="st">&quot;mean&quot;</span>)</code></pre></div>
 <pre><code>##      dragoes$x dragoes$y
 ## 1 aventureiros  195.3093
 ## 2  fazendeiros   78.6809
@@ -202,8 +221,9 @@ dragoes =<span class="st"> </span><span class="kw">data.frame</span>(<span class
 </div>
 <div id="para-verificar-erros-de-digitacao-ao-trabalharmos-com-texto-podemos-usar-a-funcao-unique" class="slide section level1">
 <h1>Para verificar erros de digitação ao trabalharmos com texto, podemos usar a função <code>unique()</code></h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### dados dispníveis em http://ecologia.ib.usp.br/bie5782/doku.php?id=dados:dados-caixeta
-nomesComErro =<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;arquivos/caixetaComErro.csv&quot;</span>, <span class="dt">header=</span>T, <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### dados dispníveis em
+### http://ecologia.ib.usp.br/bie5782/doku.php?id=dados:dados-caixeta
+nomesComErro =<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;arquivos/caixetaComErro.csv&quot;</span>, <span class="dt">header =</span> T, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)
 <span class="kw">head</span>(nomesComErro)</code></pre></div>
 <pre><code>##    local parcela arvore fuste cap   h                especie
 ## 1 chauas       1      1     1 210  80      Myrcia sulfiflora
@@ -243,7 +263,7 @@ nomesComErro =<span class="st"> </span><span class="kw">read.table</span>(<span 
 </div>
 <div class="slide section level1">
 
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#podemos também colocar os nomes em ordem alfabética</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># podemos também colocar os nomes em ordem alfabética</span>
 <span class="kw">sort</span>(<span class="kw">unique</span>(nomesComErro<span class="op">$</span>especie))</code></pre></div>
 <pre><code>##  [1] Alchornea triplinervia    Andira fraxinifolia      
 ##  [3] bombacaceae               Cabralea canjerana       
@@ -269,11 +289,11 @@ nomesComErro =<span class="st"> </span><span class="kw">read.table</span>(<span 
 ## [43] Tabebuia cassinoides      Tabebuia casssinoides    
 ## [45] Tibouchina nutticeps     
 ## 45 Levels: Alchornea triplinervia Andira fraxinifolia ... Tibouchina nutticeps</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nomesComErro<span class="op">$</span>especie[nomesComErro<span class="op">$</span>especie <span class="op">==</span><span class="st"> &quot;Tabebuia casinoides&quot;</span>] =<span class="st"> &quot;Tabebuia cassinoides&quot;</span></code></pre></div>
 </div>
 <div class="slide section level1">
 
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nomesComErro<span class="op">$</span>especie[nomesComErro<span class="op">$</span>especie<span class="op">==</span><span class="st">&quot;Tabebuia casinoides&quot;</span>]=<span class="st">&quot;Tabebuia cassinoides&quot;</span>
-nomesComErro<span class="op">$</span>especie[nomesComErro<span class="op">$</span>especie<span class="op">==</span><span class="st">&quot;Tabebuia casssinoides&quot;</span>] =<span class="st"> &quot;Tabebuia cassinoides&quot;</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nomesComErro<span class="op">$</span>especie[nomesComErro<span class="op">$</span>especie <span class="op">==</span><span class="st"> &quot;Tabebuia casssinoides&quot;</span>] =<span class="st"> &quot;Tabebuia cassinoides&quot;</span>
 <span class="kw">sort</span>(<span class="kw">unique</span>(nomesComErro<span class="op">$</span>especie))</code></pre></div>
 <pre><code>##  [1] Alchornea triplinervia    Andira fraxinifolia      
 ##  [3] bombacaceae               Cabralea canjerana       
@@ -302,12 +322,12 @@ nomesComErro<span class="op">$</span>especie[nomesComErro<span class="op">$</spa
 <div id="entendendo-o-comando-passo-a-passo" class="slide section level1">
 <h1>Entendendo o comando passo a passo:</h1>
 <p><code>nomesComErro\$especie[nomesComErro\$especie==&quot;Tabebuia casinoides&quot;] = &quot;Tabebuia cassinoides&quot;</code><br />
-Precisamos saber a posição dos elementos com erro: O comando abixo nos retorna um vetor lógico com as posições de todos elementos “Tabebuia casinoides” dentro do objeto <code>nomesComErro</code>, na coluna <code>especie</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> nomesComErro<span class="op">$</span>especie<span class="op">==</span><span class="st">&quot;Tabebuia casinoides&quot;</span></code></pre></div>
+Precisamos saber a posição dos elementos com erro: O comando abaixo nos retorna um vetor lógico com as posições de todos elementos “Tabebuia casinoides” dentro do objeto <code>nomesComErro</code>, na coluna <code>especie</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nomesComErro<span class="op">$</span>especie <span class="op">==</span><span class="st"> &quot;Tabebuia casinoides&quot;</span></code></pre></div>
 <pre><code>##    [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ##   [12] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-##   [23] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-##   [34] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##   [23] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE
+##   [34]  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ##   [45] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ##   [56] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ##   [67] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
@@ -402,15 +422,40 @@ Precisamos saber a posição dos elementos com erro: O comando abixo nos retorna
 <div id="selecionar-o-que-sera-substituido" class="slide section level1">
 <h1>Selecionar o que será substituído:</h1>
 <p>Usaremos o vetor lógico do comando anterior para acessar os elementos dentro do objeto, usando colchetes <code>[]</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> nomesComErro<span class="op">$</span>especie[nomesComErro<span class="op">$</span>especie<span class="op">==</span><span class="st">&quot;Tabebuia casinoides&quot;</span>]</code></pre></div>
-<pre><code>## factor(0)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nomesComErro<span class="op">$</span>especie[nomesComErro<span class="op">$</span>especie <span class="op">==</span><span class="st"> &quot;Tabebuia casinoides&quot;</span>]</code></pre></div>
+<pre><code>## [1] Tabebuia casinoides Tabebuia casinoides Tabebuia casinoides
+## [4] Tabebuia casinoides Tabebuia casinoides Tabebuia casinoides
 ## 45 Levels: Alchornea triplinervia Andira fraxinifolia ... Tibouchina nutticeps</code></pre>
 <p>Este comando retorna apenas os elementos que cumprem a condição <em>(==)</em> dentro do colchete</p>
 </div>
 <div id="substituir" class="slide section level1">
 <h1>Substituir</h1>
-<p>Utilizamos o operador de atribuiçãoo <code>=</code> para trocar os valores indexados nos passos acima</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nomesComErro<span class="op">$</span>especie[nomesComErro<span class="op">$</span>especie <span class="op">==</span><span class="st"> &quot;Tabebuia casinoides&quot;</span>] =<span class="st"> &quot;Tabebuia cassinoides&quot;</span></code></pre></div>
+<p>Utilizamos o operador de atribuição <code>=</code> para trocar os valores indexados nos passos acima</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nomesComErro<span class="op">$</span>especie[nomesComErro<span class="op">$</span>especie <span class="op">==</span><span class="st"> &quot;Tabebuia casinoides&quot;</span>] =<span class="st"> &quot;Tabebuia cassinoides&quot;</span>
+<span class="kw">sort</span>(<span class="kw">unique</span>(nomesComErro<span class="op">$</span>especie))</code></pre></div>
+<pre><code>##  [1] Alchornea triplinervia    Andira fraxinifolia      
+##  [3] bombacaceae               Cabralea canjerana       
+##  [5] Callophyllum brasiliensis Calophyllum brasiliensis 
+##  [7] Cecropia sp               Coussapoa macrocarpa     
+##  [9] Coussapoa micropoda       Cryptocaria moschata     
+## [11] Cyathea sp                Eugenia oblongata        
+## [13] eugenia3                  fabaceae1                
+## [15] Ficus sp                  Gomidesia sp             
+## [17] Ilex durosa               Ilex sp                  
+## [19] indet.1                   indet.2                  
+## [21] indet.3                   Inga sp                  
+## [23] Jacaranda puberula        jussara                  
+## [25] Matayba sp                Mela 1                   
+## [27] Mela 2                    Myrcia sulfiflora        
+## [29] Myrtaceae 3               myrtaceae1               
+## [31] myrtaceae2                myrtaceae4               
+## [33] Pera glabrata             Persea sp                
+## [35] Pisonia sp                Psidium sp               
+## [37] Simplocos sp              Solanum sp1              
+## [39] Solanum sp2               Syagrus romanzoffianus   
+## [41] Tabebuia 1                Tabebuia cassinoides     
+## [43] Tabebuia casssinoides     Tibouchina nutticeps     
+## 45 Levels: Alchornea triplinervia Andira fraxinifolia ... Tibouchina nutticeps</code></pre>
 </div>
 <div id="operacoes-logicas-e-comparacoes" class="slide section level1">
 <h1>Operações lógicas e comparações</h1>
@@ -431,7 +476,7 @@ Precisamos saber a posição dos elementos com erro: O comando abixo nos retorna
 <pre><code>## [1] 3.141593</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="fl">3.141593</span></code></pre></div>
 <pre><code>## [1] 3.141593</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pi <span class="op">==</span><span class="st"> </span><span class="fl">3.141593</span> ### Algo de errado não está certo</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pi <span class="op">==</span><span class="st"> </span><span class="fl">3.141593</span>  ### Algo de errado não está certo</code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i =<span class="st"> </span><span class="fl">0.1</span>
 i =<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="fl">0.05</span>
@@ -443,33 +488,37 @@ i <span class="op">==</span><span class="st"> </span><span class="fl">0.15</span
 <p>Números decimais são representados internamente como <code>floating point</code>, e a precisão varia de máquina para máquina. Veja mais detalhes em <a href="http://floating-point-gui.de/" class="uri">http://floating-point-gui.de/</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i =<span class="st"> </span><span class="fl">0.1</span>
 i =<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="fl">0.05</span>
-i<span class="op">==</span><span class="fl">0.15</span></code></pre></div>
+i <span class="op">==</span><span class="st"> </span><span class="fl">0.15</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p>Resumidamente, se você quiser comparar com precisão a igualdade de operações com decimais, use a funçãoo <code>all.equal()</code>. Para comparações do tipo maior/menor, não é preciso se preocupar (muito)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i =<span class="st"> </span><span class="fl">0.1</span>
 i =<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="fl">0.05</span>
-<span class="kw">all.equal</span> (i,<span class="fl">0.15</span>)</code></pre></div>
+<span class="kw">all.equal</span>(i, <span class="fl">0.15</span>)</code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 <div id="outras-comparacoes" class="slide section level1">
 <h1>Outras comparações</h1>
-<p><code>a &lt;= b</code> a é menor ou igual a b? <code>a &gt;= b</code> a é maior que ou igual a b? <code>!x</code> não x</p>
+<p><code>a &lt;= b</code> a é menor ou igual a b?<br />
+<code>a &gt;= b</code> a é maior que ou igual a b?<br />
+<code>!x</code> não x</p>
 </div>
 <div id="operadores-logicos-e-if" class="slide section level1">
 <h1>Operadores lógicos e if()</h1>
-<p>O R também pode testar duas condições ao mesmo tempo, com os operadores <em>E</em> e <em>OU</em> <code>a &amp; b</code> retorna TRUE se tanto <code>a</code> quanto <code>b</code> forem verdade <code>a | b</code> retorna TRUE se <em>pelo menos um</em>, <code>a</code> ou <code>b</code>, for verdade</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> teste =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>,<span class="dv">7</span>)
-(teste[<span class="dv">1</span>] <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">&amp;</span><span class="st"> </span>(teste[<span class="dv">2</span>] <span class="op">/</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</code></pre></div>
+<p>O R também pode testar duas condições ao mesmo tempo, com os operadores <em>E</em> e <em>OU</em><br />
+<code>a &amp; b</code> retorna TRUE se tanto <code>a</code> quanto <code>b</code> forem verdade<br />
+<code>a | b</code> retorna TRUE se <em>pelo menos um</em>, <code>a</code> ou <code>b</code>, for verdade</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">teste =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>)
+(teste[<span class="dv">1</span>] <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">&amp;</span><span class="st"> </span>(teste[<span class="dv">2</span>]<span class="op">/</span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(teste[<span class="dv">1</span>] <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">&amp;</span><span class="st"> </span>(teste[<span class="dv">2</span>] <span class="op">/</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(teste[<span class="dv">1</span>] <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">&amp;</span><span class="st"> </span>(teste[<span class="dv">2</span>]<span class="op">/</span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(teste[<span class="dv">2</span>] <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">|</span><span class="st"> </span>(teste[<span class="dv">2</span>] <span class="op">/</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(teste[<span class="dv">2</span>] <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">|</span><span class="st"> </span>(teste[<span class="dv">2</span>]<span class="op">/</span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 <div class="slide section level1">
 
 <p>Por exemplo, se quisermos todos os dragões que pesam entre 100 e 150 centenas de kilos</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dragoes[dragoes<span class="op">$</span>y <span class="op">&gt;=</span><span class="st"> </span><span class="dv">100</span> <span class="op">&amp;</span><span class="st"> </span>dragoes<span class="op">$</span>y <span class="op">&lt;=</span><span class="st"> </span><span class="dv">150</span>,]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dragoes[dragoes<span class="op">$</span>y <span class="op">&gt;=</span><span class="st"> </span><span class="dv">100</span> <span class="op">&amp;</span><span class="st"> </span>dragoes<span class="op">$</span>y <span class="op">&lt;=</span><span class="st"> </span><span class="dv">150</span>, ]</code></pre></div>
 <pre><code>##          x        y
 ## 1    vacas 121.7236
 ## 2    vacas 103.7975
@@ -506,52 +555,44 @@ i =<span class="st"> </span>i <span class="op">+</span><span class="st"> </span>
 <p>Sempre coloque o código a ser executado dentro de chaves</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">teste.de.normalidade =<span class="st"> </span><span class="kw">shapiro.test</span>(dragoes<span class="op">$</span>y)
 <span class="cf">if</span> (teste.de.normalidade<span class="op">$</span>p.value <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.05</span>) {
-  fit =<span class="st"> </span><span class="kw">aov</span> (dragoes<span class="op">$</span>y <span class="op">~</span><span class="st"> </span>dragoes<span class="op">$</span>x)
-  <span class="kw">summary</span>(fit)
-  }</code></pre></div>
+    fit =<span class="st"> </span><span class="kw">lm</span>(dragoes<span class="op">$</span>y <span class="op">~</span><span class="st"> </span>dragoes<span class="op">$</span>x)
+    <span class="kw">summary</span>(fit)
+}</code></pre></div>
 </div>
 <div id="fazendo-a-mesma-coisa-varias-vezes" class="slide section level1">
 <h1>Fazendo a mesma coisa várias vezes</h1>
 <p>se precisamos repetir uma tarefa várias vezes, usamos o <em>laço (loop)</em></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>){
-  a =<span class="st"> </span>i<span class="op">^</span><span class="dv">2</span>
-  <span class="kw">message</span>(a)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) {
+    a =<span class="st"> </span>i<span class="op">^</span><span class="dv">2</span>
+    <span class="kw">message</span>(a)
 }</code></pre></div>
-<pre><code>## 1</code></pre>
-<pre><code>## 4</code></pre>
-<pre><code>## 9</code></pre>
-<pre><code>## 16</code></pre>
-<pre><code>## 25</code></pre>
-<pre><code>## 36</code></pre>
-<pre><code>## 49</code></pre>
-<pre><code>## 64</code></pre>
-<pre><code>## 81</code></pre>
-<pre><code>## 100</code></pre>
 </div>
 <div class="slide section level1">
 
-<p><code>i</code> é chamado de<code>índice</code>. Pode ser qualquer letra ou expressão, é utilizado para contar quantas vezes o laço foi executado <code>1:10</code> 1 é o valor inicial de <code>i</code>, 10 é o valor final. <code>(i in 1:10)</code> significa <code>comece com i = 1, e vá aumentando de um em um até  1 = 10</code><br />
+<p><code>i</code> é chamado de <code>índice</code>. Pode ser qualquer letra ou expressão, é utilizado para contar quantas vezes o laço foi executado<br />
+<code>1:10</code> 1 é o valor inicial de <code>i</code>, 10 é o valor final.</p>
+<p><code>(i in 1:10)</code> significa <code>comece com i = 1, e vá aumentando de um em um até  1 = 10</code><br />
 O bloco entre <code>{}</code> será executado enquanto a condição for verdadeira</p>
 </div>
 <div class="slide section level1">
 
 <p>Para ler vários arquivos:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">arquivos =<span class="st">  </span><span class="kw">list.files</span>() <span class="co">#lê os nomes dos arquivos no diretório de trabalho)</span>
-<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(arquivos)){
-<span class="co">#resultados[i] = read.csv(arquivos[i])</span>
-  <span class="kw">message</span>(arquivos[i])
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">arquivos =<span class="st"> </span><span class="kw">list.files</span>()  <span class="co">#lê os nomes dos arquivos no diretório de trabalho)</span>
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(arquivos)) {
+    <span class="co"># resultados[i] = read.csv(arquivos[i])</span>
+    <span class="kw">message</span>(arquivos[i])
 }</code></pre></div>
 </div>
 <div class="slide section level1">
 
 <p>Para plotar vários objetos separadamente</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">niveis =<span class="kw">levels</span>(dragoes<span class="op">$</span>x)
-i=<span class="dv">1</span>
-<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(niveis)){
-  nome=<span class="kw">paste</span>(<span class="st">&quot;figuras/&quot;</span>,niveis[i],<span class="st">&quot;.png&quot;</span>)<span class="co">#prepara o nome do arquivo</span>
-  <span class="kw">png</span>(<span class="dt">filename =</span> nome)<span class="co">#prepara para gravar arquivo tipo png</span>
-  <span class="kw">plot</span>(dragoes[dragoes<span class="op">$</span>x<span class="op">==</span>niveis[i],]<span class="op">$</span>y)<span class="co">#escreve o arquivo</span>
-  <span class="kw">dev.off</span>()<span class="co">#salva o arquivo</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">niveis =<span class="st"> </span><span class="kw">levels</span>(dragoes<span class="op">$</span>x)
+i =<span class="st"> </span><span class="dv">1</span>
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(niveis)) {
+    nome =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;figuras/&quot;</span>, niveis[i], <span class="st">&quot;.png&quot;</span>)  <span class="co">#prepara o nome do arquivo</span>
+    <span class="kw">png</span>(<span class="dt">filename =</span> nome)  <span class="co">#prepara para gravar arquivo tipo png</span>
+    <span class="kw">plot</span>(dragoes[dragoes<span class="op">$</span>x <span class="op">==</span><span class="st"> </span>niveis[i], ]<span class="op">$</span>y)  <span class="co">#escreve o arquivo</span>
+    <span class="kw">dev.off</span>()  <span class="co">#salva o arquivo</span>
 }</code></pre></div>
 </div>
 
