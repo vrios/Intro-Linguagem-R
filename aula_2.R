@@ -37,7 +37,7 @@ is.data.frame()
 # O que a função unique() faz?
 
 #Usando o conjunto de dados caixeta.csv, disponivel em http://ecologia.ib.usp.br/bie5782/doku.php?id=dados:dados-caixeta, calcule quantas espécies estão presentes na coluna especie. Para ler o arquivo, execute o código abaixo
-caixeta = read.table("arquivos/caixeta.csv", header=T, sep=",", as.is=T)
+caixeta = read.table("caixeta.csv", header=T, sep=",", as.is=T) # o arquivo deve estar no seu diretório de trabalho
 str(caixeta) #o que este comando faz?
 summary(caixeta)
 
