@@ -1,0 +1,1 @@
+message("Olá pessoas, eu sou um script que foi lido diretamente da internet")
