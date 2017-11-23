@@ -6,6 +6,9 @@ output:
   slidy_presentation:
     font_adjustment: + 1
     highlight: kate
+  beamer_presentation:
+    highlight: kate
+classoption: aspectratio=169
 ---
 #Salvando ~~sua vida~~ seu código
 Se você fechar o R, vai perder tudo que você fez  
@@ -22,7 +25,7 @@ Use o RStudio!
 ![](figuras/criarScript.png)
 
 #Mas salvar onde?
-O R usa uma coisa chamada diretório de trabalho. Ele encontra automaticamente tudo que esteja nesse diretório e salva as coisas nesse diretório.
+O R usa uma coisa chamada diretório de trabalho. Ele encontra automaticamente tudo que esteja nesse diretório e salva as coisas nesse diretório. É recomendado que cada projeto seu no R viva no seu próprioo diretório, e os scripts mudem o diretório de trabalho para o diretório da análise logo no começo
 
 ```{r echo=TRUE}
 getwd() ##exibe o diretório de trabalhoda sessão atual
@@ -45,8 +48,9 @@ Use nomes curtos e descritivos. `Funcao1.R, funcao2.R, regressao.R, regressaoLog
 *Uma pasta para cada coisa:*  
 ~/doutorado/   
             - /dados   
-            - /analises  
-            - /figuras   
+            - /scripts
+            -     /outputs
+            -     /figuras   
             - /manuscrito  
 
 Você pode chamar um script de dentro do outro, usando o comando   `source(endereço/script.R)`. O endereço pode inclusive ser um site.  
@@ -56,8 +60,24 @@ Você pode chamar um script de dentro do outro, usando o comando   `source(ender
 Crie um script com os codigos que usamos até aqui, comentando cada linha com um `#` após o comando, dizendo o que ele faz
 
 ***
-#Dica de estruturar seu script: pseudocódigo
-Liste cada passo necessário
+```{r, eval=FALSE}
+source("https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/scriptOnline.R")
+```
+
+dica: isso também funciona com as funções read.csv() e read.table()
+```{r}
+caixeta = read.csv("https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/caixeta.csv")
+head(caixeta)
+```
+
+
+***
+#Dica de estruturar seu script: 
+Comece sempre com um cabeçalho, dizendo para que serve o script, e se ele faz parte de algum projeto
+
+Carregue todos os pacotes necessários, com `library()` no começo do script. Se quiser, use comentários para explicar porque o pacote é necessário
+
+Liste cada passo do script em português
 
   verbo - objeto
 
@@ -113,8 +133,12 @@ Abrir um arquivo, carregar um arquivo e executar um arquivo são coisas diferent
 Abrir -> ver os conteúdos  
       - pode ser no editor do R, RStudio, ou externo  
       - não executa nem carrega nada  
+      
+      
 Executar -> rodar os comandos dentro do arquivo  
       - função `source()`   
+      
+      
 Carregar -> colocar o conteúdo do arquivo para dentro de um objeto  
       - funções `load(), read.table(), read.csv()` e etc  
 
@@ -181,7 +205,7 @@ Existem pacotes específicos para ler e escrever .docx, .xlsx, .pptx, SPSS, SAS,
 #argumentos são sempre separados por vírgulas na chamada da função
 #no começo, é bom colocar cada argumento em uma linha para facilitar o entendimento
 #TRUE habilita a opção, FALSE desabilita
-arquivoLido =read.csv(file = "arquivo.csv", 
+arquivoLido =read.csv(file = "/arquivos/caixeta.csv", 
                   header = TRUE, #interpreta a primeira linha como sendo o nome das colunas
                   as.is = TRUE , # não altera interpreta o tipo de dado em cada coluna, não altera seus dados. Se for FALSE, texto é interpretado como factor
                   sep = ",", # define o caractere que deve ser o separador de colunas
@@ -217,3 +241,10 @@ write_xlsx(mtcars , "arquivos/mtcars.xlsx")
 out <- read_xlsx("arquivos/mtcars.xlsx")
 ```
 
+***
+#Rstudio
+O Rstudio facilita a importação de dados , usando o menu `Import Dataset`
+
+![](figuras/importDataset.png)
+
+***
