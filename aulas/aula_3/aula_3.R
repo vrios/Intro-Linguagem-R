@@ -10,7 +10,7 @@
 #baixe para seu diretório de trabalho o arquivo toroidal.distance.R, disponível
 #em https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/toroidal.distance.R, e o arquivo distancias.csv, disponivel em https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/distancias.csv
 
-#Abra toroidal.distances.R no R
+#Abra toroidal.distance.R no R
 # O que você precisa fazer para que as funções contidas nesse arquivo estejam disponíveis para uso no R?
 
 # Faça o procedimento que você descreveu acima
