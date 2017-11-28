@@ -79,7 +79,7 @@ Vitor Rios
 <h1>Mas salvar onde?</h1>
 <p>O R usa uma coisa chamada diretório de trabalho. Ele encontra automaticamente tudo que esteja nesse diretório e salva as coisas nesse diretório. É recomendado que cada projeto seu no R viva no seu próprioo diretório, e os scripts mudem o diretório de trabalho para o diretório da análise logo no começo</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>() ##exibe o diretório de trabalhoda sessão atual</code></pre></div>
-<pre><code>## [1] &quot;C:/Users/Vitor/Dropbox/disciplinas/Introducao ao uso da linguagem R/aulas/2017.2/Intro-Linguagem-R&quot;</code></pre>
+<pre><code>## [1] &quot;C:/Users/Vitor/Dropbox/disciplinas/Introducao ao uso da linguagem R/aulas/2017.2/Intro-Linguagem-R/aulas/aula_3&quot;</code></pre>
 <p>Para mudar o diretório de trabalho, use a função <code>setwd()</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;C:/Curso_R/aula1&quot;</span>) ##muda o diretório de trabalho da sessão atual</code></pre></div>
 <p><span style="color:red"><em>ATENÇÃO</em> </span><br />
@@ -103,19 +103,22 @@ O endereço deve vir sempre em aspas, e use <span style="color:blue">/</span> ao
 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/scriptOnline.R&quot;</span>)</code></pre></div>
 <p>dica: isso também funciona com as funções read.csv() e read.table()</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">caixeta =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/caixeta.csv&quot;</span>)
-<span class="kw">head</span>(caixeta)</code></pre></div>
-<pre><code>##    local parcela arvore fuste cap   h                especie
-## 1 chauas       1      1     1 210  80      Myrcia sulfiflora
-## 2 chauas       1      3     1 170  80      Myrcia sulfiflora
-## 3 chauas       1      4     1 720  70 Syagrus romanzoffianus
-## 4 chauas       1      5     1 200  80   Tabebuia cassinoides
-## 5 chauas       1      6     1 750 170                indet.1
-## 6 chauas       1      7     1 320  80      Myrcia sulfiflora</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">caixeta =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/caixeta.csv&quot;</span>)</code></pre></div>
 </div>
 <div id="dica-de-estruturar-seu-script" class="slide section level1">
 <h1>Dica de estruturar seu script:</h1>
 <p>Comece sempre com um cabeçalho, dizendo para que serve o script, e se ele faz parte de algum projeto</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">######################################################
+<span class="co"># Toroidal distance calculator                    ####</span>
+<span class="co"># Vitor Passos Rios                               ####</span>
+<span class="co"># Universidade Federal da Bahia                   ####</span>
+<span class="co"># https://github.com/vrios/Intro-Linguagem-R/wiki#####</span>
+######################################################
+
+## Receives object with two columns representing X and Y coordinates,
+<span class="co">#  and tam representing size of torus.</span>
+## Does not work for higer dimensions or non-rectangular toruses
+<span class="co"># returns toroidal distances between all lines of object</span></code></pre></div>
 <p>Carregue todos os pacotes necessários, com <code>library()</code> no começo do script. Se quiser, use comentários para explicar porque o pacote é necessário</p>
 <p>Liste cada passo do script em português</p>
 <p>verbo - objeto</p>
@@ -197,37 +200,23 @@ Se necessário, quebre em sub itens</p>
 <p>Lista todos os arquivos no diretório de trabalho. Pode ser usada para selecionar um grupo de arquivos que serão lidos sequencialmente, por exemplo, com o argumento <code>pattern</code> para selecionar arquivos que contenham uma determinada sequencia no nome</p>
 <p>Atenção: apenas lista, não carrega nem abre os arquivos</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list.files</span>()</code></pre></div>
-<pre><code>##  [1] &quot;arquivos&quot;          &quot;aula 10.Rmd&quot;       &quot;aula_1.html&quot;      
-##  [4] &quot;aula_1.pdf&quot;        &quot;aula_1.R&quot;          &quot;aula_1.Rmd&quot;       
-##  [7] &quot;aula_2.html&quot;       &quot;aula_2.pdf&quot;        &quot;aula_2.R&quot;         
-## [10] &quot;aula_2.Rmd&quot;        &quot;aula_3.html&quot;       &quot;aula_3.pdf&quot;       
-## [13] &quot;aula_3.R&quot;          &quot;aula_3.Rmd&quot;        &quot;aula_4.html&quot;      
-## [16] &quot;aula_4.Rmd&quot;        &quot;aula_5.Rmd&quot;        &quot;aula_6.Rmd&quot;       
-## [19] &quot;aula_7.Rmd&quot;        &quot;aula_8.Rmd&quot;        &quot;aula_9.Rmd&quot;       
-## [22] &quot;figuras&quot;           &quot;LICENSE&quot;           &quot;README.md&quot;        
-## [25] &quot;script.R&quot;          &quot;teste-aulas.Rproj&quot;</code></pre>
+<pre><code>## [1] &quot;aula_3.html&quot; &quot;aula_3.pdf&quot;  &quot;aula_3.R&quot;    &quot;aula_3.Rmd&quot;</code></pre>
 </div>
 <div class="slide section level1">
 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">aulas =<span class="st"> </span><span class="kw">list.files</span>(<span class="dt">pattern =</span> <span class="st">&quot;aula&quot;</span>) <span class="co"># arquivos que possuam &quot;aula&quot;&quot; em qualquer lugar do nome</span>
 aulas</code></pre></div>
-<pre><code>##  [1] &quot;aula 10.Rmd&quot;       &quot;aula_1.html&quot;       &quot;aula_1.pdf&quot;       
-##  [4] &quot;aula_1.R&quot;          &quot;aula_1.Rmd&quot;        &quot;aula_2.html&quot;      
-##  [7] &quot;aula_2.pdf&quot;        &quot;aula_2.R&quot;          &quot;aula_2.Rmd&quot;       
-## [10] &quot;aula_3.html&quot;       &quot;aula_3.pdf&quot;        &quot;aula_3.R&quot;         
-## [13] &quot;aula_3.Rmd&quot;        &quot;aula_4.html&quot;       &quot;aula_4.Rmd&quot;       
-## [16] &quot;aula_5.Rmd&quot;        &quot;aula_6.Rmd&quot;        &quot;aula_7.Rmd&quot;       
-## [19] &quot;aula_8.Rmd&quot;        &quot;aula_9.Rmd&quot;        &quot;teste-aulas.Rproj&quot;</code></pre>
+<pre><code>## [1] &quot;aula_3.html&quot; &quot;aula_3.pdf&quot;  &quot;aula_3.R&quot;    &quot;aula_3.Rmd&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">scripts =<span class="st"> </span><span class="kw">list.files</span>(<span class="dt">pattern =</span> <span class="st">&quot;</span><span class="ch">\\</span><span class="st">.R$&quot;</span>) <span class="co"># &quot;\\.R$&quot; significa arquivos terminados em .R</span>
 scripts <span class="co"># objeto contendo os nomes dos arquivos, não os conteúdos</span></code></pre></div>
-<pre><code>## [1] &quot;aula_1.R&quot; &quot;aula_2.R&quot; &quot;aula_3.R&quot; &quot;script.R&quot;</code></pre>
+<pre><code>## [1] &quot;aula_3.R&quot;</code></pre>
 </div>
 <div id="executar-arquivos" class="slide section level1">
 <h1>Executar arquivos</h1>
 <p>Usamos a função <code>source()</code> para executar o conteúdo de um arquivo de código. Especialmente útil para carregar funções específicas ou scripts de análise.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()</code></pre></div>
 <pre><code>## [1] &quot;aulas&quot;   &quot;caixeta&quot; &quot;scripts&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;arquivos/toroidal.distance.R&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;..//..//arquivos/toroidal.distance.R&quot;</span>)
 <span class="kw">ls</span>()</code></pre></div>
 <pre><code>## [1] &quot;aulas&quot;              &quot;caixeta&quot;            &quot;scripts&quot;           
 ## [4] &quot;toroidal.distance&quot;  &quot;toroidal.distances&quot;</code></pre>
@@ -301,8 +290,8 @@ Nunca use acentos, espaços, parênteses, colchetes, símbolos ou caracteres esp
 <p>Para escrever e salvar em tabelas do Excel, use os pacotes <code>writexl</code> e <code>readxl</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(writexl)
 <span class="kw">library</span>(readxl)
-<span class="kw">write_xlsx</span>(mtcars , <span class="st">&quot;arquivos/mtcars.xlsx&quot;</span>)
-out &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(<span class="st">&quot;arquivos/mtcars.xlsx&quot;</span>)</code></pre></div>
+<span class="kw">write_xlsx</span>(mtcars , <span class="st">&quot;../../arquivos/mtcars.xlsx&quot;</span>)
+out &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(<span class="st">&quot;../../arquivos/mtcars.xlsx&quot;</span>)</code></pre></div>
 </div>
 <div id="rstudio" class="slide section level1">
 <h1>Rstudio</h1>

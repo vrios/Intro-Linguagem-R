@@ -22,7 +22,7 @@ Você pode editar no bloco de notas, Notepad++, Gedit,Vim, EMACS, etc, mas evite
 Use o RStudio!
 
 ***
-![](figuras/criarScript.png)
+![](..//..//figuras/criarScript.png)
 
 #Mas salvar onde?
 O R usa uma coisa chamada diretório de trabalho. Ele encontra automaticamente tudo que esteja nesse diretório e salva as coisas nesse diretório. É recomendado que cada projeto seu no R viva no seu próprioo diretório, e os scripts mudem o diretório de trabalho para o diretório da análise logo no começo
@@ -63,17 +63,32 @@ Crie um script com os codigos que usamos até aqui, comentando cada linha com um
 ```{r, eval=FALSE}
 source("https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/scriptOnline.R")
 ```
-
 dica: isso também funciona com as funções read.csv() e read.table()
 ```{r}
 caixeta = read.csv("https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/caixeta.csv")
-head(caixeta)
+
 ```
 
 
 ***
 #Dica de estruturar seu script: 
 Comece sempre com um cabeçalho, dizendo para que serve o script, e se ele faz parte de algum projeto
+
+```{r}
+######################################################
+# Toroidal distance calculator                    ####
+# Vitor Passos Rios                               ####
+# Universidade Federal da Bahia                   ####
+# https://github.com/vrios/Intro-Linguagem-R/wiki#####
+######################################################
+
+## Receives object with two columns representing X and Y coordinates,
+#  and tam representing size of torus.
+## Does not work for higer dimensions or non-rectangular toruses
+# returns toroidal distances between all lines of object
+
+```
+
 
 Carregue todos os pacotes necessários, com `library()` no começo do script. Se quiser, use comentários para explicar porque o pacote é necessário
 
@@ -164,7 +179,7 @@ scripts # objeto contendo os nomes dos arquivos, não os conteúdos
 Usamos a função `source()` para executar o conteúdo de um arquivo de código. Especialmente útil para carregar funções específicas ou scripts de análise.
 ```{r}
 ls()
-source("arquivos/toroidal.distance.R")
+source("..//..//arquivos/toroidal.distance.R")
 ls()
 ```
 
@@ -237,14 +252,14 @@ Para escrever e salvar em tabelas do Excel, use os pacotes `writexl` e `readxl`
 ```{r, eval=F}
 library(writexl)
 library(readxl)
-write_xlsx(mtcars , "arquivos/mtcars.xlsx")
-out <- read_xlsx("arquivos/mtcars.xlsx")
+write_xlsx(mtcars , "../../arquivos/mtcars.xlsx")
+out <- read_xlsx("../../arquivos/mtcars.xlsx")
 ```
 
 ***
 #Rstudio
 O Rstudio facilita a importação de dados , usando o menu `Import Dataset`
 
-![](figuras/importDataset.png)
+![](../../figuras/importDataset.png)
 
 ***

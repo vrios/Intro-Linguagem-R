@@ -18,7 +18,7 @@
 # Dentro do script toroidal.distance.R, altere o nome da função toroidal.distances para distance.matrix (substitua o nome dentro do arquivo) e salve o arquivo
 
 # Carregue o arquivo distancias.csv para dentro do objeto distancias
-#chame a função distance.matrix() com o objeto distancias, e o argumento tam = 10o
+#chame a função distance.matrix() com o objeto distancias, e o argumento tam = 100
 
 
 # O que aconteceu?
