@@ -7,10 +7,10 @@
 
 #quando possível, sua resposta deve ser um código do R
 
-#####Trabalhando com dados#####
+#####Trabalhando com dados####
 # o que é um dataframe? Qual a diferneça entre um dataframe e um list?
 
-# o que as funções abaixo fazem? O que elas retornam?
+# o que as funções abaixo fazem? O que elas retornam?####
 is.vector()
 is.numeric()
 is.character()
@@ -20,6 +20,8 @@ is.data.frame()
 
 
 #o que queremos dizer quando dizemos uma função "retorna" alguma coisa?
+retornado=is.data.frame(caixeta)
+retornado
 
 #o que a função summary() faz?
 
@@ -37,6 +39,8 @@ is.data.frame()
 #Calcule a média de cada tipo de adubo, sem usar summary(), usando o dataframe
 #que você criou acima
 
+
+
 #que problemas você teve ao fazer o exercício acima?
 
 # O que a função unique() faz?
@@ -45,7 +49,7 @@ is.data.frame()
 #http://ecologia.ib.usp.br/bie5782/doku.php?id=dados:dados-caixeta, calcule
 #quantas espécies estão presentes na coluna especie. Para ler o arquivo, execute
 #o código abaixo
-caixeta = read.table("caixeta.csv", header=T, sep=",", as.is=T)
+caixeta = read.table("arquivos/caixeta.csv", header=T, sep=",", as.is=T)
 # o arquivo deve estar no seu diretório de trabalho
 str(caixeta) #o que este comando faz?
 summary(caixeta)
@@ -58,6 +62,7 @@ str(caixeta)
 #agora adicione no objeto caixeta uma coluna chamada "desvio" com o quanto a
 #altura de cada árvore difere da média de todas as árvores
 
+
 #Usando a função table(), conte quantos indivíduos de cada espécie existem
 
 #A função table() também pode contar por espécie em cada local, depois por local
@@ -68,7 +73,7 @@ str(caixeta)
 
 #crie um objeto chamado grandes que contenha todas as árvores acima de 3 metros
 
-#crie um objeto chamado medias que todas as árvores com alturas entre um metro e
+#crie um objeto chamado medias que todas as árvores com alturas de um metro a
 #tres metros
 
 #agora em uma linha de comando, crie um objeto que contenha a quantidade de
@@ -78,17 +83,21 @@ str(caixeta)
 #triplinervia" Em quantas localidades esta espécie ocorre? Qual comando para
 #encontrar essa informação?
 
+
 #podemos remover dados de um dataframe, usando o sinal de menos
 
-caixeta.sem.tabebuia = caixeta[ - c(caixeta$especie=="Tabebuia cassinoides"),]
-unique(caixeta.sem.tabebuia$especie)
+caixeta.sem.tabebuia = caixeta[ - which(caixeta$especie=="Tabebuia cassinoides"),]
+sort(
+  unique(caixeta.sem.tabebuia$especie),
+  )
 
 #agora crie um objeto removendo todas as "Tabebuia cassinoides" do local retiro
 #(somente do local retiro)
 
-#crie os objetos abaixo, junte eles num dataframe de duas colunas chamado comNA,
+
+#crie os objetos abaixo, junte eles num dataframe de duas colunas, uma id, e uma com os outros objetos, chamado comNA,
 #depois crie um novo objeto chamado semNA, removendo todas as linhas que
-#contenham NA, usando a notação acima (dica: só se usa "" para valores do tipo
+#contenham NA, (dica: só se usa "" para valores do tipo
 #character)
 id = 1:80
 a = c(121.72355, 103.79754, 130.15442, 98.29305, 103.43365, 102.44998,
@@ -117,12 +126,20 @@ d = c(191.3721, 216.1671, 165.4380, 196.2730, 172.6565, 178.2955,
 #com esses dados. Qual a média por sexo? E para a espécie? Guarde estes valores
 #em tres objetos diferentes.
 #machos: 120 107 110 116 114 111 113 117 114 112
-#femeas: 110 111 107 108 110 105 107 106 111 111 Quantos machos têm a mandíbula
+#femeas: 110 111 107 108 110 105 107 106 111 111
+#Quantos machos têm a mandíbula
 #maior do que a média das fêmeas?
+
+
+
 
 #escreva **uma** linha de código que testa se um número é par, e caso seja,
 #manda uma mensagem dizendo "par". dica: use a função %% (resto da divisão, ou
 #remainder em inglês) e a função message()
+
+
+
+
 
 #agora crie um código  como acima, mas que diga "par" se for par e "impar" se
 #for impar. Dica: leia sobre as funções else e ifelse
@@ -134,9 +151,8 @@ d = c(191.3721, 216.1671, 165.4380, 196.2730, 172.6565, 178.2955,
 #valores num objeto soma (dica: crie o objeto soma com valor zero antes do
 #código do ciclo)
 
+
 #####Desafio level Hard#####
 #Escreva um código que escreva os números de um a 100, com as seguintes
-#condições: Se o número for multiplo de 3, ao invés do dígito, escreva "Fu". Se
-#o número for múltiplo de 5, ao invés do dígito, escreva "bá". Para números que
-#forem multiplos tanto de 3 quanto de 5, escreva "Fubá". A melhor solução ganha
-#um chocolate
+#condições: Se o número for multiplo de 3, ao invés do dígito, escreva "Fu". Se o número for múltiplo de 5, ao invés do dígito, escreva "bá". Para números que forem multiplos tanto de 3 quanto de 5, escreva "Fubá". A melhor solução ganha um chocolate
+

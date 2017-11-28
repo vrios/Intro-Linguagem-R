@@ -10,16 +10,17 @@
 #baixe para seu diretório de trabalho o arquivo toroidal.distance.R, disponível
 #em https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/toroidal.distance.R, e o arquivo distancias.csv, disponivel em https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/distancias.csv
 
-#Abra toridal.distances.R no R
+#Abra toroidal.distances.R no R
 # O que você precisa fazer para que as funções contidas nesse arquivo estejam disponíveis para uso no R?
 
 # Faça o procedimento que você descreveu acima
 
-# dentro do script toroidal.distance.R, altere o nome da função toroidal.distances para distance.matrix (substitua o nome dentro do arquivo) e salve o arquivo
+# Dentro do script toroidal.distance.R, altere o nome da função toroidal.distances para distance.matrix (substitua o nome dentro do arquivo) e salve o arquivo
+
 # Carregue o arquivo distancias.csv para dentro do objeto distancias
 #chame a função distance.matrix() com o objeto distancias, e o argumento tam = 10
 
-# o que aconteceu?
+# O que aconteceu?
 
 # O que você precisa fazer para que você possa usar a função distance.matrix?
 
