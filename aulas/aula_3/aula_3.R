@@ -33,4 +33,4 @@
 
 # Há algum NA? houve algum problema com o cabeçalho?
 
-# Refaça o script da aula 2, salvando o objeto caixeta com a coluna coletor e desvio em um arquivo chamado caixeta_com_desvio.csv
+# Refaça o script da aula 2, salvando o objeto caixeta, adicionando a coluna coletor e desvio, em um arquivo chamado caixeta_com_desvio.csv
