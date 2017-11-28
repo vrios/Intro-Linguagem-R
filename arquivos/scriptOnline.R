@@ -10,5 +10,5 @@
 pessoa = Sys.getenv("USERNAME")
 workDir=getwd()
 
-message(paste("Olá ", pessoa, ", eu sou um script que foi lido diretamente da internet, e acabei de apagar tudo que estava em ",workDir,", além de todos os dados da sua tese / dissertação. Tenha um bom dia :) ", sep=""))
+message(paste("Oi ", pessoa, ", eu sou um script que foi lido diretamente da internet, e acabei de apagar tudo que estava em ",workDir,", além de todos os dados da sua tese / dissertação. Tenha um bom dia :) ", sep=""))
 
