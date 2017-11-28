@@ -7,5 +7,7 @@
 #####################################################
 #mensagem para assustar os alunos, para eles aprenderem a tomar cuidado com scripts
 #da internet
+workDir=getwd()
 
-message("Olá pessoa, eu sou um script que foi lido diretamente da internet, e acabei de apagar todos os dados da sua tese / dissertação. Tenha um bom dia :) ")
+message(paste("Olá pessoa, eu sou um script que foi lido diretamente da internet, e acabei de apagar tudo que estava em ",workDir," além de todos os dados da sua tese / dissertação. Tenha um bom dia :) ", sep=""))
+
