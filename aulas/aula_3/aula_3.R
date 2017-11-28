@@ -20,6 +20,7 @@
 # Carregue o arquivo distancias.csv para dentro do objeto distancias
 #chame a função distance.matrix() com o objeto distancias, e o argumento tam = 10o
 
+
 # O que aconteceu?
 
 # O que você precisa fazer para que você possa usar a função distance.matrix?
