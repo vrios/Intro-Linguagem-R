@@ -25,7 +25,9 @@ Use o RStudio!
 ![](..//..//figuras/criarScript.png)
 
 #Mas salvar onde?
-O R usa uma coisa chamada diretório de trabalho. Ele encontra automaticamente tudo que esteja nesse diretório e salva as coisas nesse diretório. É recomendado que cada projeto seu no R viva no seu próprioo diretório, e os scripts mudem o diretório de trabalho para o diretório da análise logo no começo
+O R usa uma coisa chamada diretório de trabalho.
+
+Ele encontra automaticamente tudo que esteja nesse diretório e salva as coisas nesse diretório. É recomendado que cada projeto seu no R viva no seu próprio diretório, e os scripts mudem o diretório de trabalho para o diretório da análise logo no começo
 
 ```{r echo=TRUE}
 getwd() ##exibe o diretório de trabalhoda sessão atual
@@ -57,8 +59,6 @@ Você pode chamar um script de dentro do outro, usando o comando   `source(ender
 <span style="color:red">*ATENÇÃO* </span>  
 `source(script.R)` executa todos os comandos que estão dentro de `script.R`, cuidado
 
-Crie um script com os codigos que usamos até aqui, comentando cada linha com um `#` após o comando, dizendo o que ele faz
-
 ***
 ```{r, eval=FALSE}
 source("https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/scriptOnline.R")
@@ -71,7 +71,7 @@ caixeta = read.csv("https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/ma
 
 
 ***
-#Dica de estruturar seu script: 
+#Dicas para estruturar seu script: 
 Comece sempre com um cabeçalho, dizendo para que serve o script, e se ele faz parte de algum projeto
 
 ```{r}
@@ -89,10 +89,27 @@ Comece sempre com um cabeçalho, dizendo para que serve o script, e se ele faz p
 
 ```
 
+***
+# Carregue todos os pacotes necessários
+Com `library()` `ou require()` no começo do script. Se quiser, use comentários para explicar porque o pacote é necessário. Para conferir se o pacote está instalado e parar automaticamente se não estiver:
+```{r, eval=FALSE}
+if(!require("chuchu")) {#substitua chuchu pelo pacote desejado
+    stop("pacote chuchu não encontrado, instale para proseguir")
+  }
+```
 
-Carregue todos os pacotes necessários, com `library()` no começo do script. Se quiser, use comentários para explicar porque o pacote é necessário
+Evite carregar pacotes no meio do script. A única exceção são funções: os pacotes de cada função devem ser carregado dentro das funções que irão usá-los
 
-Liste cada passo do script em português
+Quando possível separe seu script em funções. Veremos como criar funções nas próximas aulas
+
+***
+Separe seu script em seções, usando ##. Se você colocar quatro # no fim da linha, o RStudio entende isso como um capítulo do script e facilita o acesso
+
+![](..//..//figuras/capituloScript.png)
+
+***
+#Pseudocódigo
+Liste cada passo do script em português 
 
   verbo - objeto
 
@@ -136,7 +153,7 @@ Se você quiser salvar tudo que está na memória do R, inclusive objetos use a 
 ```{r eval=FALSE}
  save.image(file="tudoJunto.RData")
 ```
-Isto é útil quando temos uma analise demorada, que gera objetos grandes, e queremos acessar o resultado dela rapidamente no futuro. Podemos também salvar objetos específicos com a função `save()`:
+Isto é útil quando temos uma analise demorada, que gera objetos grandes, e queremos acessar o resultado dela rapidamente no futuro. Podemos também salvar objetos específicos em um `.RData` com a função `save()`:
 ```{r eval=FALSE}
 save(file="resultadosSalvos.RData",list = list(resultado1, resultado2, resultado3))
 ```
@@ -232,7 +249,7 @@ O comando acima cria um objeto chamado `arquivoLido`, com o conteúdo de `"arqui
 
 *O arquivo original não é alterado, não importa o que você fizer dentro do R*
 
-Se você quiser salvar suas alterações em um arquivo de texto, use `write.table()`, `write.csv()` ou `write.csv2()`  
+Se você quiser salvar suas alterações ou o seus resultados em um arquivo de texto, use `write.table()`, `write.csv()` ou `write.csv2()`  
 
 ```{r, eval=FALSE}
 
@@ -240,12 +257,14 @@ write.csv(x= arquivoLido, #objeto a ser gravado
          file = "arquivoNovo.csv", #nome do arquivo que vai ser gerado
          sep = ",", # define o caractere que deve ser o separador de colunas
          dec = ".", #define o caractere que deve ser o spearador de decimal
+         row.names = F #ignora nomes/numeros das linhas
 )
 ```
 ***
 #Importantíssimo
-Nunca jamais use o Word ou Docs para editar arquivos de texto puro   
-Nunca use acentos, espaços, parênteses, colchetes, símbolos ou caracteres especiais no nome dos arquivos ou nomes de colunas/objetos, pois eles tem significados especiais no R   
+<span style="color:red">*NUNCA, JAMAIS* </span>   use o Word ou Docs para editar arquivos de texto puro  
+
+<span style="color:red">*NUNCA, JAMAIS* </span>   use acentos, espaços, parênteses, colchetes, símbolos ou caracteres especiais no nome dos arquivos ou nomes de colunas/objetos, pois eles tem significados especiais no R   
 
 Para escrever e salvar em tabelas do Excel, use os pacotes `writexl` e `readxl`
 

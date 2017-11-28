@@ -7,8 +7,9 @@
 #####################################################
 #mensagem para assustar os alunos, para eles aprenderem a tomar cuidado com scripts
 #da internet
-pessoa = Sys.getenv("USERNAME")
+pessoa = Sys.getenv("USERNAME") # busca o nome do usuário, só funciona direito em Windows
 workDir=getwd()
 
+#Mensagem cruel :) ####
 message(paste("Oi ", pessoa, ", eu sou um script que foi lido diretamente da internet, e acabei de apagar tudo que estava em ",workDir,", além de todos os dados da sua tese / dissertação. Tenha um bom dia :) ", sep=""))
 

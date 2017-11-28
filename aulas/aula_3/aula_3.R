@@ -28,7 +28,7 @@
 # Salve o resultado do comando acima com o nome de matriz.distancias.csv
 
 # Usando a linha de comando, importe o arquivo dragoes.xsls para o objeto DnD
-#https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/dragoes.xlsx
+#https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/dragoes.xlsx (não abra o excel nem salve em .csv)
 
 # Confira a estrutura do arquivo
 
