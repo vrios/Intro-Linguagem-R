@@ -8,7 +8,7 @@
 #diferencie a função source da função load()
 
 #baixe para seu diretório de trabalho o arquivo toroidal.distance.R, disponível
-#em https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/toroidal.distance.R, e o arquivo distancias.csv, disponivel em https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/distancias.tam.100.csv
+#em https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/toroidal.distance.R, e o arquivo distancias.csv, disponivel em https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/distancias.csv
 
 #Abra toroidal.distances.R no R
 # O que você precisa fazer para que as funções contidas nesse arquivo estejam disponíveis para uso no R?
@@ -28,6 +28,7 @@
 # Salve o resultado do comando acima com o nome de matriz.distancias.csv
 
 # Usando a linha de comando, importe o arquivo dragoes.xsls para o objeto DnD
+#https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/dragoes.xlsx
 
 # Confira a estrutura do arquivo
 
