@@ -1,14 +1,14 @@
 ######################################################
-# Introdução Linguagem R
-# Vitor Passos Rios
-# Universidade Federal da Bahia
-# https://github.com/vrios/Intro-Linguagem-R/wiki
-#####################################################
+# Introdução Linguagem R                          ####
+# Vitor Passos Rios                               ####
+# Universidade Federal da Bahia                   ####
+# https://github.com/vrios/Intro-Linguagem-R/wiki#####
+######################################################
 
 #diferencie a função source da função load()
 
 #baixe para seu diretório de trabalho o arquivo toroidal.distance.R, disponível
-#em https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/toroidal.distance.R, e o arquivo distancias.csv, disponivel em https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/distancias.csv
+#em https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/toroidal.distance.R, e o arquivo distancias.csv, disponivel em https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/distancias.tam.100.csv
 
 #Abra toroidal.distances.R no R
 # O que você precisa fazer para que as funções contidas nesse arquivo estejam disponíveis para uso no R?
@@ -20,9 +20,12 @@
 # Carregue o arquivo distancias.csv para dentro do objeto distancias
 #chame a função distance.matrix() com o objeto distancias, e o argumento tam = 10
 
+
 # O que aconteceu?
 
 # O que você precisa fazer para que você possa usar a função distance.matrix?
+
+# Salve o resultado do comando acima com o nome de matriz.distancias.csv
 
 # Usando a linha de comando, importe o arquivo dragoes.xsls para o objeto DnD
 
