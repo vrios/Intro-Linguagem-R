@@ -7,7 +7,8 @@
 #####################################################
 #mensagem para assustar os alunos, para eles aprenderem a tomar cuidado com scripts
 #da internet
+pessoa = Sys.getenv("USERNAME")
 workDir=getwd()
 
-message(paste("Olá pessoa, eu sou um script que foi lido diretamente da internet, e acabei de apagar tudo que estava em ",workDir,", além de todos os dados da sua tese / dissertação. Tenha um bom dia :) ", sep=""))
+message(paste("Olá ", pessoa, ", eu sou um script que foi lido diretamente da internet, e acabei de apagar tudo que estava em ",workDir,", além de todos os dados da sua tese / dissertação. Tenha um bom dia :) ", sep=""))
 
