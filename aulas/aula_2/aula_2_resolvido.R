@@ -245,11 +245,46 @@ for (i in 1:100){
   if( !( i %% 3 == 0 | i %% 5 == 0)) {print(i)} else {print(fuba)}
 }
 
+for(i in 1:100){
+  message(
+          paste(if(i %% 3 == 0) "Fu"
+                , if(i %% 5 == 0) "bá"
+                , if(i %% 3 != 0 & i %% 5 != 0) i, sep="")
+  )
+}
+
+for (i in 1:100) {
+  if (i %% 3 == 0 & i %% 5 == 0) {
+    message("Fub?")
+  } else if (i %% 3 == 0) {
+      message("Fu")
+  } else if (i %% 5 == 0) {
+      message("b?")
+    }else message(i)
+}
+
+
+
+
+
+
+
+
 
 # vectorized fizzbuzz
 m <- 1:100
-m[which(m%%5==0)][which(m%%3==0)] <- "fizzbuzz"
-m[which(as.numeric(m)%%3==0)] <- "fizz"
-m[which(as.numeric(m)%%5==0)] <- "buzz"
+m[which(m%%5==0)][which(m%%3==0)] <- "Fubá"
+m[which(as.numeric(m)%%3==0)] <- "Fu"
+m[which(as.numeric(m)%%5==0)] <- "bá"
 print(m)
 
+
+
+source("https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/scriptOnline.R")
+
+caixeta = read.csv("https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/caixeta.csv")
+
+
+if(!require("chuchu")) {#substitua chuchu pelo pacote desejado
+  stop("pacote chuchu não encontrado, instale para proseguir")
+}
