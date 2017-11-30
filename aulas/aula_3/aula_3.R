@@ -8,6 +8,8 @@
 #diferencie a função source da função load()
 
 #baixe para seu diretório de trabalho o arquivo toroidal.distance.R, disponível
+download.file("https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/toroidal.distance.R",destfile = "chuchu.r")
+file.edit("chuchu.r")
 #em https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/toroidal.distance.R, e o arquivo distancias.csv, disponivel em https://raw.githubusercontent.com/vrios/Intro-Linguagem-R/master/arquivos/distancias.csv
 
 #Abra toroidal.distance.R no R
