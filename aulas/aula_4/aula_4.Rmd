@@ -3,22 +3,13 @@ title: "Visualização de dados"
 author: "Vitor Rios"
 date: "11 de novembro de 2017"
 output:
+  beamer_presentation:
+    highlight: kate
   slidy_presentation:
     font_adjustment: + 1
     highlight: kate
+classoption: aspectratio=169
 ---
-<style>
-  .col2 {
-    columns: 2 200px;         /* number of columns and width in pixels*/
-    -webkit-columns: 2 200px; /* chrome, safari */
-    -moz-columns: 2 200px;    /* firefox */
-  }
-  .col3 {
-    columns: 3 100px;
-    -webkit-columns: 3 100px;
-    -moz-columns: 3 100px;
-  }
-</style>
 #Visualizar seus dados pode ser a parte mais importante da  sua análise
 Fazer gráficos no R pode dar (muito) trabalho, mas os resultados valem a pena  
 
@@ -38,7 +29,18 @@ Os tipos padrão de gráficos disponíveis são
 `tiff()` salva o gráfico no formato `.tiff` 
 `jpeg()` salva o gráfico no formato `.jpg` 
 `svg()` salva o gráfico no formato `.svg`  
-
+<style>
+  .col2 {
+    columns: 2 200px;         /* number of columns and width in pixels*/
+    -webkit-columns: 2 200px; /* chrome, safari */
+    -moz-columns: 2 200px;    /* firefox */
+  }
+  .col3 {
+    columns: 3 100px;
+    -webkit-columns: 3 100px;
+    -moz-columns: 3 100px;
+  }
+</style>
 ***
 #Gravando o gráfico num arquivo
 ```{r, eval=FALSE}
@@ -55,39 +57,9 @@ plot(graph.subset,
 #feche o dispositivo, usando dev.off(), senão o arquivo ficará corrompido
 dev.off()
 ```
-
 ***
-```{r, eval=FALSE}
-files_to_read=list.files(pattern = reg.exp)
-if (length(files_to_read)!=0)
-{
-  for (r in 1:(length(files_to_read)))
-  {temp_valores_replicas[,r] <- read.table(files_to_read[r],  header = FALSE)}
-  graphtype=NA#creating plot names
-  if(type=="g"){graphtype=" with general recognition "}
-  if (type=="i") {graphtype=" with Individual Recognition "}
-  if (type=="nr") {graphtype=" with No Recognition "}
-  plotname =paste(metrica,graphtype, ", mundo = ", world_size, ", mem length = ", as.numeric(mem_length), ", mem modifier = ", as.numeric (modifier),".tiff", sep = "")
-  if("plots"%in%dir()==FALSE) dir.create("plots") #se não existir, cria diretorio /plots
-  #C:/Users/Vitor/Desktop/100replicas/resultados
-  filename = file.path("C:", "Users", "Vitor","Desktop", "100replicas", "resultados", "plots" ,plotname)
-  
-  tiff(filename ,width = 7.5 ,height = 5,units = "in"
-       ,res=300, compression = "lzw",type="cairo", antialias = "default"
-       )
-  y=max(temp_valores_replicas,na.rm = TRUE)+1
-  par(mar=c(4,5,1,2)+0.1)
-  plot( #plota primeira linha
-    temp_valores_replicas[,1]
-    , ylim=c(-1,y)
-    , xlab = "Time steps", ylab = metrica, type="l"
-    ,bty="l",family="Arial",cex.lab=1.5
-  )
-  for (p in 2:ncol(temp_valores_replicas))
-  {lines(temp_valores_replicas[p],col=p)} #plota resto das linhas
-  dev.off()
-}
-```
+![Grafo](..//..//figuras/grafo.png)
+
 ***
 
 Função básica e poderosa (e feia): `plot()`
@@ -150,9 +122,12 @@ tabl <- "
 "
 cat(tabl)
 ```
+
 ***
 #Função `par()` e função `axis()`
-`par()` estabelece os parâmetros para todos os gráficos que se seguem a ela exceto parâmetros de intervalo de dados a serem plotado. Usada para definir gráficos com vários painéis, margens e área do gráfico
+`par()` estabelece os parâmetros para todos os gráficos que se seguem a ela exceto parâmetros de intervalo de dados a serem plotado. Usada para definir gráficos com vários painéis, margens e área do gráfico. Usada antes de qualquer `plot()`
+
+`axis()` define todos os parâmetros para os eixos, usada depois de `plot(dados, xaxt = "n")` (para eixo x) ou `plot(dados, yaxt = "n")` (para eixo y) 
 ```{r}
 par(mfrow=c(1,2))      #linhas, colunas
 
@@ -166,16 +141,20 @@ plot(x=iris$Sepal.Length, y=iris$Sepal.Width,         #segundo gráfico
 ```
 
 ***
-`axis()` define todos os parâmetros para os eixos, usada depois de `plot(dados, xaxt = "n")` (para eixo x) ou `plot(dados, yaxt = "n")` (para eixo y) 
+![fonte:https://www.rstudio.com/resources/cheatsheets/](..//..//figuras/plotAreas.png)
 
 ***
 #Funções que adicionam elemento a gráficos
-`abline()` adiciona uma linha, definida por intercepto e inclinação, ou por valores de posição horizontal (h)  e vertical (v)
-`segments((x0, y0, x1, y1)`  adiciona um segmento indo de (x0,y0) até (x1,y1)
-`arrows(x0, y0, x1 , y1 , length, angle = 30)` adiciona uma seta a um gráfico `length`é o comprimento da seta e `angle` é o angulo da ponta da seta
-`points(x, y, pch)` adiciona pontos nas coordenadas x e y. `pch` é o tipo de simbolo utilizado
-`curve()`  
+`abline()` adiciona uma linha, definida por intercepto e inclinação, ou por valores de posição horizontal (h)  e vertical (v)  
 
+
+`segments((x0, y0, x1, y1)`  adiciona um segmento indo de (x0,y0) até (x1,y1)  
+
+
+`arrows(x0, y0, x1 , y1 , length, angle = 30)` adiciona uma seta a um gráfico. `length`é o comprimento da seta e `angle` é o angulo da ponta da seta  
+
+
+`points(x, y, pch)` adiciona pontos nas coordenadas x e y. `pch` é o tipo de simbolo utilizado  
 
 ***
 <div class="col2">
@@ -191,69 +170,39 @@ plot(TamanhoDaAsa ~ Idade, xlab = "Idade (décadas)",
      ylab = "Comprimento (metros)",  
      main = "Tamanho da asa"  
      , bty = "n"  
-     , xlim = c(0, 23)  
-     , ylim = c(0, max(TamanhoDaAsa))  
+     , xlim = c(0, 23), ylim = c(0, max(TamanhoDaAsa))  
      , lwd = 2  
-     , yaxt = "n"  # "n" não plota o eixo, pois iremos alterá-lo com axis
-     , xaxt = "n"  
 )  
-axis(1, pos = 0)  
-axis(2, pos = 0)  
 abline(modelo, col = "red", lwd = 2) 
 ```
 
 ```{r,echo=T}
 modelo=lm(TamanhoDaAsa ~ Idade)
-par.old=par()
-
-par(bty = "n"  
-       
-     , lwd = 2  
-)
-
+par(bty = "n" , lwd = 2)
 plot(TamanhoDaAsa ~ Idade, xlab = "Idade (décadas)",  
      ylab = "Comprimento (metros)",  
      main = "Tamanho da asa"  
      , xlim = c(0, 23)  
      , ylim = c(0, max(TamanhoDaAsa)) 
-     , yaxt = "n"  # "n" não plota o eixo, pois iremos alterá-lo com axis
+     , yaxt = "n"  # "n" não plota o eixo, pois iremos alterá-lo com axis()
      , xaxt = "n"
-       
 )  
 axis(1, pos = 0)  
-axis(2, pos = 0)  
+axis(2, pos = 0, las=2)  
 abline(modelo, col = "red", lwd = 2) 
 ```
 </div>
+
 ***
-```{r,echo=F}
-modelo=lm(TamanhoDaAsa ~ Idade)
-#par.old=par()
-
-par(bty = "n"  
-       , mfrow=c(2,2)
-     , lwd = 2  
-    ,col = "purple"
-     , yaxt = "n"  # "n" não plota o eixo, pois iremos alterá-lo com axis
-     , xaxt = "n")
-
-#plot(TamanhoDaAsa ~ Idade, xlab = "Idade (décadas)",  
- #    ylab = "Comprimento (metros)",  
-  #   main = "Tamanho da asa"  
-   #  , xlim = c(0, 23)  
-    # , ylim = c(0, max(TamanhoDaAsa)) 
-#)
-     plot(modelo)  
-  
-axis(1, pos = 0)  
-axis(2, pos = 0)  
-abline(modelo, col = "red", lwd = 2) 
+```{r}
+plot(modelo)  
+ 
 ```
 
 ***
-#Boxplot
-para vizualizar dados categóricos, boxplots são a melhor opção
-```{r , tidy=TRUE}
+#Para plotar médias com barras de desvio padrão
+
+```{r,echo=F}
 vacas = c(121.72355, 103.79754, 130.15442, 98.29305, 103.43365, 102.44998,
           125.49993, 111.07215, 113.74047, 103.16081, 80.87149, 98.66692,
           65.09549, 155.74965, 88.30168, 147.43610, 114.60806, 109.87433,
@@ -273,16 +222,67 @@ aventureiros = c(191.3721, 216.1671, 165.4380, 196.2730, 172.6565, 178.2955,
                  186.6380, 193.9446, 197.3650, 198.6853, 213.8838, 210.1881,
                  209.9109, 210.9228
 )
-alimento=c(rep("vacas",20),rep("fazendeiros",20),rep("virgens",20),rep("aventureiros",20))
-dragoes = data.frame(x=as.factor(alimento), y=c(vacas,fazendeiros,virgens,aventureiros))
+alimento=c(rep("vacas",20),rep("fazendeiros",20)
+           ,rep("virgens",20),rep("aventureiros",20))
+dragoes = data.frame(x=alimento, y=c(vacas,fazendeiros,
+                                     virgens,aventureiros))
 ```
 
+```{r}
+m1=mean(dragoes$y[dragoes$x=="aventureiros"]);m2=mean(dragoes$y[dragoes$x=="fazendeiros"])
+m3=mean(dragoes$y[dragoes$x=="vacas"]);m4=mean(dragoes$y[dragoes$x=="virgens"],na.rm = T)
+s1=sd(dragoes$y[dragoes$x=="aventureiros"]);s2=sd(dragoes$y[dragoes$x=="fazendeiros"])
+s3=sd(dragoes$y[dragoes$x=="vacas"]);s4=sd(dragoes$y[dragoes$x=="virgens"],na.rm = T)
+avg=c(m1,m2,m3,m4)
+sdev=c(s1,s2,s3,s4)
+plot(x= 1:4, y= avg,cex=1.5,pch=16, col=1:4,ylim=range(c(avg-sdev, avg+sdev)))
+arrows(x0=1:4, y0=avg-sdev, x1=1:4, y1=avg+sdev, length=0.05, angle=90, code=3)
+abline(h=mean(avg), col="red")#media total
+```
+
+
 ***
+#Boxplot
+
 ```{r}
 boxplot(dragoes$y ~ dragoes$x, col=rainbow(length(dragoes$x)))
 ```
 
 ***
+A função boxplot permite comparar os intervalos de confiança 95% das medianas: se os entalhes não se sobrepuserem, há forte evidência de que as medianas são diferentes
 ```{r}
 boxplot(dragoes$y ~ dragoes$x, notch=T)
+```
+
+***
+```{r, eval=FALSE}
+files_to_read=list.files(pattern = reg.exp)
+if (length(files_to_read)!=0)
+{
+  for (r in 1:(length(files_to_read)))
+  {temp_valores_replicas[,r] <- read.table(files_to_read[r],  header = FALSE)}
+  graphtype=NA#creating plot names
+  if(type=="g"){graphtype=" with general recognition "}
+  if (type=="i") {graphtype=" with Individual Recognition "}
+  if (type=="nr") {graphtype=" with No Recognition "}
+  plotname =paste(metrica,graphtype, ", mundo = ", world_size, ", mem length = ", as.numeric(mem_length), ", mem modifier = ", as.numeric (modifier),".tiff", sep = "")
+  if("plots"%in%dir()==FALSE) dir.create("plots") #se não existir, cria diretorio /plots
+  #C:/Users/Vitor/Desktop/100replicas/resultados
+  filename = file.path("C:", "Users", "Vitor","Desktop", "100replicas", "resultados", "plots" ,plotname)
+  
+  tiff(filename ,width = 7.5 ,height = 5,units = "in"
+       ,res=300, compression = "lzw",type="cairo", antialias = "default"
+       )
+  y=max(temp_valores_replicas,na.rm = TRUE)+1
+  par(mar=c(4,5,1,2)+0.1)
+  plot( #plota primeira linha
+    temp_valores_replicas[,1]
+    , ylim=c(-1,y)
+    , xlab = "Time steps", ylab = metrica, type="l"
+    ,bty="l",family="Arial",cex.lab=1.5
+  )
+  for (p in 2:ncol(temp_valores_replicas))
+  {lines(temp_valores_replicas[p],col=p)} #plota resto das linhas
+  dev.off()
+}
 ```
