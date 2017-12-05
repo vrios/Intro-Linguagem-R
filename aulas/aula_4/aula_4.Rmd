@@ -1,5 +1,5 @@
 ---
-title: "Visualização de dados"
+title: "Aula 4 - Visualização de dados"
 author: "Vitor Rios"
 date: "11 de novembro de 2017"
 output:
@@ -8,9 +8,10 @@ output:
   slidy_presentation:
     font_adjustment: + 1
     highlight: kate
+    smart: false
 classoption: aspectratio=169
 ---
-#Visualizar seus dados pode ser a parte mais importante da  sua análise
+# Visualizar seus dados pode ser a parte mais importante da  sua análise
 Fazer gráficos no R pode dar (muito) trabalho, mas os resultados valem a pena  
 
 Gráficos no R são baseados em dispositivos. O dipositivo padrão é a tela, mas podem ser arquivos, cada tipo de arquivo gráfico sendo um dispositivo diferente
@@ -42,7 +43,7 @@ Os tipos padrão de gráficos disponíveis são
   }
 </style>
 ***
-#Gravando o gráfico num arquivo
+# Gravando o gráfico num arquivo
 ```{r, eval=FALSE}
 # Chame o tipo de arquivo desejado, passando informações de tamanho, resolução, tipo de fonte, e nome de arquivo
 png("SocialNetworkExample.png",width = 900,height = 900)
@@ -74,7 +75,7 @@ qplot(x= iris$Sepal.Length, y=iris$Petal.Length, color=iris$Species)
 ```
 </div>
 ***
-#A função `plot()` tem dezenas de opções para controlar cada detalhe mínimo do gráfico
+# A função `plot()` tem dezenas de opções para controlar cada detalhe mínimo do gráfico
 Principais:
 - x
 - y
@@ -124,7 +125,7 @@ cat(tabl)
 ```
 
 ***
-#Função `par()` e função `axis()`
+# Função `par()` e função `axis()`
 `par()` estabelece os parâmetros para todos os gráficos que se seguem a ela exceto parâmetros de intervalo de dados a serem plotado. Usada para definir gráficos com vários painéis, margens e área do gráfico. Usada antes de qualquer `plot()`
 
 `axis()` define todos os parâmetros para os eixos, usada depois de `plot(dados, xaxt = "n")` (para eixo x) ou `plot(dados, yaxt = "n")` (para eixo y) 
@@ -144,7 +145,7 @@ plot(x=iris$Sepal.Length, y=iris$Sepal.Width,         #segundo gráfico
 ![fonte:https://www.rstudio.com/resources/cheatsheets/](..//..//figuras/plotAreas.png)
 
 ***
-#Funções que adicionam elemento a gráficos
+# Funções que adicionam elemento a gráficos
 `abline()` adiciona uma linha, definida por intercepto e inclinação, ou por valores de posição horizontal (h)  e vertical (v)  
 
 
@@ -200,7 +201,7 @@ plot(modelo)
 ```
 
 ***
-#Para plotar médias com barras de desvio padrão
+# Para plotar médias com barras de desvio padrão
 
 ```{r,echo=F}
 vacas = c(121.72355, 103.79754, 130.15442, 98.29305, 103.43365, 102.44998,
@@ -242,7 +243,7 @@ abline(h=mean(avg), col="red")#media total
 
 
 ***
-#Boxplot
+# Boxplot
 
 ```{r}
 boxplot(dragoes$y ~ dragoes$x, col=rainbow(length(dragoes$x)))
@@ -252,6 +253,24 @@ boxplot(dragoes$y ~ dragoes$x, col=rainbow(length(dragoes$x)))
 A função boxplot permite comparar os intervalos de confiança 95% das medianas: se os entalhes não se sobrepuserem, há forte evidência de que as medianas são diferentes
 ```{r}
 boxplot(dragoes$y ~ dragoes$x, notch=T)
+```
+
+***
+# Função `aggregate()`
+
+A função `summary` nos dá muitas informações sobre a estrutura dos nossos dados, mas tudo. Em particular, desvio padrão, erro padrão da média, curtose, e assimetria devem ser calculados à mão, principalmente se quisermos essas estatísticas agrupadas por níveis de um fator. Para isso usamos a função `aggregate()`  
+
+`aggregate(x, by, FUN, ...)`  
+`x` é a coluna do dataframe que ser quer agrupar  
+`by` é a coluna que contém os níveis dos grupos que se quer usar  
+`FUN` é a função que se quer aplicar nos grupos, sem parênteses  
+`...` são os argumentos que serão passados para a função `FUN` 
+
+```{r}
+media.por.comida = aggregate(x=dragoes$y,by = list(dragoes$x), FUN = mean, na.rm=T)
+media.por.comida
+sd.por.comida = aggregate(x=dragoes$y,by = list(dragoes$x), FUN = sd, na.rm=T)
+sd.por.comida
 ```
 
 ***

@@ -1,38 +1,124 @@
 ---
-title: "Aula 5"
+title: "Aula 5 - Manipulação de dados, análise exploratória"
 author: "Vitor Rios"
 date: "11 de novembro de 2017"
 output:
+  beamer_presentation:
+    highlight: kate
   slidy_presentation:
     font_adjustment: + 1
     highlight: kate
+    smart: false
+classoption: aspectratio=169
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+dragoes_completo <- read.csv("..//..//arquivos/dragoes_completo.csv", sep=",")
 ```
 
-## R Markdown
+#Função subset()
+Divide um objeto em subconjuntos
 
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
-
-## Slide with Bullets
-
-- Bullet 1
-- Bullet 2
-- Bullet 3
-
-## Slide with R Output
-
-```{r cars, echo = TRUE}
-summary(cars)
+`x` = objeto a ser dividido
+`subset` = condição lógica indicando o que deve ser mantido
+`select`= indica as colunas a serem selecioandas em um dataframe
+```{r}
+dragoes_completo <- read.csv("..//..//arquivos/dragoes_completo.csv", sep=";")
+vermelhos.grandes = subset(x=dragoes_completo,subset = tamanho_asa >= 15 & cor == "vermelho", select=n_chifres:idade)
 ```
 
-## Slide with Plot
 
-```{r pressure}
-plot(pressure)
+***
+ 
+```{r, echo=FALSE}
+#Usando o exemplo dos dragões
+# dragoes_completo <- read.csv("..//..//arquivos/dragoes_completo.csv", sep=";")
+# head(dragoes_completo)
+# dragoes_completo$n_chifres = rpois(length(dragoes_completo$n_chifres),lambda = 7)
+# dragoes_completo$cor = sample(x=c("vermelho","dourado","verde","azul","branco","preto"),size = length(dragoes_completo$cor),replace = T)
+# dragoes_completo$tamanho_asa = rnorm(n = length(dragoes_completo$tamanho_asa),mean = 4,sd = 2)
+# dragoes_completo$tamanho_asa = dragoes_completo$tamanho_asa + 2*dragoes_completo$idade/50
+# plot(dragoes_completo$idade,dragoes_completo$tamanho_asa)
+# write.csv(dragoes_completo, file="..//..//arquivos/dragoes_completo.csv")
 ```
 
+***
+#Familia apply()
+Existem várias funções no R que aplicam funções sobre objetos, e elas variam principalmente no tipo de objeto que devolvem
+
+##Função apply()
+
+Aplica uma funçao a todas as linhas ou todas as colunas de um array (dataframe numérico ou matriz), retorna um vetor ou matriz
+<span style="color:red">*ATENÇÃO* </span>: só funciona para dados numéricos, não serve para fatores
+`apply(X, MARGIN, FUN, ...)`
+`x` é array que ser quer agrupar
+`MARGIN` 1 = linhas, 2 = colunas, c(1,2), ambos
+`FUN` é a função que se quer aplicar nas margens, sem parênteses
+`...` são os argumentos que serão passados para a função `FUN`
+Por exemplo, se queremos a soma de cada coluna
+```{r,echo=F}
+#numericos= dragoes_completo[,sapply(dragoes_completo,is.numeric)]
+```
+
+
+```{r}
+ 
+numericos= data.frame(dragoes_completo$peso,dragoes_completo$n_chifres,dragoes_completo$tamanho_asa,dragoes_completo$idade)
+somas = apply(numericos, MARGIN = 2, FUN =  sum, na.rm=T)# logaritmo natural
+```
+
+***
+
+#Função lapply()
+Aplica uma função a cada elemento de uma lista, e retorna uma lista. Pode lidar com qualquer tipo de dado, a depender de `FUN`
+`lapply(X, FUN, ...)`
+`X` um lista ou objeto que será convertido em lista (pode ser data.frame ou matriz)
+`FUN` é a função que se quer aplicar nos elementos de, sem parênteses
+`...` são os argumentos que serão passados para a função `FUN`
+```{r}
+lista.somas = lapply(numericos, FUN =  sum, na.rm=T)
+lista.somas
+lista.log = lapply(numericos, FUN =  log)
+lista.log
+```
+#Função sapply()
+Aplica uma função a cada elemento de uma lista, e retorna uma vetor com os resultados. Pode lidar com qualquer tipo de dado, a depender de `FUN`
+`lapply(X, FUN, ...)`
+`X` um lista ou objeto que será convertido em lista (pode ser data.frame ou matriz)
+`FUN` é a função que se quer aplicar nos elementos de `X`, sem parênteses
+`...` são os argumentos que serão passados para a função `FUN`
+```{r}
+vetor.somas = sapply(numericos, FUN =  sum, na.rm=T)
+vetor.somas
+vetor.log = sapply(numericos, FUN =  log)
+vetor.log
+```
+
+***
+#Função tapply()
+`tapply(X, INDEX, FUN, ...)`
+Aplica uma função a subsets do objeto
+`X` = um objeto, tipicamento um vetor
+`INDEX` uma lista de fatores, com comprimento igual a `X`, usado para criar subconjuntos nos quais `FUN` será aplicada
+`FUN` é a função que se quer aplicar nos elementos de `X`, sem parênteses
+`...` são os argumentos que serão passados para a função `FUN`
+
+```{r}
+x <- 1:20
+y <- factor(rep(letters[1:5], each = 4))
+tapply(x, INDEX=y, FUN = sum)
+
+media.por.cor2=tapply(dragoes_completo$n_chifres, INDEX = dragoes_completo$cor, FUN = mean)
+class(media.por.cor2)
+```
+
+***
+# Para facilitar:
+- apply: genérica: aplica uma função a linhas ou colunas de uma matriz (ou às dimensões de um array), retorna vetor ou matriz
+- lapply: "list apply". Age em uma lista ou vetor e retorna uma lista
+- sapply: "simple lapply". Igual a lapply, mas retorna um vetor ou matriz sempre que possível
+- tapply: "tagged apply". subconjuntos (tags) identificam os grupos nos quais a função será aplicada. Tipo de retorno depende da função, geralmente array
+- aggregate: tapply que converte o resultado para dataframe
+
+Na maioria dos casos você vai usar aggregate ou tapply
