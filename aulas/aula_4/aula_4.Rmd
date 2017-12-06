@@ -3,12 +3,12 @@ title: "Aula 4 - Visualização de dados"
 author: "Vitor Rios"
 date: "11 de novembro de 2017"
 output:
-  beamer_presentation:
-    highlight: kate
   slidy_presentation:
     font_adjustment: + 1
     highlight: kate
     smart: false
+  beamer_presentation:
+    highlight: kate
 classoption: aspectratio=169
 ---
 # Visualizar seus dados pode ser a parte mais importante da  sua análise
