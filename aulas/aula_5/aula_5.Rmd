@@ -262,7 +262,7 @@ qqplot(dragoes_limpo$tamanho_asa,dragoes_limpo$peso)
 ***
 # Funções matemáticas para gerar distribuições de dados
 Usadas para gerar dados artificais com as propriedades desejadas. O R possui as seguintes distribuições por padrão: beta, binomial, Cauchy, qui-quadrado, exponencial, F, gamma, geométrica, hipergeométrica, log-normal, multinomial, binomial negativa, normal, Poisson, t de Student, uniforme, Weibull
-```{r}
+```{r,eval=FALSE}
 #distribuição normal
 rnorm(n, mean = 0, sd = 1) #gera n observações amostradas de uma normal de media 0 e sd 1
 dnorm(3, mean = 0, sd = 1, log = FALSE)# retorna a probabilidade de um valor x, com media 0 e sd 1
