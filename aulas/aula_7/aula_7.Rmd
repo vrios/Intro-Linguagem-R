@@ -1,38 +1,105 @@
 ---
-title: "Aula 7"
+title: "Aula 7 - Introdução ao controle de versões, ou como manter sua sanidade"
 author: "Vitor Rios"
 date: "11 de novembro de 2017"
 output:
   slidy_presentation:
     font_adjustment: + 1
     highlight: kate
+    smart: false
+  beamer_presentation:
+    highlight: kate
+classoption: aspectratio=169
 ---
+[Controle de versão: como não deixar isso acontecer com você](http://www.phdcomics.com/comics/archive/phd101212s.gif)  
+- (orientador): "Tire essa parte x, e faça essa outra análise y"  
+- (orientador um mês depois): "Tire essa parte y, e faça essa outra análise x"   
+- (você) Raiva, ódio, desespero,  procurar em que versão estava salvo x
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
+Controle de versão significa dar um nome e um número específico para cada versão de um arquivo. Assim você não perde seu trabalho e pode restaurar aquela parte que seu orientador mandou você tirar, quando ele(a) mandar colocar de volta   
 
-## R Markdown
+Salvar cada versão em um arquivo separado com nomes diferentes estilo  `"versao 1.docx"`, `"versão2.docx"`, `"versão final.docx"`, `"versao final correções.docx"`, `"versão final correções definitiva.docx"`, `"versão final correções USAR ESTA.docx"`, `"versão final correções USAR ESTA 2.docx"`, NÃO é controle de versão
 
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Lembre-se: fazer manualmente quando se pode automatizar é errado!
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+***
+# Git
+Git é o principal sistema de controles de versão atualmente  
+- Vantagens: uma infinidade de tutoriais e sites de ajuda, rápido e leve, integrado com maioria dos softwares de programação, multiplataforma   
+- Desvantagens: linha de comando, comandos crípticos, dá medinho no começo  
 
-## Slide with Bullets
+Conceitos básicos (por alto):
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
+- Repositório: lugar onde o código vive. O repositório padrão é uma pasta no seu computador. Repositórios em outros computadores são chamados de `remote`. Cada remote recebe um nome e tem um endereço próprio. Por convenção, se existe um repositório remoto central, ele será chamado de `origin`  
 
-## Slide with R Output
+- Commit: uma versão salva do seu código, com nome, número, e nome de quem fez, acompanhado de uma breve descrição de o que mudou (`commit message`). Pode ser de um só arquivo ou de vários.   
 
-```{r cars, echo = TRUE}
-summary(cars)
-```
+- Diff: comando que compara as diferenças entre `commits` (versões) do código, linha por linha. Serve para ver o que mudou de uma versão para outra   
 
-## Slide with Plot
+- Merge: quando duas versões do mesmo arquivo estão em conflito (`merge conflict`), o Git pede para você fundir (`merge`) as duas, escolhendo quais linhas serão mantidas na versão final. É a parte mais chata do Git   
 
-```{r pressure}
-plot(pressure)
-```
+***
+- Status: comando que te informa o esstado atual do seu repositório local, se houve alguma alteração em algum arquivo, e se ele está incronizado com o `remote`  
 
+- Pull e Push: `pull` copia os `commits` de um repoitório remoto (`remote`) para seu repositório local. `push` envia os `commits` do seu local para o `remote`. _Enviar para o `remote` garante um backup atualizado fora da sua máquina  _   
+
+- Branch: um conjunto de versões (`commits`) que formam uma linha do tempo separada de outros branchs. Geralmente usado quando se quer testar jeitos diferentes de fazer algo, ou versões experimentais. O branch padrão é o `master`, e cada branch tem seu nome   
+
+- Clonar: copiar um repositório existente  
+
+- Init: criar um repositório novo  
+
+- `.gitignore` - arquivo com os nomes e tipos de arquivo que você quer que o git ignore
+
+***
+# Repositórios online
+São empresas que fornecem espaço para você criar seu `remote` nos servidores delas  
+
+- Vantagens: espaço gratuito, ferramentas de colaboração, comunidade, padrão da indústria, backup online acessível de qualquer lugar, encriptação e ssh  
+
+- Desvantagens: Seu código fica num servidor alheio, algumas opções são pagas   
+
+Bitbucket: sem limite de repositórios privados, limita número de colaboradores na opção gratuita
+
+GitHub: Somente repositórios públicos na opção gratuita, pacote educacional gratuito permite repositórios privados, padrão para usuários do R, interface mais amigável
+
+GitKraken: software com interface bonitinha para gerenciar seus repositórios, funciona com qualquer remote
+
+RStudio: oferece integração com Git diretamente na interface, principais ações são feitas sem linha de comando
+
+***
+# Neste curso, usaremos Git, GitHub e RStudio
+## Passo a passo:
+- Instalar RStudio
+- Instalar Git
+- COnfigurar nome de usuário e email no Git [(ver wiki do curso)](https://github.com/vrios/Intro-Linguagem-R/wiki/Instalando-os-softwares)
+- Criar uma conta no GitHub
+- Criar um repositório no GitHub
+- Criar um projeto no RStudio clonando o repositório do GitHub
+- Fazer alterações nos arquivo do projeto
+- Salvar alterações
+- Dar `commit` no repositório local via RStudio
+- Dar `pull` no repositório local via RStudio (para evitar problemas de conflito caso alguem mais tenha alterad o projeto)
+- Resolver problemas de `merge`
+- Dar `push` no `remote` via RStudio
+
+***
+![criando seu repositório](..//..//figuras/novoRepositorio.png)
+
+***
+![Informações do seu repositório](..//..//figuras/informacoesRepositorio.png)
+
+***
+![Informações do seu repositório](..//..//figuras/clonarRepositorio.png)
+
+***
+![Informações do seu repositório](..//..//figuras/criarProjeto1.png)
+
+***
+![Informações do seu repositório](..//..//figuras/criarProjeto2.png)
+
+***
+![Informações do seu repositório](..//..//figuras/criarProjeto3.png)
+***
+
+![Informações do seu repositório](..//..//figuras/criarProjeto4.png)
