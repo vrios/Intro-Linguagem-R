@@ -100,6 +100,43 @@ RStudio: oferece integração com Git diretamente na interface, principais açõ
 
 ***
 ![Informações do seu repositório](..//..//figuras/criarProjeto3.png)
-***
 
+***
 ![Informações do seu repositório](..//..//figuras/criarProjeto4.png)
+
+![Informações do seu repositório](..//..//figuras/criarProjeto3.png)
+
+***
+![Informações do seu repositório](..//..//figuras/alterandoProjeto1.png)
+
+***
+![Informações do seu repositório](..//..//figuras/preparandoCommit2.png)
+***
+![Informações do seu repositório](..//..//figuras/pullEpush.png)
+***
+![Informações do seu repositório](..//..//figuras/pull.png)
+***
+![Informações do seu repositório](..//..//figuras/push.png)
+***
+![Informações do seu repositório](..//..//figuras/pushComSucesso.png)
+
+***
+![Informações do seu repositório](..//..//figuras/githubAtualizado.png)
+***
+![Informações do seu repositório](..//..//figuras/editarGithub1.png)
+
+***
+![Informações do seu repositório](..//..//figuras/editarGithub2.png)
+
+***
+![Informações do seu repositório](..//..//figuras/mergeCOnflict.png)
+
+***
+![Informações do seu repositório](..//..//figuras/history.png)
+***
+![Informações do seu repositório](..//..//figuras/fazendoMerge.png)
+***
+![Informações do seu repositório](..//..//figuras/mergeSucesso.png)
+
+***
+![Informações do seu repositório](..//..//figuras/preparandoCommit2.png)
