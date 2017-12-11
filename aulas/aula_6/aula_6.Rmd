@@ -231,7 +231,7 @@ Deve ser acompanhada de um Help.txt, em português ou inglês, com a estrutura p
 Deve ter dentro do código pelo menos ou um if(), ou um for() ou uma das funções da família apply.  
 <span style="color:red">*Todas as linhas devem ter um comentário, dizendo o que elas fazem* </span> . Sim, todas. Sim, mesmo que seja óbvio
  
-Prazo: duas semanas após o fim das aulas, dia 21/12 às 23:59:59, sem possibilidade de extensão
+Prazo: duas semanas após o fim das aulas, dia 28/12 às 23:59:59, sem possibilidade de extensão
 
 Siga as dicas do site do IB-USP para a construção da sua função
 [Disciplina R IB-USP](http://ecologia.ib.usp.br/bie5782/doku.php?id=bie5782:01_curso_atual:alunos:trabalho_final:start)
