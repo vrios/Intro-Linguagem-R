@@ -3,12 +3,12 @@ title: "Aula 7 - Introdução ao controle de versões, ou como manter sua sanida
 author: "Vitor Rios"
 date: "11 de novembro de 2017"
 output:
+  beamer_presentation:
+    highlight: kate
   slidy_presentation:
     font_adjustment: + 1
     highlight: kate
     smart: false
-  beamer_presentation:
-    highlight: kate
 classoption: aspectratio=169
 ---
 [Controle de versão: como não deixar isso acontecer com você](http://www.phdcomics.com/comics/archive/phd101212s.gif)  
@@ -79,64 +79,94 @@ RStudio: oferece integração com Git diretamente na interface, principais açõ
 - Fazer alterações nos arquivo do projeto
 - Salvar alterações
 - Dar `commit` no repositório local via RStudio
-- Dar `pull` no repositório local via RStudio (para evitar problemas de conflito caso alguem mais tenha alterad o projeto)
+- Dar `pull` no repositório local via RStudio (para evitar problemas de conflito caso alguem mais tenha alterado o projeto)
 - Resolver problemas de `merge`
 - Dar `push` no `remote` via RStudio
 
 ***
-![criando seu repositório](..//..//figuras/novoRepositorio.png)
+# Criando seu repositório
+<img src="..//..//figuras/novoRepositorio.png" alt="criando seu repositório", width = "90%">
 
 ***
-![Informações do seu repositório](..//..//figuras/informacoesRepositorio.png)
+# Informações do seu repositório
+<img src="..//..//figuras/informacoesRepositorio.png" alt="Informações do seu repositório", width = "90%">
 
 ***
-![Informações do seu repositório](..//..//figuras/clonarRepositorio.png)
+# Clonar seu repositório
+<img src="..//..//figuras/clonarRepositorio.png" alt="Clonar seu repositório", width = "90%">
 
 ***
-![Informações do seu repositório](..//..//figuras/criarProjeto1.png)
+# Criar projeto
+<img src="..//..//figuras/criarProjeto1.png" alt="Criar projeto", width = "90%">
 
 ***
-![Informações do seu repositório](..//..//figuras/criarProjeto2.png)
+# Criar projeto
+<img src="..//..//figuras/criarProjeto2.png" alt="Criar projeto", width = "90%">
 
 ***
-![Informações do seu repositório](..//..//figuras/criarProjeto3.png)
+# Criar projeto
+<img src="..//..//figuras/criarProjeto3.png" alt="Criar projeto", width = "90%">
 
 ***
-![Informações do seu repositório](..//..//figuras/criarProjeto4.png)
+# Criar projeto
+<img src="..//..//figuras/criarProjeto4.png" alt="Criar projeto", width = "90%">
+***
 
-![Informações do seu repositório](..//..//figuras/criarProjeto3.png)
-
-***
-![Informações do seu repositório](..//..//figuras/alterandoProjeto1.png)
-
-***
-![Informações do seu repositório](..//..//figuras/preparandoCommit2.png)
-***
-![Informações do seu repositório](..//..//figuras/pullEpush.png)
-***
-![Informações do seu repositório](..//..//figuras/pull.png)
-***
-![Informações do seu repositório](..//..//figuras/push.png)
-***
-![Informações do seu repositório](..//..//figuras/pushComSucesso.png)
+# Alterando projeto localmente
+<img src="..//..//figuras/alterandoProjeto1.png" alt="Alterando projeto localmente", width = "90%">
 
 ***
-![Informações do seu repositório](..//..//figuras/githubAtualizado.png)
-***
-![Informações do seu repositório](..//..//figuras/editarGithub1.png)
+# Preparando seu commit
+<img src="..//..//figuras/preparandoCommit1.png" alt="Preparando seu commit", width = "90%">
 
 ***
-![Informações do seu repositório](..//..//figuras/editarGithub2.png)
+# Preparando seu commit
+<img src="..//..//figuras/preparandoCommit2.png" alt="Preparando seu commit", width = "90%">
 
 ***
-![Informações do seu repositório](..//..//figuras/mergeCOnflict.png)
+# Puxando e empurrando
+<img src="..//..//figuras/pullEpush.png" alt="Puxando e empurrando", width = "90%">
 
 ***
-![Informações do seu repositório](..//..//figuras/history.png)
-***
-![Informações do seu repositório](..//..//figuras/fazendoMerge.png)
-***
-![Informações do seu repositório](..//..//figuras/mergeSucesso.png)
+# Puxando
+<img src="..//..//figuras/pull.png" alt="Puxando", width = "90%">
 
 ***
-![Informações do seu repositório](..//..//figuras/preparandoCommit2.png)
+# Empurrando
+<img src="..//..//figuras/push.png" alt="Empurrando", width = "90%">
+
+***
+# Push com sucesso
+<img src="..//..//figuras/pushComSucesso.png" alt="Push com sucesso", width = "90%">
+
+***
+# GitHub Atualizado
+<img src="..//..//figuras/githubAtualizado.png" alt="GitHub Atualizado", width = "90%">
+
+***
+# Editando arquivo diretamente no GitHub
+<img src="..//..//figuras/editarGithub1.png" alt="Editando arquivo diretamente no GitHub", width = "90%">
+
+***
+# Editando arquivo diretamente no GitHub
+<img src="..//..//figuras/editarGithub2.png" alt="Editando arquivo diretamente no GitHub", width = "90%">
+
+***
+# Editando arquivo diretamente no GitHub
+<img src="..//..//figuras/editarGithub3.png" alt="Editando arquivo diretamente no GitHub", width = "90%">
+
+***
+# Conflito de fusão
+<img src="..//..//figuras/mergeCOnflict.png" alt="Conflito de fusão", width = "90%">
+
+***
+# Checando seu histórico
+<img src="..//..//figuras/history.png" alt="Checando seu histórico", width = "90%">
+
+***
+# Fusão dos commits
+<img src="..//..//figuras/fazendoMerge.png" alt="Fusão dos commits", width = "90%">
+
+***
+# Sucesso
+<img src="..//..//figuras/mergeSucesso.png" alt="Sucesso", width = "90%">
