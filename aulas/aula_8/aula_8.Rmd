@@ -1,35 +1,66 @@
 ---
-title: "Aula 8"
+title: "Aula 8 - Análise estatística e modelos lineares"
 author: "Vitor Rios"
 date: "11 de novembro de 2017"
-output: slidy_presentation
+output:
+  beamer_presentation:
+    highlight: kate
+  slidy_presentation:
+    font_adjustment: + 1
+    highlight: kate
+    smart: false
+classoption: aspectratio=169
 ---
+# Lembrando o básico
+Ao coletarmos dados, eles tem uma determinada distribuição, isto é alguns valores podem ser mais frequentes que outros, podemos ter valores mais ou menos distantes da média, etc.
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+Podemos ver isso fazendo um gráfico da frequencia de cada valor dos dados. Supondo que medimos o tamanho de alguns bichos.
+```{r}
+#primeiro, vamos gerar os dados usando rnorm(), sorteando 10 individuos de uma distribuição normal com média 1.6 e desvio padrão 0.3
+
+dados = rnorm (10, mean = 1.6, sd = 0.3 )
+#agora um histograma
+hist(dados)
+
+#a amostra é muito pequena para entendermos o que está acontecendo,refazendo os dados com uma amostra maior
+dados = rnorm (100, mean = 1.6, sd = 0.3 )
+#agora um histograma
+hist(dados)
+#e de novo
+dados = rnorm (1000, mean = 1.6, sd = 0.3 )
+#agora um histograma
+hist(dados,breaks = 50)
 ```
 
-## R Markdown
+***
+Acima, vimos uma característica de todo e qualquer conjunto de dados: quanto maior o `n` amostral, mais aprendemos sobre nossos dados
 
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Além diso, percebemos que um determinado valor tem uma frequência maior que os outros, e que por coincidencia fica no meio da distribuição. Vemos também que a distribuição é aproximadamente simétrica em torno deste valor central. Se somarmos todos os valores e dividirmos pelo `n`, teremos a `média`, que para uma distribuição gaussiana (também chamada de "normal") descreve o valor mais provável. Em outras palavras, se colocarmos todos os bichos que medimos num pote e pegarmos um ao acaso, provavelmente ele terá tamanho próximo da média
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
-
-## Slide with Bullets
-
-- Bullet 1
-- Bullet 2
-- Bullet 3
-
-## Slide with R Output
-
-```{r cars, echo = TRUE}
-summary(cars)
+```{r}
+hist(dados,breaks = 50)
+abline(v=mean(dados),col="red",lwd=3)
 ```
 
-## Slide with Plot
+***
+Podemos também calcular o quanto os dados estão distribuídos em torno da média, em outras palavras o quanto de nossa distribuição está mais ou menos perto da média. Para isso usamos o `desvio padrão` (_standard deviation_, `sd`). Numa distribuição com desvio padrão alto, a probabilidade de encontrar um bicho muito maior ou menor que a média é grande, enquanto que se o desvio padrão for baixo, temos o contrário, a maioria dos bichos estará próximo à média. O desvio padrão não é um valor dentro da distribuição, mas sim um descrição dela. Podemos ter uma noção melhor escolhendo dois pontos na nossa distribuição: um igual à média mais o desvio padrão, e um igual à média menos o desvio padrão, e destacando eles. Note que a maior parte dos dados (68%) fica nesse intervalo. Numa curva normal, 95% dos dados ficam no intervalo `média $+-$ 2*sd`
+```{r}
+hist(dados,breaks = 50)
+abline(v=mean(dados),col="red",lwd=3)
+abline(v=mean(dados)+sd(dados),col="purple",lwd=3)
+abline(v=mean(dados)-sd(dados),col="purple",lwd=3)
+abline(v=mean(dados)+2*sd(dados),col="darkorange",lwd=3)
+abline(v=mean(dados)-2*sd(dados),col="darkorange",lwd=3)
+```
+***
+Geralmente, quando temos muitos dados, representamos a distribuição na forma de uma curva, que representa a probabilidade dos valores (tecnicamente, a densidade probabilistica), ao invés de suas frequências
+```{r}
+plot( density(dados), bty="n" )
+abline(v=mean(dados),col="red",lwd=3)
+abline(v=mean(dados)+sd(dados),col="purple",lwd=3)
+abline(v=mean(dados)-sd(dados),col="purple",lwd=3)
+abline(v=mean(dados)+2*sd(dados),col="darkorange",lwd=3)
+abline(v=mean(dados)-2*sd(dados),col="darkorange",lwd=3)
 
-```{r pressure}
-plot(pressure)
 ```
 
