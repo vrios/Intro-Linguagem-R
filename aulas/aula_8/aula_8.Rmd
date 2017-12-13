@@ -43,7 +43,11 @@ abline(v=mean(dados),col="red",lwd=3)
 ```
 
 ***
-Podemos também calcular o quanto os dados estão distribuídos em torno da média, em outras palavras o quanto de nossa distribuição está mais ou menos perto da média. Para isso usamos o `desvio padrão` (_standard deviation_, `sd`). Numa distribuição com desvio padrão alto, a probabilidade de encontrar um bicho muito maior ou menor que a média é grande, enquanto que se o desvio padrão for baixo, temos o contrário, a maioria dos bichos estará próximo à média. O desvio padrão não é um valor dentro da distribuição, mas sim um descrição dela. Podemos ter uma noção melhor escolhendo dois pontos na nossa distribuição: um igual à média mais o desvio padrão, e um igual à média menos o desvio padrão, e destacando eles. Note que a maior parte dos dados (68%) fica nesse intervalo. Numa curva normal, 95% dos dados ficam no intervalo `média $+-$ 2*sd`
+Podemos também calcular o quanto os dados estão distribuídos em torno da média, em outras palavras o quanto de nossa distribuição está mais ou menos perto da média. Para isso usamos o `desvio padrão` (_standard deviation_, `sd`). 
+
+Numa distribuição com desvio padrão alto, a probabilidade de encontrar um bicho muito maior ou menor que a média é grande, enquanto que se o desvio padrão for baixo, temos o contrário, a maioria dos bichos estará próximo à média. O desvio padrão não é um valor dentro da distribuição, mas sim um descrição dela.
+
+Podemos ter uma noção melhor escolhendo dois pontos na nossa distribuição: um igual à média mais o desvio padrão, e um igual à média menos o desvio padrão, e destacando eles. Note que a maior parte dos dados (68%) fica nesse intervalo. Numa curva normal, 95% dos dados ficam no intervalo `média $+-$ 2*sd`
 ```{r}
 hist(dados,breaks = 50)
 abline(v=mean(dados),col="red",lwd=3)
@@ -64,3 +68,81 @@ abline(v=mean(dados)-2*sd(dados),col="darkorange",lwd=3)
 
 ```
 
+*** 
+# Desvio padrão maior ou menor
+Vamos comparar 3 distribuições, a nossa original,  uma com 2x o desvio padrão, e uma com 0.5x o desvio padrão, todas com a mesma média
+```{r,echo=F}
+dadosx.5sd = rnorm (1000, mean = 1.6, sd = 0.15 )
+dadosx2sd = rnorm (1000, mean = 1.6, sd = 0.6 )
+par(mfrow=c(1,3))
+plot( density(dados), bty="n" , xlim=c(0,4),ylim=c(0,2.5))
+ abline(v=mean(dados),col="red",lwd=3)
+# abline(v=mean(dados)+sd(dados),col="purple",lwd=3)
+# abline(v=mean(dados)-sd(dados),col="purple",lwd=3)
+# abline(v=mean(dados)+2*sd(dados),col="darkorange",lwd=3)
+# abline(v=mean(dados)-2*sd(dados),col="darkorange",lwd=3)
+
+plot( density(dadosx2sd), bty="n" , xlim=c(0,4),ylim=c(0,2.5))
+ abline(v=mean(dadosx2sd),col="red",lwd=3)
+# abline(v=mean(dadosx2sd)+sd(dadosx2sd),col="purple",lwd=3)
+# abline(v=mean(dadosx2sd)-sd(dadosx2sd),col="purple",lwd=3)
+# abline(v=mean(dadosx2sd)+2*sd(dadosx2sd),col="darkorange",lwd=3)
+# abline(v=mean(dadosx2sd)-2*sd(dadosx2sd),col="darkorange",lwd=3)
+
+plot( density(dadosx.5sd), bty="n" , xlim=c(0,4),ylim=c(0,2.5))
+ abline(v=mean(dadosx.5sd),col="red",lwd=3)
+# abline(v=mean(dadosx.5sd)+sd(dadosx.5sd),col="purple",lwd=3)
+# abline(v=mean(dadosx.5sd)-sd(dadosx.5sd),col="purple",lwd=3)
+# abline(v=mean(dadosx.5sd)+2*sd(dadosx.5sd),col="darkorange",lwd=3)
+# abline(v=mean(dadosx.5sd)-2*sd(dadosx.5sd),col="darkorange",lwd=3)
+
+```
+
+***
+# Variância
+Também podemos descrever a abertura da curva normal usando a `variância`, que é igual ao quadrado do desvio padrão (tecnicamente, o desvio é a raiz da variância)
+
+O conceito intuitivo de variância é o mesmo do desvio padrão padrão: mantendo a mesma média, uma variância maior significa que podemos esperar mais valores longe da média, e uma variância menor significa que podemos esperar mais valores perto da média
+
+***
+# Pra quê isso serve?
+Uma vez que descrevemos nossos dados com média e variância, podemos usar isso para fazer inferências, isto é prever resultados futuros e entender a releção entre mais de uma variável.
+
+## Previsão
+Conhecendo a média e a variância de uma ditribuição podemos calcular a probabilidade de obter um determinado valor ao acaso, ou valores a partir de um dado valor limite
+
+Lembre que podeos calcular quantos % da curva estão  entre média `média $+-$ sd`, e que 50% da curva estão para cada lado da média. Da mesma forma, podemos escolher um ponto ao acaso e calcular a probabilidade de obter aquele valor, ou um valor menor que ele
+
+NO R usamos as funções rnom(), pnorm e qnorm para isso. se quisermos saber a probabilidade de um valor menor ou igual à media, podemos fazer:
+```{r}
+pnorm(2.093456,mean = 1.6,sd = 0.3) #probabilidade de um valor menor ou igual a 2.093456
+qnorm(0.95,mean = 1.6,sd = 0.3) #95% da população será menor que este valor
+qnorm(0.50,mean = 1.6,sd = 0.3)
+
+```
+
+
+## Relação entre variáveis
+
+Se conhecemos a distribuição de duas variáveis, podemos perguntar como uma afeta a outra. Por exemplo, se medimos a idade e a altura de vária pessoas, a idade influencia na altura? Podemos verificar isso plotando uma contra a outra. Definindo idade como preditora, isto é, idade influencia altura, e não o contrário, temos:
+
+```{r}
+altura = dados
+idade = rnorm(1000, mean = 25, sd = 3)
+plot(altura ~ idade) # '~' significa "em função de". Em outras palavras, altura é a variável respota, e idade a preditora
+```
+
+A dispersão dos pontos nos indica que altura e idade são independentes, ou seja um aumento em idade não implica em um aumento de altura. Isto é esperado pois nossos dados foram gerados independemtemente. O que aconteceria se idade de fato influenciasse altura?
+
+```{r}
+altura2= altura + sqrt(idade)
+#escolhi somar a raiz da idade ao valor de altura para ilustrar, poderia ter escolhido qualquer relação
+plot(altura2~idade)
+```
+
+# Essa relação é forçada, vamos ver dados reais
+Dragões!
+```{r}
+dragoes = read.table("..//..//arquivos/dragoes_completo.csv", sep=";",header = T)
+plot(dragoes$tamanho_asa ~ dragoes$idade)
+```
