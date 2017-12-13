@@ -1,31 +1,49 @@
 ---
-title: "Aula 8 - Análise estatística e modelos lineares"
+title: "Aula 8 - Introdução muito básica e rápida a análise estatística e modelos lineares"
 author: "Vitor Rios"
 date: "11 de novembro de 2017"
 output:
-  beamer_presentation:
-    highlight: kate
   slidy_presentation:
-    font_adjustment: + 1
+    
     highlight: kate
     smart: false
+  beamer_presentation:
+    highlight: kate
 classoption: aspectratio=169
 ---
 # Lembrando o básico
 Ao coletarmos dados, eles tem uma determinada distribuição, isto é alguns valores podem ser mais frequentes que outros, podemos ter valores mais ou menos distantes da média, etc.
 
-Podemos ver isso fazendo um gráfico da frequencia de cada valor dos dados. Supondo que medimos o tamanho de alguns bichos.
+Podemos ver isso fazendo um gráfico da frequencia de cada valor dos dados. Supondo que medimos o tamanho de alguns bichos. 
 ```{r}
 #primeiro, vamos gerar os dados usando rnorm(), sorteando 10 individuos de uma distribuição normal com média 1.6 e desvio padrão 0.3
 
 dados = rnorm (10, mean = 1.6, sd = 0.3 )
 #agora um histograma
 hist(dados)
-
+```
+<style>
+  .col2 {
+    columns: 2 200px;         /* number of columns and width in pixels*/
+    -webkit-columns: 2 200px; /* chrome, safari */
+    -moz-columns: 2 200px;    /* firefox */
+  }
+  .col3 {
+    columns: 3 100px;
+    -webkit-columns: 3 100px;
+    -moz-columns: 3 100px;
+  }
+</style>
+***
+```{r}
 #a amostra é muito pequena para entendermos o que está acontecendo,refazendo os dados com uma amostra maior
 dados = rnorm (100, mean = 1.6, sd = 0.3 )
 #agora um histograma
 hist(dados)
+```
+
+***
+```{r}
 #e de novo
 dados = rnorm (1000, mean = 1.6, sd = 0.3 )
 #agora um histograma
@@ -35,8 +53,11 @@ hist(dados,breaks = 50)
 ***
 Acima, vimos uma característica de todo e qualquer conjunto de dados: quanto maior o `n` amostral, mais aprendemos sobre nossos dados
 
-Além diso, percebemos que um determinado valor tem uma frequência maior que os outros, e que por coincidencia fica no meio da distribuição. Vemos também que a distribuição é aproximadamente simétrica em torno deste valor central. Se somarmos todos os valores e dividirmos pelo `n`, teremos a `média`, que para uma distribuição gaussiana (também chamada de "normal") descreve o valor mais provável. Em outras palavras, se colocarmos todos os bichos que medimos num pote e pegarmos um ao acaso, provavelmente ele terá tamanho próximo da média
+Além diso, percebemos que um determinado valor tem uma frequência maior que os outros, e que por coincidencia fica no meio da distribuição. Vemos também que a distribuição é aproximadamente simétrica em torno deste valor central. 
 
+Se somarmos todos os valores e dividirmos pelo `n`, teremos a `média`, que para uma distribuição gaussiana (também chamada de "normal") descreve o valor mais provável. Em outras palavras, se colocarmos todos os bichos que medimos num pote e pegarmos um ao acaso, provavelmente ele terá tamanho próximo da média
+
+***
 ```{r}
 hist(dados,breaks = 50)
 abline(v=mean(dados),col="red",lwd=3)
@@ -47,8 +68,9 @@ Podemos também calcular o quanto os dados estão distribuídos em torno da méd
 
 Numa distribuição com desvio padrão alto, a probabilidade de encontrar um bicho muito maior ou menor que a média é grande, enquanto que se o desvio padrão for baixo, temos o contrário, a maioria dos bichos estará próximo à média. O desvio padrão não é um valor dentro da distribuição, mas sim um descrição dela.
 
+***
 Podemos ter uma noção melhor escolhendo dois pontos na nossa distribuição: um igual à média mais o desvio padrão, e um igual à média menos o desvio padrão, e destacando eles. Note que a maior parte dos dados (68%) fica nesse intervalo. Numa curva normal, 95% dos dados ficam no intervalo `média $+-$ 2*sd`
-```{r}
+```{r,echo=F}
 hist(dados,breaks = 50)
 abline(v=mean(dados),col="red",lwd=3)
 abline(v=mean(dados)+sd(dados),col="purple",lwd=3)
@@ -56,9 +78,10 @@ abline(v=mean(dados)-sd(dados),col="purple",lwd=3)
 abline(v=mean(dados)+2*sd(dados),col="darkorange",lwd=3)
 abline(v=mean(dados)-2*sd(dados),col="darkorange",lwd=3)
 ```
+
 ***
-Geralmente, quando temos muitos dados, representamos a distribuição na forma de uma curva, que representa a probabilidade dos valores (tecnicamente, a densidade probabilistica), ao invés de suas frequências
-```{r}
+Geralmente, quando temos muitos dados, representamos a distribuição na forma de uma curva, que representa a probabilidade dos valores (tecnicamente, a densidade probabilística), ao invés de suas frequências
+```{r,echo=F}
 plot( density(dados), bty="n" )
 abline(v=mean(dados),col="red",lwd=3)
 abline(v=mean(dados)+sd(dados),col="purple",lwd=3)
@@ -75,22 +98,22 @@ Vamos comparar 3 distribuições, a nossa original,  uma com 2x o desvio padrão
 dadosx.5sd = rnorm (1000, mean = 1.6, sd = 0.15 )
 dadosx2sd = rnorm (1000, mean = 1.6, sd = 0.6 )
 par(mfrow=c(1,3))
-plot( density(dados), bty="n" , xlim=c(0,4),ylim=c(0,2.5))
- abline(v=mean(dados),col="red",lwd=3)
+plot( density(dados), bty="n" , xlim=c(0,4),ylim=c(0,3))
+ abline(v=mean(dados),col="red",lwd=1)
 # abline(v=mean(dados)+sd(dados),col="purple",lwd=3)
 # abline(v=mean(dados)-sd(dados),col="purple",lwd=3)
 # abline(v=mean(dados)+2*sd(dados),col="darkorange",lwd=3)
 # abline(v=mean(dados)-2*sd(dados),col="darkorange",lwd=3)
 
-plot( density(dadosx2sd), bty="n" , xlim=c(0,4),ylim=c(0,2.5))
- abline(v=mean(dadosx2sd),col="red",lwd=3)
+plot( density(dadosx2sd), bty="n" , xlim=c(0,4),ylim=c(0,3))
+ abline(v=mean(dadosx2sd),col="red",lwd=1)
 # abline(v=mean(dadosx2sd)+sd(dadosx2sd),col="purple",lwd=3)
 # abline(v=mean(dadosx2sd)-sd(dadosx2sd),col="purple",lwd=3)
 # abline(v=mean(dadosx2sd)+2*sd(dadosx2sd),col="darkorange",lwd=3)
 # abline(v=mean(dadosx2sd)-2*sd(dadosx2sd),col="darkorange",lwd=3)
 
-plot( density(dadosx.5sd), bty="n" , xlim=c(0,4),ylim=c(0,2.5))
- abline(v=mean(dadosx.5sd),col="red",lwd=3)
+plot( density(dadosx.5sd), bty="n" , xlim=c(0,4),ylim=c(0,3))
+ abline(v=mean(dadosx.5sd),col="red",lwd=1)
 # abline(v=mean(dadosx.5sd)+sd(dadosx.5sd),col="purple",lwd=3)
 # abline(v=mean(dadosx.5sd)-sd(dadosx.5sd),col="purple",lwd=3)
 # abline(v=mean(dadosx.5sd)+2*sd(dadosx.5sd),col="darkorange",lwd=3)
@@ -121,17 +144,18 @@ qnorm(0.50,mean = 1.6,sd = 0.3)
 
 ```
 
-
-## Relação entre variáveis
+***
+# Relação entre variáveis
 
 Se conhecemos a distribuição de duas variáveis, podemos perguntar como uma afeta a outra. Por exemplo, se medimos a idade e a altura de vária pessoas, a idade influencia na altura? Podemos verificar isso plotando uma contra a outra. Definindo idade como preditora, isto é, idade influencia altura, e não o contrário, temos:
 
-```{r}
+```{r,echo=F}
 altura = dados
 idade = rnorm(1000, mean = 25, sd = 3)
 plot(altura ~ idade) # '~' significa "em função de". Em outras palavras, altura é a variável respota, e idade a preditora
 ```
 
+***
 A dispersão dos pontos nos indica que altura e idade são independentes, ou seja um aumento em idade não implica em um aumento de altura. Isto é esperado pois nossos dados foram gerados independemtemente. O que aconteceria se idade de fato influenciasse altura?
 
 ```{r}
@@ -142,7 +166,106 @@ plot(altura2~idade)
 
 # Essa relação é forçada, vamos ver dados reais
 Dragões!
-```{r}
+```{r,echo=F}
 dragoes = read.table("..//..//arquivos/dragoes_completo.csv", sep=";",header = T)
+dragoes=dragoes[,-1] #coluna 1 é inútil
+dragoes$cor[dragoes$cor =="dorado" ] = "dourado"
+dragoes$cor[dragoes$cor =="vremelho" ] = "vermelho"
+dragoes$cor[dragoes$cor =="banco" ] = "branco"
+dragoes$cor = tolower(dragoes$cor) # maiúsculas para minusculas
+dragoes$cor = factor(dragoes$cor)#transformando novamente em fator
+dragoes = dragoes[!is.na(dragoes$peso),]
+```
+
+```{r}
 plot(dragoes$tamanho_asa ~ dragoes$idade)
+```
+
+***
+# Como encontrar essa relação?
+Em outras palavras, qual equação posso usar para prever o tamnho do dragão se eu souber a idade? mesmo com uma relação clara (valores de um lado do gráfico são diferentes de valores no outro), aparementemente um dragão com cerca de 200 anos pode ter um tamanho entre 10 e 16 metros (cada asa). Qual o valor mais provável para um dragão de 200 anos?
+
+## Modelos lineares
+Podemos `ajustar um modelo` a nossos dados, isto é, estimar a reta que melhor descreve a relação entre nossas variáveis. Modelos lineares são usados para calcular a influencia de uma variável em outra, desde que algumas premissas sejam cumpridas:
+1 - Relação linear: relações quadráticas, logisticas, ou qualquer coisa que não seja uma reta não podem ser analisadas com modelos lineares
+2 - Normalidade das variáveis
+3 - Homogeneidade das variâncias
+
+
+# No R, fazemos isso instantaneamente com a função `lm()`
+```{r}
+lm(dragoes$tamanho_asa ~ dragoes$idade)
+```
+
+O modelo linear nos retorna tudo que precisamos para estimar nossa reta: o `intercepto`, isto é o ponto em que ela cruza o eixo y, e a inclinação. Podemos então estimar o valor de y da seguinte forma:
+$$\hat{y} = 4.60279 + 0.05753 * x$$
+
+Tecnicamente, temos um termo de erro $\epsilon$, que representa a variação de y em torno do valor previsto pela reta.
+$$y = 4.60279 + 0.05753 * x + \epsilon$$
+Mas quando fazemos uma análise, geralmente não é a equação que queremos saber, e sim se o modelo é estatisticamente significativo, isto é, se influência de uma variável na outra, modelada por nossa equação, é diferente do que seria esperado ao acaso (valor de $p$), e o quanto essa influência explica a variação de $y$ (valor de $R^2$)
+
+***
+`summary()` nos dá essa informação:
+```{r}
+summary(lm(dragoes$tamanho_asa ~ dragoes$idade))
+```
+
+Nosso valor de $p$ é extremamente baixo, muito menor que $0.05$, o valor geralmente escolhido para determinar significância, portanto rejeitamos a hipótese nula de ausência de influência, corroborando a hipótese alternativa. Nosso valor $R^2$ é $\approx 0.67$, indicando que nossa equação da reta explica $\approx 67\%$ da variação do valor de $y$  nosso dados
+
+# Um breve interlúdio sobre valor de p, significância e hipótese nula
+
+Valor de $p$ é probabilidade de encontrarmos, ao acaso, valores da estatítica de interesse iguais ou mais extremos do que o que encontramos nos nossos dados. No modelos lineares, como usamos mais de uma variável, usamos a estatística $F$ para descrever o efeito da variável independente sobre a dependente. 
+
+O nível de significância $\alpha$ representa a probabilidade máxima aceitável de encontrar o mesmo resultado por acaso. Um $\alpha = 0.05$ significa que, se repetimos nossas medidias várias vezes, uma vez em cada vinte podemos esperar encontrar o mesmo padrão de nossos dados, mesmo que não haja efeito de uma variável na outra
+
+Hipótese nula nada mais é do que um modelo de como a variável dependente agiria se não houvesse efeito da variável independente
+
+***
+# Variável categórica
+Não existe diferença prática para se ajustar um modelo com variáveis categóricas ou contínuas no R.
+
+Quando a preditora é contínua, chamamos a análise de $ANOVA$. Quando a preditora é contínua, chamamos de $Regressão$
+
+```{r, echo=F}
+par(mfrow=c(1,2))
+plot(dragoes$cor,dragoes$tamanho_asa)
+plot(dragoes$idade,dragoes$tamanho_asa)
+```
+
+
+***
+A interpretação do `lm()` é a mesma:
+```{r}
+lm(dragoes$tamanho_asa~dragoes$cor)
+```
+*** 
+
+```{r}
+summary(lm(dragoes$tamanho_asa~dragoes$cor))
+```
+
+***
+# Mais de uma preditora
+Basta incluir a variável na formula usando o sinal de mais, podemos incluir quantas quisermos:
+
+```{r}
+lm(dragoes$tamanho_asa ~ dragoes$idade + dragoes$peso)
+```
+*** 
+
+```{r}
+summary(lm(dragoes$tamanho_asa ~ dragoes$idade + dragoes$peso))
+```
+
+***
+Podemos incluir também interação entre fatores
+
+
+```{r}
+lm(dragoes$tamanho_asa ~ dragoes$idade * dragoes$cor)
+```
+*** 
+
+```{r}
+summary(lm(dragoes$tamanho_asa ~ dragoes$idade * dragoes$cor))
 ```
