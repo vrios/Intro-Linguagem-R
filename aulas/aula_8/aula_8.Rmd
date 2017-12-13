@@ -3,12 +3,12 @@ title: "Aula 8 - Introdução muito básica e rápida a análise estatística e 
 author: "Vitor Rios"
 date: "11 de novembro de 2017"
 output:
+  beamer_presentation:
+    highlight: kate
   slidy_presentation:
     
     highlight: kate
     smart: false
-  beamer_presentation:
-    highlight: kate
 classoption: aspectratio=169
 ---
 # Lembrando o básico
@@ -187,9 +187,11 @@ Em outras palavras, qual equação posso usar para prever o tamnho do dragão se
 
 ## Modelos lineares
 Podemos `ajustar um modelo` a nossos dados, isto é, estimar a reta que melhor descreve a relação entre nossas variáveis. Modelos lineares são usados para calcular a influencia de uma variável em outra, desde que algumas premissas sejam cumpridas:
-1 - Relação linear: relações quadráticas, logisticas, ou qualquer coisa que não seja uma reta não podem ser analisadas com modelos lineares
-2 - Normalidade das variáveis
-3 - Homogeneidade das variâncias
+
+1 - Relação linear: relações quadráticas, logisticas, ou qualquer coisa que não seja uma reta não podem ser analisadas com modelos lineares  
+2 - Normalidade das variáveis  
+3 - Homogeneidade das variâncias  
+4 - Independência  
 
 
 # No R, fazemos isso instantaneamente com a função `lm()`
@@ -224,7 +226,7 @@ Hipótese nula nada mais é do que um modelo de como a variável dependente agir
 # Variável categórica
 Não existe diferença prática para se ajustar um modelo com variáveis categóricas ou contínuas no R.
 
-Quando a preditora é contínua, chamamos a análise de $ANOVA$. Quando a preditora é contínua, chamamos de $Regressão$
+Quando a preditora é categórica, chamamos a análise de $ANOVA$. Quando a preditora é contínua, chamamos de $Regressão$
 
 ```{r, echo=F}
 par(mfrow=c(1,2))
